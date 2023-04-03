@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 03 avr. 2023 à 13:57
+-- Généré le : lun. 03 avr. 2023 à 18:15
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -30,12 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `article` (
   `id_article` int(11) NOT NULL,
   `titre` varchar(50) DEFAULT NULL,
-  `contenu` varchar(1000) DEFAULT NULL,
+  `contenu` varchar(50) DEFAULT NULL,
   `note` int(11) DEFAULT NULL,
-  `caracteristique` varchar(50) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
-  `date_modification` date DEFAULT NULL,
-  `jaquette` varchar(50) DEFAULT NULL
+  `jaquette` varchar(50) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `date_modification` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -47,30 +47,34 @@ CREATE TABLE `article` (
 CREATE TABLE `avis` (
   `id_avis` int(11) NOT NULL,
   `titre` varchar(50) DEFAULT NULL,
-  `texte` varchar(1000) DEFAULT NULL,
+  `texte` text,
   `note` int(11) DEFAULT NULL,
-  `date_creation` date DEFAULT NULL
+  `date_creation` date DEFAULT NULL,
+  `id_jeux` int(11) DEFAULT NULL,
+  `note_moyenne` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categorie`
+-- Structure de la table `categories`
 --
 
-CREATE TABLE `categorie` (
-  `nomcategorie` varchar(50) NOT NULL,
+CREATE TABLE `categories` (
+  `nom_categorie` varchar(50) NOT NULL,
   `id_jeux` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `image`
+-- Structure de la table `images`
 --
 
-CREATE TABLE `image` (
-  `chemin` varchar(50) NOT NULL,
+CREATE TABLE `images` (
+  `id_image` varchar(50) NOT NULL,
+  `chemin` varchar(50) DEFAULT NULL,
   `id_article` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -83,11 +87,10 @@ CREATE TABLE `image` (
 CREATE TABLE `jeux` (
   `id_jeux` int(11) NOT NULL,
   `nom` varchar(50) DEFAULT NULL,
-  `prix` int(11) DEFAULT NULL,
+  `prix` float DEFAULT NULL,
   `date_sortie` date DEFAULT NULL,
-  `synopsis` varchar(1000) DEFAULT NULL,
-  `id_article` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `synopsis` text,
+  `id_article` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,13 +114,13 @@ CREATE TABLE `utilisateur` (
   `id_user` int(11) NOT NULL,
   `login` varchar(50) DEFAULT NULL,
   `mdp` varchar(50) DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
   `nom` varchar(50) DEFAULT NULL,
   `prenom` varchar(50) DEFAULT NULL,
-  `adresse_mail` varchar(100) DEFAULT NULL,
+  `adresse_mail` varchar(50) DEFAULT NULL,
   `date_naissance` date DEFAULT NULL,
-  `date_creation` date DEFAULT NULL,
-  `date_connexion` date DEFAULT NULL
+  `date_creation_compte` date DEFAULT NULL,
+  `date_connexion` date DEFAULT NULL,
+  `id_image` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -128,77 +131,92 @@ CREATE TABLE `utilisateur` (
 -- Index pour la table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`id_article`);
+  ADD PRIMARY KEY (`id_article`),
+  ADD KEY `fk_id_user_article` (`id_user`);
 
 --
 -- Index pour la table `avis`
 --
 ALTER TABLE `avis`
-  ADD PRIMARY KEY (`id_avis`);
+  ADD PRIMARY KEY (`id_avis`),
+  ADD KEY `fk_id_jeux_avis` (`id_jeux`),
+  ADD KEY `fk_id_user` (`id_user`);
 
 --
--- Index pour la table `categorie`
+-- Index pour la table `categories`
 --
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`nomcategorie`),
-  ADD KEY `id_jeux` (`id_jeux`);
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`nom_categorie`),
+  ADD KEY `fk_id_jeux_cat` (`id_jeux`);
 
 --
--- Index pour la table `image`
+-- Index pour la table `images`
 --
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`chemin`),
-  ADD KEY `id_article` (`id_article`);
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id_image`),
+  ADD KEY `fk_id_article_image` (`id_article`);
 
 --
 -- Index pour la table `jeux`
 --
 ALTER TABLE `jeux`
   ADD PRIMARY KEY (`id_jeux`),
-  ADD KEY `fk_id_article` (`id_article`),
-  ADD KEY `fk_id_user` (`id_user`);
+  ADD KEY `fk_id_article` (`id_article`);
 
 --
 -- Index pour la table `support`
 --
 ALTER TABLE `support`
   ADD PRIMARY KEY (`nom_support`),
-  ADD KEY `id_jeux` (`id_jeux`);
+  ADD KEY `fk_id_jeux` (`id_jeux`);
 
 --
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `login` (`login`);
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `categorie`
+-- Contraintes pour la table `article`
 --
-ALTER TABLE `categorie`
-  ADD CONSTRAINT `categorie_ibfk_1` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
+ALTER TABLE `article`
+  ADD CONSTRAINT `fk_id_user_article` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
 
 --
--- Contraintes pour la table `image`
+-- Contraintes pour la table `avis`
 --
-ALTER TABLE `image`
-  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
+ALTER TABLE `avis`
+  ADD CONSTRAINT `fk_id_jeux_avis` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
+  ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
+
+--
+-- Contraintes pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `fk_id_jeux_cat` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
+
+--
+-- Contraintes pour la table `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `fk_id_article_image` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
 
 --
 -- Contraintes pour la table `jeux`
 --
 ALTER TABLE `jeux`
-  ADD CONSTRAINT `fk_id_article` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`),
-  ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk_id_article` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
 
 --
 -- Contraintes pour la table `support`
 --
 ALTER TABLE `support`
-  ADD CONSTRAINT `support_ibfk_1` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
+  ADD CONSTRAINT `fk_id_jeux` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
