@@ -6,21 +6,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL); 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 //Import du site - A completer
-require_once("./includes/constantes.php");      //constantes du site
-require_once("./includes/config-bdd.php");
-require_once("./php/functions-DB.php");
-require_once("./php/functions_query.php");
-require_once("./php/functions_structure.php");
-$mysqli = connectionDB();
+require_once("includes/constantes.php");      //constantes du site
+require_once("includes/config-bdd.php");
+// require_once("php/functions-DB.php");
+// require_once("php/functions_query.php");
+// require_once("php/functions_structure.php");
+// $mysqli = connectionDB();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8"/>
-        <title>Sa trikite</title>
+        <title>MD trikite</title>
         <link rel="icon" href="images/logo.png" />
-        <meta name="keywords" content="Pokedex"/>
-        <meta name="author" content="Damien Vailland"/>
+        <meta name="keywords" content="MD TRIKITE"/>
+        <meta name="author" content="La MD Corp"/>
         <link rel="stylesheet" type="text/css" href="styles/style_index.css">
     </head>
     <body>
