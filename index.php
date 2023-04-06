@@ -27,6 +27,8 @@ require_once("includes/config-bdd.php");
         <?php include("static/header.php"); ?>
         <?php include("static/nav.php"); ?>
         <main>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <?php 
                 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
                 }
