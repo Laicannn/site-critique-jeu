@@ -5,32 +5,32 @@
 }
 
 @font-face {
-    font-family: NanamiLighter;
-    src: url("../fonts/Nanami-Thin.otf");
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Thin.otf") format('otf');
     font-weight: lighter;
 }
 
 @font-face {
-    font-family: Nanami;
-    src: url("../fonts/Nanami-Light.otf");
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Light.otf") format('otf');
     font-weight: light;
 }
 
 @font-face {
-    font-family: Nanami;
-    src: url("../fonts/Nanami-Regular.otf");
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Regular.otf") format('otf');
     font-weight: normal;
 }
 
 @font-face {
-    font-family: Nanami;
-    src: url("../fonts/Nanami-Bold.otf");
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Bold.otf") format('otf');
     font-weight: bold;
 }
 
 @font-face {
-    font-family: Nanami;
-    src: url("../fonts/Nanami-Heavy.otf");
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Heavy.otf") format('otf');
     font-weight: bolder;
 }
 
@@ -46,29 +46,48 @@ body {
 
 header {
     z-index:2;
-    height: 80px;
+    height: 70px;
     width: 100%;
     background-color : #111111 ;
-    text-align: center;
     position:relative;
+    box-shadow: 0 2px 0 #D6D6D6;
 }
 
 header a {
+    margin-left: 1vw;
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    align-items: center;
     text-decoration: none;
-    text-align: center;
-    font-weight: normal;
-    font-size: 4vw;
+}
+
+header h1 {
+    color:#D6D6D6;
+    font-size: 2.5vw;
+    font-weight: bolder;
+    padding: 0px 0px 10px 15px;
 }
 
 #logo {
-    width:5vw;
+    width: min-content;
+    background-image: url("../images/logo_md.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+#logo img:hover {
+    transform: rotate(360deg);
+}
+
+#logo img {
+    width:6vw;
     transition-duration: 0.8s;
     transition-timing-function:cubic-bezier(.74,-0.51,.39,.91);
 }
 
-#logo:hover {
-    transform: rotate(360deg);
-}
+
+
 
 nav {
     z-index: 2;
@@ -110,7 +129,7 @@ nav {
 }
 
 #nav a.active {
-    background-color: #EEEDED;
+    background-color: #D6D6D6;
     color:#111111;
     font-size: 16px;
 }
@@ -132,13 +151,10 @@ footer {
 
 .contact {
     padding: 30px;
-    color: #FFEE32;
+    color: #FFD100
 }
 
 /* 
-#202020
-#333533
-#FFEE32
 #FFD100
-#D6D6D6
+#E8B30C
 */

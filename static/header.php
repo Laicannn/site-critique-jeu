@@ -3,10 +3,11 @@
 </head>
 <header>
     <a href="index.php">
-        <img id="logo"
-            src ="images/logo_md.png"
-            alt="logo_md"/>
-        MD trikite
+        <div id="logo">
+            <img    src ="images/logo_element.png"
+                    alt="element logo"/>
+        </div>
+        <h1> trikite </h1>
     </a>
     
 </header>
