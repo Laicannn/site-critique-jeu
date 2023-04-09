@@ -12,8 +12,6 @@ require_once("php/functions-DB.php");
 require_once("php/functions_query.php");
 require_once("php/functions_structure.php");
 $mysqli = connectionDB();
-
-// if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,15 +21,19 @@ $mysqli = connectionDB();
         <link rel="icon" href="images/logo_head.png" />
         <meta name="keywords" content="MD TRIKITE"/>
         <meta name="author" content="La MD Corp"/>
-        <link rel="stylesheet" type="text/css" href="styles/style_index.css">
+        <link rel="stylesheet" type="text/css" href="styles/style_connect.css">
     </head>
     <body>
         <?php include("static/header.php"); ?>
         <?php include("static/nav.php"); ?>
         <main>
             <?php 
-                $articles = getIndexArticle($mysqli);
-                displayJaquette($articles);
+            if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
+                header('Location: ../connection.php');
+            }
+            else{
+                displayConnect();
+            }
             ?>
         </main> 
         <?php include("static/footer.php"); ?>
