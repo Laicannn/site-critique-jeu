@@ -4,6 +4,37 @@
     box-sizing: 0;
 }
 
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Thin.otf") format('otf');
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Light.otf") format('otf');
+    font-weight: light;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Book.otf") format('otf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Bold.otf") format('otf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Heavy.otf") format('otf');
+    font-weight: bolder;
+}
+
+
 body {
     background-color : #202020;
     color:#EEEDED;

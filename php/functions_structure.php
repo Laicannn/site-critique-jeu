@@ -12,16 +12,36 @@ function DisplayJaquette($articles){
 }
 
 function displayConnect(){
-    echo'<section>
-        <form action="php/login.php" method="POST" name="register">
-            <img src="images/user_image.png" id="user_image">
-            <br>
-            <label for="username">Identifiant</label>
-            <input type="text" name="nom" id="username">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="mdp" id="password">
-            <input type="submit" value="se connecter" id="bouton_submit">
-        </form>
+    echo'
+    <section>
+        <div id="connecter">
+            <h1>Se connecter</h1>
+            <form action="php/login.php" method="POST" name="connecte">
+                <label for="username">Identifiant</label>
+                <input type="text" name="pseudo" id="username">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="mdp" id="password">
+                <br>
+                <input type="submit" value="connexion" id="bouton_submit">
+            </form>
+        </div>
+        <div id="inscrire">
+            <h1>S\'inscrire</h1>
+            <form action="php/register.php" method="POST" name="inscrire">
+                <label for="name">Nom</label>
+                <input type="text" name="nom" id="name">
+                <label for="forname">Prénom</label>
+                <input type="text" name="prenom" id="forname">
+                <label for="old">Âge</label>
+                <input type="date" name="age" id="old">
+                <label for="username">Identifiant</label>
+                <input type="text" name="pseudo" id="username">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="mdp" id="password">
+                <br>
+                <input type="submit" value="inscription" id="bouton_submit">
+            </form>
+        </div>
     </section>';
 }
 

@@ -5,7 +5,7 @@ require_once("functions-DB.php");
 require_once("functions_query.php");
 require_once("functions_structure.php");
 $mysqli = connectionDB();
-$user = $_POST['nom'];
+$user = $_POST['pseudo'];
 $password = $_POST['mdp'];
 $connect = connect($mysqli,$user,$password);
 session_start();
@@ -19,7 +19,7 @@ if ($connect){
     header('Location: ../index.php');
 }
 else {
-    header('Location: ../connection.php');
+    // header('Location: ../connection.php');
 }
 
 closeDB($mysqli);

@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Nanami';
-    src: url("../fonts/Nanami-Regular.otf") format('otf');
+    src: url("../fonts/Nanami-Book.otf") format('otf');
     font-weight: normal;
 }
 
@@ -95,7 +95,8 @@ header h1 {
 
 #connection_button img {
     z-index:3;
-    width:250px;
+    max-width: 230px;
+    width:25vw;
     transition-duration: 0.1s;
 }
 
