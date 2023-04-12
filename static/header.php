@@ -2,27 +2,24 @@
     <link rel="stylesheet" type="text/css" href="styles/style_static.css">
 </head>
 <header>
-    <a href="index.php">
+    <a id="banner" href="index.php">
         <div id="logo">
-            <img    src ="images/logo_element.png"
+            <img    src ="images/logo_element.svg"
                     alt="element logo"/>
         </div>
         <h1> trikite </h1>
     </a>
-    <div id="connection_button">
-        <?php
-            if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
-                if (str_ends_with($_SERVER['REQUEST_URI'], 'modify.php')){
-                    echo'<a class="active" href="modify.php">modifier</a>';
-                }
-                else {
-                    echo'<a href="modify.php">modifier</a>';
-                }
-                echo '<a href="php/logout.php">déconnexion</a>';
+    <?php
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
+            echo '<div class="double_button">';
+                echo'<a id="account_button" href="account.php"><img src="images/bouton_compte.png"></a>';
+                echo '<a id="disconnect_button" href="php/logout.php"><img src="images/bouton_disconnect.png"></a>';
+            echo'</div>';
+        }
+        else{
+            if (!(str_ends_with($_SERVER['REQUEST_URI'], 'connection.php'))){
+                echo '<a id="connection_button" href="connection.php"><img src="images/bouton_connect.png"></a>';
             }
-            else{
-                echo '<a href="connection.php"><img src="images/bouton_connect.png"></a>';
-            }
-        ?>
-     </div>
+        }
+    ?>
 </header>

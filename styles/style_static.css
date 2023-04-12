@@ -34,6 +34,11 @@
     font-weight: bolder;
 }
 
+body::before {
+    content: url("../images/logo_md.svg");
+    display: none;
+}
+
 body {
     background-color : #202020;
     color:#d6d6d6;
@@ -42,6 +47,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 
 header {
@@ -56,7 +62,7 @@ header {
     flex-wrap: nowrap;
 }
 
-header a {
+#banner {
     margin-left: 10vw;
     display: flex;
     flex-wrap: nowrap;
@@ -74,9 +80,11 @@ header h1 {
 
 #logo {
     width: min-content;
-    background-image: url("../images/logo_md.png");
+    background-image: url("../images/logo_md.svg");
     background-size:contain;
     background-repeat: no-repeat;
+    -webkit-filter: drop-shadow(0px 0px 4px #202020ac);
+    filter: drop-shadow(0px 0px 4px #202020ac);
 }
 
 #logo img:hover {
@@ -85,12 +93,15 @@ header h1 {
 
 #logo img {
     width:90px;
+    transition-property: transform;
     transition-duration: 0.8s;
     transition-timing-function:cubic-bezier(.74,-0.51,.39,.91);
 }
 
 #connection_button {
     margin-right: 0;
+    animation-name: slidein;
+    animation-duration: 2s;
 }
 
 #connection_button img {
@@ -104,13 +115,51 @@ header h1 {
     opacity: 50%;
 }
 
+.double_button {
+    z-index:3;
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    transition-duration: 0.1s;
+    animation-name: slidein;
+    animation-duration: 2s;
+}
+
+.double_button img:hover {
+    opacity: 50%;
+}
+
+#account_button img {
+    max-width: 196px;
+    width:21vw;
+    margin-right:-1px;
+}
+
+#disconnect_button img {
+    max-width: 56px;
+    width:5vw;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+    }
+    
+    to {
+        margin-left: 0%;
+    }
+}
+
 
 nav {
     z-index: 2;
     /* position:fixed; */
     top:80px;
     width:100%;
-    height: 28px;
+    height: max-content;
+    border: #FFD100 solid;
+    border-width: 3px 0;
     background-color: #FFD100;
     box-shadow: 0px 4px 8px #2020202b;
     display: flex;
@@ -119,6 +168,7 @@ nav {
 }
 
 #nav {
+    padding:2px;
     border-radius: 32px;
 }
 
