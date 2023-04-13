@@ -45,4 +45,8 @@ function displayConnect(){
     </section>';
 }
 
+function displayAccount(){
+    
+}
+
 ?>

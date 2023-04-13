@@ -4,7 +4,7 @@
 <nav>
     <div id="nav">
         <?php
-        if (str_ends_with($_SERVER['REQUEST_URI'], 'index.php')){
+        if (str_ends_with($_SERVER['REQUEST_URI'], 'index.php') or str_ends_with($_SERVER['REQUEST_URI'], 'site-critique-jeu/')){
             echo'<a href="index.php">AVENTURE</a>';
             echo'<a href="index.php">RPG</a>';
             echo'<a href="index.php">OPEN WORLD</a>';

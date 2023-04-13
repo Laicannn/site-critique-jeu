@@ -1,0 +1,81 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: 0;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Thin.otf") format('otf');
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Light.otf") format('otf');
+    font-weight:light;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Book.otf") format('otf');
+    font-weight:normal;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Bold.otf") format('otf');
+    font-weight:bold;
+}
+
+@font-face {
+    font-family: 'Nanami';
+    src: url("../fonts/Nanami-Heavy.otf") format('otf');
+    font-weight:bolder;
+}
+
+
+body {
+    background-color : #202020;
+    color:#D6D6D6;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    width: 80vw;
+    background-color: #111111;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items:stretch;
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding : 50px 0;
+    border-radius: 10px;;
+}
+
+section div {
+    padding : 20px;
+    width:400px;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+/* 
+#111111
+#D6D6D6
+#202020
+#FFD100
+#E8B30C
+*/

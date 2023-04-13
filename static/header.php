@@ -4,7 +4,7 @@
 <header>
     <a id="banner" href="index.php">
         <div id="logo">
-            <img    src ="images/logo_element.svg"
+            <img    src ="images/logos/logo_element.svg"
                     alt="element logo"/>
         </div>
         <h1> trikite </h1>

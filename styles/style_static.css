@@ -80,7 +80,7 @@ header h1 {
 
 #logo {
     width: min-content;
-    background-image: url("../images/logo_md.svg");
+    background-image: url("../images/logos/logo_md.svg");
     background-size:contain;
     background-repeat: no-repeat;
     -webkit-filter: drop-shadow(0px 0px 4px #202020ac);
@@ -107,7 +107,7 @@ header h1 {
 #connection_button img {
     z-index:3;
     max-width: 230px;
-    width:25vw;
+    width:30vw;
     transition-duration: 0.1s;
 }
 
@@ -132,13 +132,13 @@ header h1 {
 
 #account_button img {
     max-width: 196px;
-    width:21vw;
+    width:24vw;
     margin-right:-1px;
 }
 
 #disconnect_button img {
     max-width: 56px;
-    width:5vw;
+    width:6vw;
 }
 
 @keyframes slidein {
@@ -153,7 +153,7 @@ header h1 {
 
 
 nav {
-    z-index: 2;
+    z-index: 3;
     /* position:fixed; */
     top:80px;
     width:100%;
@@ -161,7 +161,7 @@ nav {
     border: #FFD100 solid;
     border-width: 3px 0;
     background-color: #FFD100;
-    box-shadow: 0px 4px 8px #2020202b;
+    /* box-shadow: 0px 4px 8px #2020202b; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +206,7 @@ footer {
     background-color: #111111;
     height: max-content;
     font-weight: lighter;
-    font-size: 14px;
+    font-size: 0.9vw;
     width: 100%;
 }
 
