@@ -71,6 +71,7 @@ header {
 }
 
 header h1 {
+    z-index:3;
     color:#D6D6D6;
     font-size: 40px;
     font-weight: bolder;
@@ -214,7 +215,7 @@ footer {
 }
 
 .contact {
-    padding: 30px;
+    padding: 20px;
     color: #FFD100
 }
 

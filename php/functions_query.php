@@ -37,6 +37,14 @@ function getPP($mysqli,$id_image){
     return $PP;
 }
 
+function getAllPP($mysqli){
+    $requete="SELECT chemin FROM images 
+            WHERE chemin LIKE '%profile_picture%' 
+            AND chemin NOT LIKE '%.svg';";
+    $select = readDB($mysqli,$requete);
+    return $select;
+}
+
 function loginunique($mysqli,$user){
     $requete = "SELECT * 
                 FROM utilisateur 

@@ -34,7 +34,8 @@ $mysqli = connectionDB();
                 // $role = $_SESSION['role']
                 // $pp = $_SESSION['pp']
                 // print_r($_SESSION);
-                displayAccount();
+                $liste = getAllPP($mysqli);
+                displayAccount($liste);
             }
             else{
                 header('Location: ../connection.php');

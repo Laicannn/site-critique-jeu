@@ -37,6 +37,7 @@
 
 body {
     background-color : #202020;
+    height:100vh;
     color:#D6D6D6;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
@@ -61,7 +62,7 @@ section {
     border-radius: 10px;;
 }
 
-section div {
+.separations {
     padding : 20px;
     width:400px;
 }
@@ -72,9 +73,71 @@ h1 {
     padding-bottom: 20px;
 }
 
+.photo_profil {
+    width: fit-content;
+    background-image: url('../images/profile_picture/change_pp.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+}
+
 .avatar {
     border-radius: 100%;
-    width: 5vw;
+    width: 8vw;
+    object-fit: cover;
+    opacity: 1;
+    transition-duration: 0.2s;
+}
+
+.avatar:hover{
+    opacity: 0.2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111111df;
+    transition: opacity 0.4s;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+.selection_pp {
+    z-index: 1;
+    margin-top: 320px ;
+    padding: 20px;
+    background: #202020;
+    border-radius: 5px;
+    width: 40vw;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 2s ease-in-out;
+  }
+  
+.close_button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    text-decoration: none;
+    color: #D6D6D6;
+    font-size: 28px;
+}
+
+.liste_pp {
+    width:125px;
+    padding: 20px;
+    border-radius: 100%;
 }
 
 /* 

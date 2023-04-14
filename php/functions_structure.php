@@ -47,11 +47,22 @@ function displayConnect(){
     </section>';
 }
 
-function displayAccount(){
-    echo"
-    <section>
-        <img class='avatar' src=$_SESSION[pp] alt='avatar'>
-    </section>";
+function displayAccount($liste){
+    echo"<section>";
+        echo"<a class='button' href='#popup'>";
+            echo"<div class='photo_profil'>";
+                echo"<img class='avatar' src=$_SESSION[pp] alt='avatar'>";
+            echo"</div>";
+        echo"</a>";
+        echo"<div id='popup' class='overlay'>";
+            echo"<div class='selection_pp'>";
+                echo"<a class='close_button' href='#'>&times;</a>";
+                foreach($liste as $data){
+                    echo"<img class='liste_pp' src='$data[chemin]' alt='pp'>";
+                }
+            echo"</div>";
+        echo"</div>";
+    echo"</section>";
 }
 
 ?>
