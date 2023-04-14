@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 05 avr. 2023 à 16:14
+-- Généré le : ven. 14 avr. 2023 à 08:32
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -33,7 +33,6 @@ CREATE TABLE `article` (
   `contenu` varchar(50) DEFAULT NULL,
   `note` int(11) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
-  `jaquette` varchar(50) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   `date_modification` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -42,9 +41,9 @@ CREATE TABLE `article` (
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id_article`, `titre`, `contenu`, `note`, `date_creation`, `jaquette`, `id_user`, `date_modification`) VALUES
-(1, 'Le monde de cube ou quoi là', 'BLABLABLAencore', 7, '2023-04-05', NULL, 2, NULL),
-(2, 'En route vers la 97', 'BLABLABLA', 10, '2023-04-05', NULL, 1, NULL);
+INSERT INTO `article` (`id_article`, `titre`, `contenu`, `note`, `date_creation`, `id_user`, `date_modification`) VALUES
+(1, 'Le monde de cube ou quoi là', 'BLABLABLAencore', 7, '2023-04-05', 2, NULL),
+(2, 'En route vers la 97', 'BLABLABLA', 10, '2023-04-05', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,6 +142,13 @@ CREATE TABLE `images` (
   `chemin` varchar(50) DEFAULT NULL,
   `id_article` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`id_image`, `chemin`, `id_article`) VALUES
+('1', 'images/jaquette/minecraft.webp', 1);
 
 -- --------------------------------------------------------
 
