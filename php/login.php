@@ -13,7 +13,9 @@ if ($connect){
     $_SESSION['user'] = "$user";
     $_SESSION['password'] = "$password";
     foreach($connect as $data){
-        $_SESSION['id'] = "$data[id_dresseur]";
+        $_SESSION['id'] = "$data[id_user]";
+        $_SESSION['role'] = "$data[rôle]";
+        $_SESSION['pp'] = "$data[id_image]";
     }
     $_SESSION['logged'] = true;
     header('Location: ../index.php');

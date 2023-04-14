@@ -48,7 +48,9 @@ function displayConnect(){
 }
 
 function displayAccount(){
-    
+    echo'
+    <section>
+    </section>';
 }
 
 ?>

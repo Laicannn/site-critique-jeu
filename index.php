@@ -1,4 +1,5 @@
 <?php
+echo(isset($_SESSION['logged']) && $_SESSION['logged'] === true);
 session_start();
 //affichage des erreurs côté PHP et côté MYSQLI
 ini_set('display_errors', 1);
