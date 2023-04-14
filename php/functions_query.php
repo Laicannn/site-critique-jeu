@@ -12,11 +12,16 @@ function getIndexArticle($mysqli){
 }
 
 function connect($mysqli,$user,$password){
-    $requete = 'SELECT id_user,login,mdp,nom,prenom,rôle
+    $date = date("Y-m-d");
+    $requete1 = "UPDATE utilisateur 
+                SET date_connexion = '$date'
+                WHERE login = '$user';";
+    writeDB($mysqli,$requete1);
+    $requete2 = 'SELECT id_user,login,mdp,nom,prenom,rôle,id_image
                 FROM utilisateur 
                 WHERE login = "'.$user.'" 
-                AND utilisateur.mdp = "'.$password.'";';
-    $connect = readDB($mysqli,$requete);
+                AND mdp = "'.$password.'";';
+    $connect = readDB($mysqli,$requete2);
     return $connect;
 }
 

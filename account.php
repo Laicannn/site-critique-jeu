@@ -29,10 +29,10 @@ $mysqli = connectionDB();
         <main>
             <?php 
             if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
-                header('Location: ../connection.php');
+                displayAccount();
             }
             else{
-                displayAccount();
+                header('Location: ../connection.php');
             }
             ?>
         </main> 
