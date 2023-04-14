@@ -18,7 +18,7 @@ $mysqli = connectionDB();
     <head>
         <meta charset="utf-8"/>
         <title>MD trikite</title>
-        <link rel="icon" href="images/logo/logo_head.png" />
+        <link rel="icon" href="images/logos/logo_head.png" />
         <meta name="keywords" content="MD TRIKITE"/>
         <meta name="author" content="La MD Corp"/>
         <link rel="stylesheet" type="text/css" href="styles/style_connect.css">
