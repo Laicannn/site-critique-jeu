@@ -20,4 +20,12 @@ function connect($mysqli,$user,$password){
     return $connect;
 }
 
+function loginunique($mysqli,$user){
+    $requete = "SELECT * 
+                FROM utilisateur 
+                WHERE login='$user';"
+    $login = readDB($mysqli,$requete);
+    return $login;
+}
+
 ?>

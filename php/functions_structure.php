@@ -34,6 +34,8 @@ function displayConnect(){
                 <input type="text" name="prenom" id="forname">
                 <label for="old">Âge</label>
                 <input type="date" name="age" id="old">
+                <label for="mail">Adresse mail</label>
+                <input type="email" name="mail" id="mail">
                 <label for="username">Identifiant</label>
                 <input type="text" name="pseudo" id="username">
                 <label for="password">Mot de passe</label>
