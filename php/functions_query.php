@@ -17,18 +17,30 @@ function connect($mysqli,$user,$password){
                 SET date_connexion = '$date'
                 WHERE login = '$user';";
     writeDB($mysqli,$requete1);
-    $requete2 = 'SELECT id_user,login,mdp,nom,prenom,rôle,id_image
+    $requete2 = 'SELECT *
                 FROM utilisateur 
                 WHERE login = "'.$user.'" 
                 AND mdp = "'.$password.'";';
     $connect = readDB($mysqli,$requete2);
+    if(empty($connect['id_image'])){
+        $requete3 = "UPDATE utilisateur 
+                    SET id_image = 100
+                    WHERE login = '$user' ;";
+        writeDB($mysqli,$requete3);
+    }
     return $connect;
+}
+
+function getPP($mysqli,$id_image){
+    $requete="SELECT chemin FROM images WHERE id_image = '$id_image';";
+    $PP = readDB($mysqli,$requete);
+    return $PP;
 }
 
 function loginunique($mysqli,$user){
     $requete = "SELECT * 
                 FROM utilisateur 
-                WHERE login='$user';"
+                WHERE login='$user';";
     $login = readDB($mysqli,$requete);
     return $login;
 }

@@ -5,7 +5,7 @@ function DisplayJaquette($articles){
         foreach($articles as $data){
             echo "
             <a class='carte' href='article.php?id_article=$data[id_article]'>
-                <img src=$data[chemin]>
+                <img src=$data[chemin] alt='jaquette'>
             </a>";
         }
     echo "</section>";
@@ -48,9 +48,10 @@ function displayConnect(){
 }
 
 function displayAccount(){
-    echo'
+    echo"
     <section>
-    </section>';
+        <img class='avatar' src=$_SESSION[pp] alt='avatar'>
+    </section>";
 }
 
 ?>

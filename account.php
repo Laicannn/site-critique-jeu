@@ -21,7 +21,7 @@ $mysqli = connectionDB();
         <link rel="icon" href="images/logos/logo_head.png" />
         <meta name="keywords" content="MD TRIKITE"/>
         <meta name="author" content="La MD Corp"/>
-        <link rel="stylesheet" type="text/css" href="styles/style_connect.css">
+        <link rel="stylesheet" type="text/css" href="styles/style_account.css">
     </head>
     <body>
         <?php include("static/header.php"); ?>
@@ -29,6 +29,11 @@ $mysqli = connectionDB();
         <main>
             <?php 
             if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
+                // $id_user = $_SESSION['id_user']
+                // $user = $_SESSION['user']
+                // $role = $_SESSION['role']
+                // $pp = $_SESSION['pp']
+                // print_r($_SESSION);
                 displayAccount();
             }
             else{

@@ -10,18 +10,27 @@ $password = $_POST['mdp'];
 $connect = connect($mysqli,$user,$password);
 session_start();
 if ($connect){
+    $_SESSION['id_user'] = "$connect[id_user]";
     $_SESSION['user'] = "$user";
-    $_SESSION['password'] = "$password";
+    // $_SESSION['password'] = "$password";
     foreach($connect as $data){
-        $_SESSION['id'] = "$data[id_user]";
+        $PP = getPP($mysqli,$data['id_image']);
+        foreach($PP as $image){
+            $_SESSION['pp'] = $image['chemin'];
+            print_r($_SESSION['pp']);
+        }
+        $_SESSION['nom'] = "$data[nom]";
+        $_SESSION['prenom'] = "$data[prenom]";
+        $_SESSION['date_de_naissance'] = "$data[date_de_naissance]";
+        $_SESSION['date_creation_compte'] = "$data[date_creation_compte]";
+        $_SESSION['date_connexion'] = "$data[date_connexion]";
         $_SESSION['role'] = "$data[rôle]";
-        $_SESSION['pp'] = "$data[id_image]";
     }
     $_SESSION['logged'] = true;
     header('Location: ../index.php');
 }
 else {
-    // header('Location: ../connection.php');
+    header('Location: ../connection.php');
 }
 
 closeDB($mysqli);
