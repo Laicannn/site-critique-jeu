@@ -8,9 +8,19 @@ $mysqli = connectionDB();
 $user=$_POST['pseudo'];
 $nom=$_POST['nom'];
 $prenom=$_POST['prenom'];
-$age=$_POST['age'];
 $mail=$_POST['mail'];
 $mdp=$_POST['mdp'];
 
+$birthday = $_POST['age'];
+$currentDate = new DateTime();
+$birthdate = new DateTime($birthday);
+$interval = $birthdate->diff($currentDate);
+$age = $interval->y;
 
+if (empty(loginunique($mysqli,$user)) && ($age > 15)){
+    creation_compte($mysqli,$user,$mdp,$nom,$prenom,$mail,$birthday);
+}
+else{
+    echo "Tu n'a pas 15 ans";
+}
 ?>

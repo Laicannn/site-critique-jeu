@@ -28,9 +28,16 @@ function connect($mysqli,$user,$password){
 function loginunique($mysqli,$user){
     $requete = "SELECT * 
                 FROM utilisateur 
-                WHERE login='$user';"
+                WHERE login='$user';";
     $login = readDB($mysqli,$requete);
     return $login;
+}
+
+function creation_compte($mysqli,$login,$mdp,$nom,$prenom,$mail,$birthday){
+    $date=NOW();
+    $requete = "INSERT INTO utilisateur(login,mdp,nom,prenom,adresse_mail,date_naissance,date_creation_compte,date_connexion,rôle)
+                VALUES ('$login','$mdp','$nom','$prenom','$mail','$birthday','$date','$date','membre'";
+    writeDB($mysqli,$requete);
 }
 
 ?>
