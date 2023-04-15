@@ -1,14 +1,12 @@
 <?php 
 
 function DisplayJaquette($articles){
-    echo "<section>";
-        foreach($articles as $data){
-            echo "
-            <a class='carte' href='article.php?id_article=$data[id_article]'>
-                <img src=$data[chemin] alt='jaquette'>
-            </a>";
-        }
-    echo "</section>";
+    foreach($articles as $data){
+        echo "
+        <a class='carte' href='article.php?id_article=$data[id_article]'>
+            <img src=$data[chemin] alt='jaquette'>
+        </a>";
+    }
 }
 
 function displayConnect(){
@@ -48,21 +46,22 @@ function displayConnect(){
 }
 
 function displayAccount($liste){
-    echo"<section>";
-        echo"<a class='button' href='#popup'>";
-            echo"<div class='photo_profil'>";
-                echo"<img class='avatar' src=$_SESSION[pp] alt='avatar'>";
-            echo"</div>";
-        echo"</a>";
-        echo"<div id='popup' class='overlay'>";
-            echo"<div class='selection_pp'>";
-                echo"<a class='close_button' href='#'>&times;</a>";
+    echo"<a class='button' href='#popup'>";
+        echo"<div class='photo_profil'>";
+            echo"<img class='avatar' src=$_SESSION[pp] alt='avatar'>";
+        echo"</div>";
+    echo"</a>";
+    echo"<div id='popup' class='overlay'>";
+        echo"<div class='selection_pp'>";
+            echo"<img class='pp_now' src='$_SESSION[pp]' alt='pp actuelle'>";
+            echo"<a class='close_button' href='#'>&times;</a>";
+            echo"<div>";
                 foreach($liste as $data){
-                    echo"<img class='liste_pp' src='$data[chemin]' alt='pp'>";
+                    echo"<a href='php/modify_account.php?id_image=$data[id_image]'><img class='liste_pp' src='$data[chemin]' alt='pp proposée'></a>";
                 }
             echo"</div>";
         echo"</div>";
-    echo"</section>";
+    echo"</div>";
 }
 
 ?>

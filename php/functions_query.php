@@ -38,11 +38,16 @@ function getPP($mysqli,$id_image){
 }
 
 function getAllPP($mysqli){
-    $requete="SELECT chemin FROM images 
+    $requete="SELECT id_image,chemin FROM images 
             WHERE chemin LIKE '%profile_picture%' 
             AND chemin NOT LIKE '%.svg';";
     $select = readDB($mysqli,$requete);
     return $select;
+}
+
+function changeProfile($mysqli,$id_image,$id_user){
+    $requete="UPDATE utilisateur SET id_image = '$id_image' WHERE id_user = '$id_user';";
+    writeDB($mysqli,$requete);
 }
 
 function loginunique($mysqli,$user){

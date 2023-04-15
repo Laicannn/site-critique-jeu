@@ -36,8 +36,8 @@
 
 
 body {
-    background-color : #202020;
-    height:100vh;
+    min-height: max-content;
+    background-color : #111111;
     color:#D6D6D6;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
@@ -46,7 +46,7 @@ body {
     align-items: center;
 }
 
-section {
+main {
     width: 80vw;
     background-color: #111111;
     display: flex;
@@ -83,7 +83,7 @@ h1 {
 
 .avatar {
     border-radius: 100%;
-    width: 8vw;
+    width: 10vw;
     object-fit: cover;
     opacity: 1;
     transition-duration: 0.2s;
@@ -94,7 +94,7 @@ h1 {
 }
 
 .overlay {
-    position: fixed;
+    position:absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -112,18 +112,28 @@ h1 {
   
 .selection_pp {
     z-index: 1;
-    margin-top: 320px ;
+    margin-top: 200px ;
     padding: 20px;
     background: #202020;
     border-radius: 5px;
     width: 40vw;
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     transition: all 2s ease-in-out;
-  }
+}
+
+.selection_pp div {
+    padding-top: 50px;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
   
 .close_button {
     position: absolute;
@@ -134,10 +144,41 @@ h1 {
     font-size: 28px;
 }
 
+.pp_now {
+    width:12vw;
+    padding:5px;
+    border-radius: 100%;
+    border: #D6D6D6 solid 2px;
+}
+
 .liste_pp {
-    width:125px;
+    width:9vw;
     padding: 20px;
     border-radius: 100%;
+}
+
+#bouton_submit {
+    width: min-content;
+	color: #202020;
+	border: none;
+	font: inherit;
+	outline: inherit;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 0;
+    background-color: #FFD100;
+    border-radius: 10px;
+    padding: 4px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-variant: small-caps;
+    transition-duration: 0.2s;
+}
+
+#bouton_submit:hover{
+    background-color: #ffd00081;
 }
 
 /* 
