@@ -17,7 +17,7 @@
             echo'</div>';
         }
         else{
-            if (!(str_ends_with($_SERVER['REQUEST_URI'], 'connection.php'))){
+            if (!(str_ends_with($_SERVER['REQUEST_URI'], 'connection.php')) && !(str_ends_with($_SERVER['REQUEST_URI'], '?msg=erreur'))){
                 echo '<a id="connection_button" href="connection.php"><img src="images/bouton_connect.png"></a>';
             }
         }

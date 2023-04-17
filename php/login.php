@@ -28,7 +28,7 @@ if ($connect){
     header('Location: ../index.php');
 }
 else {
-    header('Location: ../connection.php');
+    header('Location: ../connection.php?msg=erreur');
 }
 
 closeDB($mysqli);
