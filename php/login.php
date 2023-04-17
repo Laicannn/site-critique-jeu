@@ -10,6 +10,7 @@ $password = $_POST['mdp'];
 $connect = connect($mysqli,$user,$password);
 session_start();
 if ($connect){
+    changeDateCo($mysqli,$user);
     $_SESSION['user'] = "$user";
     // $_SESSION['password'] = "$password";
     foreach($connect as $data){

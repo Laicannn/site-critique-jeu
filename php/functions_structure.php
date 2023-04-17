@@ -62,6 +62,8 @@ function displayAccount($liste){
             echo"</div>";
         echo"</div>";
     echo"</div>";
+    echo"<h1>$_SESSION[prenom] $_SESSION[nom]</h1>";
+    echo"<h2>$_SESSION[user]</h2>";
 }
 
 ?>

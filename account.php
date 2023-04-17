@@ -38,7 +38,7 @@ $mysqli = connectionDB();
                 displayAccount($liste);
             }
             else{
-                header('Location: ../connection.php');
+                header('Location: index.php');
             }
             ?>
         </main> 

@@ -10,7 +10,7 @@ $new_pp = $_GET['id_image'];
 changeProfile($mysqli,$new_pp,$_SESSION['id_user']);
 $PP = getPP($mysqli,$new_pp);
 $_SESSION['pp'] = ($PP[0]['chemin']);
-header('Location: ../account.php#popup');
+header('Location: ../account.php');
 
 
 closeDB($mysqli);

@@ -12,11 +12,6 @@ function getIndexArticle($mysqli){
 }
 
 function connect($mysqli,$user,$password){
-    $date = date("Y-m-d");
-    $requete1 = "UPDATE utilisateur 
-                SET date_connexion = '$date'
-                WHERE login = '$user';";
-    writeDB($mysqli,$requete1);
     $requete2 = 'SELECT *
                 FROM utilisateur 
                 WHERE login = "'.$user.'" 
@@ -29,6 +24,14 @@ function connect($mysqli,$user,$password){
         writeDB($mysqli,$requete3);
     }
     return $connect;
+}
+
+function changeDateCo($mysqli,$user){
+    $date = date("Y-m-d");
+    $requete1 = "UPDATE utilisateur 
+                SET date_connexion = '$date'
+                WHERE login = '$user';";
+    writeDB($mysqli,$requete1);
 }
 
 function getPP($mysqli,$id_image){
