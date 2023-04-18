@@ -62,7 +62,7 @@ header {
 }
 
 #banner {
-    margin-left: 10vw;
+    margin-left: 5vw;
     display: flex;
     flex-wrap: nowrap;
     width: max-content;
@@ -158,21 +158,19 @@ header h1 {
 
 nav {
     z-index: 2;
-    /* position:fixed; */
     top:80px;
     width:100%;
     height: max-content;
     border: #FFD100 solid;
     border-width: 1px 0;
     background-color: #FFD100;
-    /* box-shadow: 0px 4px 8px #2020202b; */
+    padding:2px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #nav {
-    padding:2px;
     border-radius: 32px;
 }
 
@@ -199,6 +197,41 @@ nav {
     color:#111111;
 }
 
+nav form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 11vw;
+}
+
+#recherche {
+    z-index: 6;
+    width: 30vw;
+    max-width: 200px;
+    font: inherit;
+    font-weight: lighter;
+    outline: inherit;
+    border: none;
+    border-radius: 5px;
+    color:#202020;
+    font-size: 13px;
+    padding:4px 4px 2px 4px;
+}
+
+#loupe {
+    z-index: 6;
+    margin-left: -21px;
+    height:14px;
+    width: auto;
+}
+
+#compense {
+    width: 30vw;
+    display: inline-block;
+    max-width: 200px;
+    margin-right: 11vw;
+}
+
 footer {
     display: flex;
     justify-content: space-between;
@@ -210,13 +243,17 @@ footer {
     background-color: #111111;
     height: max-content;
     font-weight: lighter;
-    font-size: 1vw;
+    font-size: 0.8vw;
     width: 100%;
 }
 
 .contact {
     padding: 20px;
     color: #FFD100
+}
+
+.contact:hover {
+    opacity: 0.7;
 }
 
 /* 

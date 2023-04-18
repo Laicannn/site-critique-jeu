@@ -12,16 +12,17 @@ function getIndexArticle($mysqli){
 }
 
 function connect($mysqli,$user,$password){
-    $requete2 = 'SELECT *
+    $requete1 = 'SELECT *
                 FROM utilisateur 
                 WHERE login = "'.$user.'" 
                 AND mdp = "'.$password.'";';
-    $connect = readDB($mysqli,$requete2);
-    if(empty($connect['id_image'])){
+    $connect = readDB($mysqli,$requete1);
+    if(empty($connect['0']['id_image'])){
         $requete3 = "UPDATE utilisateur 
                     SET id_image = 100
                     WHERE login = '$user' ;";
         writeDB($mysqli,$requete3);
+        $connect['0']['id_image']=100;
     }
     return $connect;
 }

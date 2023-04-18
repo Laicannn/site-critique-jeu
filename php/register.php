@@ -37,7 +37,7 @@ if (empty(loginunique($mysqli,$user))){
             $_SESSION['nom'] = "$data[nom]";
             $_SESSION['prenom'] = "$data[prenom]";
             $_SESSION['age'] = $age;
-            $_SESSION['date_de_naissance'] = "$data[date_de_naissance]";
+            $_SESSION['date_naissance'] = "$data[date_naissance]";
             $_SESSION['date_creation_compte'] = "$data[date_creation_compte]";
             $_SESSION['date_connexion'] = "$data[date_connexion]";
             $_SESSION['role'] = "$data[rôle]";

@@ -238,6 +238,11 @@ h3 {
 .redacteur {background-color: #b98827;}
 .administrateur {background-color: #a82222;}
 
+
+#old {
+    font-size: 16px;
+    font-weight: lighter;
+}
 /* 
 #111111
 #D6D6D6

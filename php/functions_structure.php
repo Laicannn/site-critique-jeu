@@ -74,6 +74,10 @@ function displaySelfAccount($liste){
             <div id='name'>
                 <h3>$_SESSION[prenom] $_SESSION[nom]</h3>
                 <div id='role' class='{$_SESSION['role']}'>$_SESSION[role]</div>
+            </div>
+            <div id='old'>
+                $_SESSION[age] • $_SESSION[date_naissance]
+            </div>
         </article>
     ";
     echo"<section>";
