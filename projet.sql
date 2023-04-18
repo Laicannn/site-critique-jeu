@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : ven. 14 avr. 2023 à 08:32
+-- Généré le : mar. 18 avr. 2023 à 13:02
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -148,7 +148,15 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id_image`, `chemin`, `id_article`) VALUES
-('1', 'images/jaquette/minecraft.webp', 1);
+('1', 'images/jaquette/minecraft.webp', 1),
+('100', 'images/profile_picture/pp_default.svg', NULL),
+('101', 'images/profile_picture/mushroom_mario.webp', NULL),
+('102', 'images/profile_picture/poulpe.png', NULL),
+('103', 'images/profile_picture/mario_star.webp', NULL),
+('104', 'images/profile_picture/creeper.jpg', NULL),
+('105', 'images/profile_picture/wheatley.jpg', NULL),
+('106', 'images/profile_picture/canard.jpg', NULL),
+('107', 'images/profile_picture/laican.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -229,7 +237,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `id_image`, `rôle`) VALUES
-(1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', NULL, NULL, 'administrateur'),
+(1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-18', 101, 'administrateur'),
 (2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', NULL, NULL, 'redacteur'),
 (3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', NULL, NULL, 'Membre');
 

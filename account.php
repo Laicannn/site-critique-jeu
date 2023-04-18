@@ -29,13 +29,8 @@ $mysqli = connectionDB();
         <main>
             <?php 
             if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
-                // $id_user = $_SESSION['id_user']
-                // $user = $_SESSION['user']
-                // $role = $_SESSION['role']
-                // $pp = $_SESSION['pp']
-                // print_r($_SESSION);
                 $liste = getAllPP($mysqli);
-                displayAccount($liste);
+                displaySelfAccount($liste);
             }
             else{
                 header('Location: index.php');

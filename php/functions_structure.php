@@ -50,32 +50,33 @@ function displayConnect(){
     </section>';
 }
 
-function displayAccount($liste){
-    echo"<a class='button' href='#popup'>";
-        echo"<div class='photo_profil'>";
-            echo"<img class='avatar' src=$_SESSION[pp] alt='avatar'>";
-        echo"</div>";
-    echo"</a>";
-    echo"<div id='popup' class='overlay'>";
-        echo"<div class='selection_pp'>";
-            echo"<img class='pp_now' src='$_SESSION[pp]' alt='pp actuelle'>";
-            echo"<a class='close_button' href='#'>&times;</a>";
-            echo"<div>";
-                foreach($liste as $data){
-                    echo"<a href='php/modify_account.php?id_image=$data[id_image]'><img class='liste_pp' src='$data[chemin]' alt='pp proposée'></a>";
-                }
+function displaySelfAccount($liste){
+    echo"<section>";
+        echo"<a class='button' href='#popup'>";
+            echo"<div class='photo_profil'>";
+                echo"<img class='avatar' src=$_SESSION[pp] alt='avatar'>";
+            echo"</div>";
+        echo"</a>";
+        echo"<div id='popup' class='overlay'>";
+            echo"<div class='selection_pp'>";
+                echo"<img class='pp_now' src='$_SESSION[pp]' alt='pp actuelle'>";
+                echo"<a class='close_button' href='#'>&times;</a>";
+                echo"<div>";
+                    foreach($liste as $data){
+                        echo"<a href='php/modify_account.php?id_image=$data[id_image]'><img class='liste_pp' src='$data[chemin]' alt='pp proposée'></a>";
+                    }
+                echo"</div>";
             echo"</div>";
         echo"</div>";
-    echo"</div>";
-    echo"
-    <h2>$_SESSION[user]</h2>
-    <div class='gauche'>
-        <h3>$_SESSION[prenom] $_SESSION[nom]</h3>
-        <div id='role' class='{$_SESSION['role']}'>$_SESSION[role]</div>
-        
-            
-    </div>
+        echo"
+        <h2>$_SESSION[user]</h2>
+        <article class='gauche'>
+            <div id='name'>
+                <h3>$_SESSION[prenom] $_SESSION[nom]</h3>
+                <div id='role' class='{$_SESSION['role']}'>$_SESSION[role]</div>
+        </article>
     ";
+    echo"<section>";
     
 }
 
