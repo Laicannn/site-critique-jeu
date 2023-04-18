@@ -61,7 +61,12 @@ section {
     border-radius: 10px;;
 }
 
-section div {
+#connecter {
+    padding : 20px;
+    width:400px;
+}
+
+#inscrire {
     padding : 20px;
     width:400px;
 }
@@ -116,6 +121,38 @@ input {
 
 #bouton_submit:hover{
     background-color: #ffd00081;
+}
+
+#refused label {
+    display: none;
+    color: #ff0000;
+    font-weight: lighter;
+    font-size: 14px;
+    padding: 0 0 5px 0;
+}
+
+#refused:target label {
+    display: block;
+}
+
+#refused:target #username:invalid:empty {
+	border: #ff0000 solid 1px;
+}
+
+#already_used label {
+    display: none;
+    color: #ff0000;
+    font-weight: lighter;
+    font-size: 14px;
+    padding: 0 0 5px 0;
+}
+
+#already_used:target label {
+    display: block;
+}
+
+#already_used:target #username:invalid:empty {
+	border: #ff0000 solid 1px;
 }
 
 /* 

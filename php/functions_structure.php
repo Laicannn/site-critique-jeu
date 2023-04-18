@@ -10,8 +10,7 @@ function DisplayJaquette($articles){
 }
 
 function displayConnect(){
-    echo'
-    <section>
+    echo'<section>
         <div id="connecter">
             <h1>Se connecter</h1>
             <form action="php/login.php" method="POST" name="connecte">
@@ -31,11 +30,17 @@ function displayConnect(){
                 <label for="forname">Prénom</label>
                 <input type="text" name="prenom" id="forname">
                 <label for="old">Âge</label>
-                <input type="date" name="age" id="old">
+                <div id="refused">
+                    <label for="old">Vous n\'avez pas l\'âge requis</label>
+                    <input type="date" name="age" id="old" required>
+                </div>
                 <label for="mail">Adresse mail</label>
                 <input type="email" name="mail" id="mail">
                 <label for="username">Identifiant</label>
-                <input type="text" name="pseudo" id="username">
+                <div id="already_used">
+                    <label for="username">Cet identifiant n\'est pas disponible</label>
+                    <input type="text" name="pseudo" id="username" required>
+                </div>
                 <label for="password">Mot de passe</label>
                 <input type="password" name="mdp" id="password">
                 <br>
@@ -62,8 +67,16 @@ function displayAccount($liste){
             echo"</div>";
         echo"</div>";
     echo"</div>";
-    echo"<h1>$_SESSION[prenom] $_SESSION[nom]</h1>";
-    echo"<h2>$_SESSION[user]</h2>";
+    echo"
+    <h2>$_SESSION[user]</h2>
+    <div class='gauche'>
+        <h3>$_SESSION[prenom] $_SESSION[nom]</h3>
+        <div id='role' class='{$_SESSION['role']}'>$_SESSION[role]</div>
+        
+            
+    </div>
+    ";
+    
 }
 
 ?>

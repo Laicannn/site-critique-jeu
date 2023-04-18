@@ -12,13 +12,13 @@
 
 @font-face {
     font-family: 'Nanami';
-    src: url("../fonts/Nanami-Light.otf") format('otf');
+    src: url("../fonts/Nanami-Book.otf") format('otf');
     font-weight:light;
 }
 
 @font-face {
     font-family: 'Nanami';
-    src: url("../fonts/Nanami-Book.otf") format('otf');
+    src: url("../fonts/Nanami-Light.otf") format('otf');
     font-weight:normal;
 }
 
@@ -68,17 +68,34 @@ main {
 }
 
 h1 {
+    z-index:3;
+    color:#D6D6D6;
+    font-size: 40px;
+    font-weight: bolder;
+    padding: 0px 0px 15px 15px;
+}
+
+h2 {
+    padding-top: 5px;
+    font-weight: light;
+    font-size: 50px;
+    font-variant:small-caps;
+}
+
+h3 {
+    font-size: 20px;
     font-weight: normal;
-    font-size: 30px;
-    padding-bottom: 20px;
 }
 
 .photo_profil {
     width: 10vw;
+    height: 10vw;
     background-image: url('../images/profile_picture/change_pp.svg');
     background-size:cover;
     background-repeat: no-repeat;
     border-radius: 100%;
+    padding:4px;
+    border: #D6D6D6 solid 2px;
 }
 
 .avatar {
@@ -112,7 +129,7 @@ h1 {
   
 .selection_pp {
     z-index: 1;
-    margin-top: 200px ;
+    margin-top: 150px ;
     padding: 20px;
     background: #202020;
     border-radius: 5px;
@@ -180,6 +197,28 @@ h1 {
 #bouton_submit:hover{
     background-color: #ffd00081;
 }
+
+.gauche {
+    margin-left:50px;
+}
+
+#role {
+    border-radius: 10px;
+    width: min-content;
+    color: #111111;
+    padding: 4px 8px;
+    font-size: 15px;
+    font-weight: normal;
+    text-align: center;
+    font-variant:small-caps;
+    font-weight: normal;
+    box-shadow: 0px 2px 4px #1111112b;
+}
+
+.visiteur {background-color: #d1d1d1;}
+.membre {background-color: #6ece63;}
+.redacteur {background-color: #e9d562;}
+.administrateur {background-color: #e36b6b;}
 
 /* 
 #111111
