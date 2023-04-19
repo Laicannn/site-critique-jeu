@@ -108,7 +108,7 @@ header h1 {
 #connection_button img {
     z-index:1;
     max-width: 230px;
-    width:30vw;
+    width:28vw;
     transition-duration: 0.1s;
     margin-bottom: 5px;
 }
@@ -182,7 +182,7 @@ nav {
     margin : 0px 4px;
     text-align: center;
     text-decoration: none;
-    font-weight: light;
+    font-weight: light; 
     font-size: 12px;
     transition-duration: 0.2s;
     float:left;

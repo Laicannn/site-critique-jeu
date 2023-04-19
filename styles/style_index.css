@@ -34,10 +34,9 @@
     font-weight: bolder;
 }
 
-
 body {
     background-color : #202020;
-    color:#EEEDED;
+    color:#D6D6D6;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     display: flex;
@@ -54,40 +53,81 @@ main {
     align-items:stretch;
     font-size: 15px;
     font-weight: normal;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 68px;
+    margin-bottom: 68px;
 }
 
 .carte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    background-color: #D6D6D6;
+    background-color: #111111;
     width: 300px;
-    height:200px;
+    height:max-content;
     margin:20px 10px 20px 10px;
-    color: #111111;
     float:left;
+    box-shadow: #1111114b 0 3px 8px ;
+    border-radius: 10px;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
 
-.carte img {
+.degrade img {
     width: 300px;
-    height:200px;
+    height:300px;
     object-fit: cover;
 }
 
 .carte:hover {
-    transform: scale(1.05);
+    translate: 0 -3px;
+    transform: scale(1.01);
 }
 
-.carte::after {
+.degrade::after {
     display: block;
     position: relative;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #202020 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #111111 100%);
     margin-bottom: auto;
     height: 150px;
     margin-top:-150px;
     content: '';
+}
+
+h2 {
+    z-index: 3;
+    padding: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #D6D6D6;
+}
+
+h3 {
+    z-index: 3;
+    padding: 2px;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: lighter;
+    color: #D6D6D6;
+}
+
+.tags {
+    z-index: 3;
+    padding: 2px 0 10px 0;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.tags p {
+    font-size: 10px;
+    font-weight: normal;
+    color: #D6D6D6;
+    padding : 3px 6px;
+    border : #D6D6D6 solid 1px;
+    border-radius: 10px;
 }
 
 /* 

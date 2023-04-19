@@ -1,11 +1,20 @@
 <?php 
 
-function DisplayJaquette($articles){
+function DisplayJaquette($articles,$tags){
     foreach($articles as $data){
         echo "
         <a class='carte' href='article.php?id_article=$data[id_article]'>
-            <img src=$data[chemin] alt='jaquette'>
-        </a>";
+            <div class='degrade'>
+                <img src=$data[chemin] alt='jaquette'>
+            </div>
+            <h2>$data[titre]</h2>
+            <h3>$data[date_creation]</h3>";
+            echo"<div class='tags'>";
+            foreach($tags as $trucs){
+                echo"<p>$trucs</p>";
+            }
+            echo"</div>";
+        echo"</a>";
     }
 }
 
