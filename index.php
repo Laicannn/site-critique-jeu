@@ -31,7 +31,23 @@ $mysqli = connectionDB();
         <?php include("static/nav.php"); ?>
         <main>
             <?php 
-                $articles = getIndexArticle($mysqli);
+                if($_GET){
+                    if(isset($_GET['search'])){
+                        
+                    }
+                    elseif(isset($_GET['categorie'])){
+                        $articles = getIndexCateg($mysqli,$_GET['categorie']);
+                    }
+                    elseif(isset($_GET['support'])){
+                        $articles = getIndexSupp($mysqli,$_GET['support']);
+                    }
+                    else {
+                        echo"<h1> Aucun résultat </h1>";
+                    }
+                }
+                else {
+                    $articles = getIndexArticle($mysqli);
+                }
                 $categories = getCategorie($mysqli,$articles['0']['id_jeux']);
                 $supports = getSupport($mysqli,$articles['0']['id_jeux']);
                 $tags = $categories['0'] + $supports['0'];

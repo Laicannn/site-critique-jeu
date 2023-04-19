@@ -31,11 +31,8 @@ $mysqli = connectionDB();
         <?php include("static/nav.php"); ?>
         <main>
             <?php 
-                $articles = getIndexArticle($mysqli);
-                $categories = getCategorie($mysqli,$articles['0']['id_jeux']);
-                $supports = getSupport($mysqli,$articles['0']['id_jeux']);
-                $tags = $categories['0'] + $supports['0'];
-                displayJaquette($articles,$tags);
+                $_GET['id_article']
+                
             ?>
         </main> 
         <?php include("static/footer.php"); ?>

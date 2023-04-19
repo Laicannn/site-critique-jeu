@@ -12,6 +12,36 @@ function getIndexArticle($mysqli){
     return $article;
 }
 
+function getIndexCateg($mysqli,$categorie){
+    $requete = "SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
+                images.chemin
+                FROM article,images,jeux,categories,estcategories
+                WHERE images.id_article = article.id_article
+                AND '$categorie' = categories.nom_categorie
+                AND categories.id_categorie = estcategories.id_categorie
+                AND estcategories.id_jeux = jeux.id_jeux
+                AND jeux.id_article = article.id_article
+                AND images.chemin LIKE '%images/jaquette/%'
+                ORDER BY article.date_creation ;";
+    $article = readDB($mysqli,$requete);
+    return $article;
+}
+
+function getIndexSupp($mysqli,$support){
+    $requete = "SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
+                images.chemin
+                FROM article,images,jeux,support,estsupport
+                WHERE images.id_article = article.id_article
+                AND '$support' = support.nom_support
+                AND support.id_categorie = estsupport.id_support
+                AND estsupport.id_jeux = jeux.id_jeux
+                AND jeux.id_article = article.id_article
+                AND images.chemin LIKE '%images/jaquette/%'
+                ORDER BY article.date_creation ;";
+    $article = readDB($mysqli,$requete);
+    return $article;
+}
+
 function getCategorie($mysqli,$id_jeux){
     $requete = "SELECT nom_categorie FROM categories,estcategories
                 WHERE '$id_jeux' = estcategories.id_jeux 
