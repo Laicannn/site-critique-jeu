@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 19 avr. 2023 à 12:42
+-- Généré le : mer. 19 avr. 2023 à 15:13
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -102,7 +102,8 @@ CREATE TABLE `estcategories` (
 INSERT INTO `estcategories` (`id_categorie`, `id_jeux`) VALUES
 (2, 3),
 (4, 3),
-(7, 4);
+(7, 4),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +165,11 @@ INSERT INTO `images` (`id_image`, `chemin`, `id_article`) VALUES
 (200, 'images/road96/1.jpg', 2),
 (201, 'images/road96/2.jpg', 2),
 (202, 'images/road96/3.jpg', 2),
-(203, 'images/road96/4.jpg', 2);
+(203, 'images/road96/4.jpg', 2),
+(204, 'images/minecraft/1.jpg', 1),
+(205, 'images/minecraft/2.jpg', 1),
+(206, 'images/minecraft/3.jpg', 1),
+(207, 'images/minecraft/4.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -186,9 +191,9 @@ CREATE TABLE `jeux` (
 --
 
 INSERT INTO `jeux` (`id_jeux`, `nom`, `prix`, `date_sortie`, `synopsis`, `id_article`) VALUES
-(1, 'Road 96', 19.96, '2021-08-16', 'Jeu incroyable', 2),
+(1, 'Road 96', 19.96, '2021-08-16', 'Road 96 est un jeu d aventure développé par DigixArt. S inspirant de films de Tarantino, des frères Coen et de films de roadtrip, le titre propose une aventure influencée par les choix du joueur. Basé sur un système procédural, le jeu est influencé par les décisions et modifie les trajets et le pays d arrivée.', 2),
 (2, 'Portal', 9.75, '2007-10-10', 'Jeu de portail', NULL),
-(3, 'Minecraft', 29.99, '2011-11-18', 'Jeu de cube', 1),
+(3, 'Minecraft', 29.99, '2011-11-18', 'Jeu bac à sable indépendant et pixelisé dont le monde infini est généré aléatoirement, Minecraft permet au joueur de récolter divers matériaux, d élever des animaux et de modifier le terrain selon ses choix, en solo ou en multi (via des serveurs). Il doit également survivre en se procurant de la nourriture et en se protégeant des monstres qui apparaissent la nuit et dans des donjons. Il peut également monter de niveau afin d acheter des enchantements.', 1),
 (4, 'GTA V', 29.98, '2013-09-17', 'Jeu de bac a sable', NULL),
 (5, 'Halo', 39.99, '2001-11-15', 'Jeu d aventure', NULL),
 (6, 'KOTOR', 8.19, '2003-07-15', 'Aventure RPG jeux d aventure ', NULL),
