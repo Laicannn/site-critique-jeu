@@ -24,15 +24,16 @@ $mysqli = connectionDB();
         <link rel="icon" href="images/logos/logo_head.png" />
         <meta name="keywords" content="MD TRIKITE"/>
         <meta name="author" content="La MD Corp"/>
-        <link rel="stylesheet" type="text/css" href="styles/style_index.css">
+        <link rel="stylesheet" type="text/css" href="styles/style_article.css">
     </head>
     <body>
         <?php include("static/header.php"); ?>
         <?php include("static/nav.php"); ?>
         <main>
             <?php 
-                $_GET['id_article']
-                
+                $info=getinfoarticleETjeu($mysqli,$_GET['id_article']);
+                $img=imagesarticles($mysqli,$_GET['id_article']);
+                displayarticle($info,$img);                
             ?>
         </main> 
         <?php include("static/footer.php"); ?>

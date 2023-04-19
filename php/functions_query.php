@@ -116,4 +116,19 @@ function creation_compte($mysqli,$login,$mdp,$nom,$prenom,$mail,$birthday){
     writeDB($mysqli,$requete);
 }
 
+function getinfoarticleETjeu($mysqli,$id_article){
+    $requete = "SELECT article.titre,article.contenu,article.note,article.date_creation,article.date_modification, jeux.id_jeux, jeux.nom, jeux.prix, jeux.date_sortie, jeux.synopsis,images.chemin 
+                FROM article,jeux,images 
+                WHERE article.id_article=$id_article AND article.id_article=jeux.id_article AND images.id_article = article.id_article AND images.chemin LIKE '%images/jaquette/%'";
+    $info=readDB($mysqli,$requete);
+    return $info[0];
+}
+function imagesarticles($mysqli,$id_article){
+    $requete="SELECT images.chemin 
+                FROM images
+                WHERE images.id_article = $id_article
+                AND images.chemin NOT LIKE '%images/jaquette/%'";
+    $image=readDB($mysqli,$requete);
+    return $image;
+}
 ?>
