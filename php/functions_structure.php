@@ -94,7 +94,7 @@ function displaySelfAccount($liste){
     
 }
 
-function displayarticle($info,$image){
+function displayarticle($info,$image,$categories,$support){
     echo "<section id=infoarticle>
             <div id=image>
             <img id=jacquette_article alt=jaquette_jeu src=$info[chemin]>
@@ -104,20 +104,35 @@ function displayarticle($info,$image){
             <h1> $info[titre] </h1> 
             <br>
             $info[contenu]
+            <br><br>
+            <table>
+                <tr>";
+                    foreach($categories as $cate){
+                    echo "<td> $cate[nom_categorie] </td>";
+                    }
+            echo "</tr>
+            </table>
+            <br>
+            <table>
+                <tr>";
+                    foreach($support as $sup){
+                    echo "<td> $sup[nom_support] </td>";
+                    }
+            echo "</tr>
+            </table>
             </div>
         </section>
         <section id=infojeux>
-            <div id=presentation_jeu>
             <h2>$info[nom]</h2> <br>
-            $info[synopsis]<br>
-            Date de sortie : $info[date_sortie]<br>
+            <p>
+            $info[synopsis]  <br> <br> 
+            Date de sortie : $info[date_sortie]<br><br> 
             Prix : $info[prix]
-            </div>
-            <div id=images_jeu>";
+            </p> <br> ";
                 foreach($image as $img){
                 echo "<img class=image_jeu alt=image_jeu src=$img[chemin] >";
                 }
-        echo "</div>
+        echo "
         </section>";
 }
 

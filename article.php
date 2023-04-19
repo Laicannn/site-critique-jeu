@@ -33,7 +33,9 @@ $mysqli = connectionDB();
             <?php 
                 $info=getinfoarticleETjeu($mysqli,$_GET['id_article']);
                 $img=imagesarticles($mysqli,$_GET['id_article']);
-                displayarticle($info,$img);                
+                $categorie=getCategorie($mysqli,$info['id_jeux']);
+                $support=getSupport($mysqli,$info['id_jeux']);
+                displayarticle($info,$img,$categorie,$support);                
             ?>
         </main> 
         <?php include("static/footer.php"); ?>

@@ -81,11 +81,27 @@ section {
 }
 
 #contenu {
-    width:400px;
+    width: 600px;;
 }
 
 h1 {
     font-weight: normal;
     font-size: 30px;
     padding-bottom: 20px;
+}
+
+table{
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-radius: 14px;
+}
+th,td{
+    border: 0.5px solid white;
+	border-radius: 15px;
+    text-align: center;
+    padding: 4px;
+}
+
+p{
+    padding :1em;
 }
