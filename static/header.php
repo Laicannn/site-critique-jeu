@@ -12,13 +12,13 @@
     <?php
         if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
             echo '<div class="double_button">';
-                echo'<a id="account_button" href="account.php"><img src="images/bouton_compte.png"></a>';
-                echo '<a id="disconnect_button" href="php/logout.php"><img src="images/bouton_disconnect.png"></a>';
+                echo'<a id="account_button" href="account.php"><img src="images/buttons/bouton_compte.png"></a>';
+                echo '<a id="disconnect_button" href="php/logout.php"><img src="images/buttons/bouton_disconnect.png"></a>';
             echo'</div>';
         }
         else{
             if (!(str_ends_with($_SERVER['REQUEST_URI'], 'connection.php')) && !(str_ends_with($_SERVER['REQUEST_URI'], '?msg=erreur'))){
-                echo '<a id="connection_button" href="connection.php"><img src="images/bouton_connect.png"></a>';
+                echo '<a id="connection_button" href="connection.php"><img src="images/buttons/bouton_connect.png"></a>';
             }
         }
     ?>

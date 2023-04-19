@@ -7,7 +7,7 @@
     if (str_contains($_SERVER['REQUEST_URI'], "index.php") or str_ends_with($_SERVER['REQUEST_URI'], 'site-critique-jeu/')){
         echo'<form action="php/search.php" method="POST" name="search">
             <input type="text" name="search_query" id="recherche" placeholder="Rechercher">
-            <input type="image" src="images/loupe.svg" id="loupe">
+            <input type="image" src="images/buttons/loupe.svg" id="loupe">
         </form>
         <div id="nav">';
             if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=Aventure')){

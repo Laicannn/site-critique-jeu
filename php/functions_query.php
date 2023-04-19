@@ -1,14 +1,14 @@
 <?php
 
 function getIndexArticle($mysqli){
-    $requete1 = 'SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
+    $requete = 'SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
                 images.chemin
                 FROM article,images,jeux
                 WHERE images.id_article = article.id_article
                 AND images.chemin LIKE "%images/jaquette/%"
                 AND jeux.id_article = article.id_article
                 ORDER BY article.date_creation ;';
-    $liste_article = readDB($mysqli,$requete1);
+    $liste_article = readDB($mysqli,$requete);
     return $liste_article;
 }
 
@@ -23,8 +23,8 @@ function getIndexCateg($mysqli,$categorie){
                 AND jeux.id_article = article.id_article
                 AND images.chemin LIKE '%images/jaquette/%'
                 ORDER BY article.date_creation ;";
-    $article = readDB($mysqli,$requete);
-    return $article;
+    $liste_article = readDB($mysqli,$requete);
+    return $liste_article;
 }
 
 function getIndexSupp($mysqli,$support){
@@ -33,13 +33,31 @@ function getIndexSupp($mysqli,$support){
                 FROM article,images,jeux,support,estsupport
                 WHERE images.id_article = article.id_article
                 AND '$support' = support.nom_support
-                AND support.id_categorie = estsupport.id_support
+                AND support.id_support = estsupport.id_support
                 AND estsupport.id_jeux = jeux.id_jeux
                 AND jeux.id_article = article.id_article
                 AND images.chemin LIKE '%images/jaquette/%'
                 ORDER BY article.date_creation ;";
-    $article = readDB($mysqli,$requete);
-    return $article;
+    $liste_article = readDB($mysqli,$requete);
+    return $liste_article;
+}
+
+function getIndedexSearch($mysqli,$search){
+    $requete = "SELECT DISTINCT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,
+                jeux.id_jeux,images.chemin
+                FROM article,images,jeux,support,estsupport,categories,estcategories
+                WHERE images.id_article = article.id_article
+                AND (
+                    (support.nom_support LIKE '%$search%' AND support.id_support = estsupport.id_support)
+                    OR (categories.nom_categorie LIKE '%$search%' AND categories.id_categorie = estcategories.id_categorie)
+                    OR article.titre LIKE '%$search%'
+                    OR article.contenu LIKE '%$search%'
+                    OR jeux.nom LIKE '%$search%')
+                AND images.chemin LIKE '%images/jaquette/%'
+                AND jeux.id_article = article.id_article
+                ORDER BY article.date_creation ;";
+    $liste_article = readDB($mysqli,$requete);
+    return $liste_article;
 }
 
 function getCategorie($mysqli,$id_jeux){

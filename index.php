@@ -33,7 +33,7 @@ $mysqli = connectionDB();
             <?php 
                 if($_GET){
                     if(isset($_GET['search'])){
-                        
+                        $liste = getIndedexSearch($mysqli,$_GET['search']);
                     }
                     elseif(isset($_GET['categorie'])){
                         $liste = getIndexCateg($mysqli,$_GET['categorie']);
@@ -57,6 +57,9 @@ $mysqli = connectionDB();
                 }
                 else {
                     echo"<h1> Aucun résultat </h1>";
+                }
+                if (isset($_SESSION['role']) && ($_SESSION['role'] == 'administrateur' || $_SESSION['role'] == 'redacteur')){
+                    echo"<a href='redige.php' id='button_redige'><img src='images/buttons/button_redige.svg'></a>";
                 }
             ?>
         </main> 

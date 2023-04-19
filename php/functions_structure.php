@@ -70,7 +70,7 @@ function displaySelfAccount($liste){
         echo"<div id='popup' class='overlay'>";
             echo"<div class='selection_pp'>";
                 echo"<img class='pp_now' src='$_SESSION[pp]' alt='pp actuelle'>";
-                echo"<a class='close_button' href='#'>&times;</a>";
+                echo"<a class='close_button' href=''>&times;</a>";
                 echo"<div>";
                     foreach($liste as $data){
                         echo"<a href='php/modify_account.php?id_image=$data[id_image]'><img class='liste_pp' src='$data[chemin]' alt='pp proposée'></a>";

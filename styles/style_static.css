@@ -218,6 +218,10 @@ nav form {
     padding:4px 4px 2px 4px;
 }
 
+#recherche::placeholder{
+    color:#D6D6D6
+}
+
 #loupe {
     z-index: 6;
     margin-left: -21px;
