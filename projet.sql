@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 18 avr. 2023 à 13:02
+-- Généré le : mar. 18 avr. 2023 à 17:22
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -54,7 +54,6 @@ INSERT INTO `article` (`id_article`, `titre`, `contenu`, `note`, `date_creation`
 CREATE TABLE `avis` (
   `id_avis` int(11) NOT NULL,
   `titre` varchar(50) DEFAULT NULL,
-  `texte` text,
   `note` int(11) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
   `id_jeux` int(11) DEFAULT NULL,
@@ -138,7 +137,7 @@ INSERT INTO `estsupport` (`id_support`, `id_jeux`) VALUES
 --
 
 CREATE TABLE `images` (
-  `id_image` varchar(50) NOT NULL,
+  `id_image` int(11) NOT NULL,
   `chemin` varchar(50) DEFAULT NULL,
   `id_article` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -148,15 +147,12 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id_image`, `chemin`, `id_article`) VALUES
-('1', 'images/jaquette/minecraft.webp', 1),
-('100', 'images/profile_picture/pp_default.svg', NULL),
-('101', 'images/profile_picture/mushroom_mario.webp', NULL),
-('102', 'images/profile_picture/poulpe.png', NULL),
-('103', 'images/profile_picture/mario_star.webp', NULL),
-('104', 'images/profile_picture/creeper.jpg', NULL),
-('105', 'images/profile_picture/wheatley.jpg', NULL),
-('106', 'images/profile_picture/canard.jpg', NULL),
-('107', 'images/profile_picture/laican.png', NULL);
+(1, 'images/jaquette/minecraft.webp', 1),
+(2, 'images/jaquette/road96.webp', 2),
+(3, 'images/jaquette/Portal.webp', NULL),
+(4, 'images/jaquette/kotor.webp', NULL),
+(5, 'images/jaquette/halo2.webp', NULL),
+(6, 'images/jaquette/gtav.webp', NULL);
 
 -- --------------------------------------------------------
 
@@ -228,18 +224,18 @@ CREATE TABLE `utilisateur` (
   `date_naissance` date DEFAULT NULL,
   `date_creation_compte` date DEFAULT NULL,
   `date_connexion` date DEFAULT NULL,
-  `id_image` int(11) DEFAULT NULL,
-  `rôle` varchar(50) DEFAULT NULL
+  `rôle` varchar(50) DEFAULT NULL,
+  `id_image` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `id_image`, `rôle`) VALUES
-(1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-18', 101, 'administrateur'),
-(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', NULL, NULL, 'redacteur'),
-(3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', NULL, NULL, 'Membre');
+INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `rôle`, `id_image`) VALUES
+(1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-15', 'administrateur', NULL),
+(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-17', 'redacteur', NULL),
+(3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', '2023-04-15', 'membre', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -257,8 +253,8 @@ ALTER TABLE `article`
 --
 ALTER TABLE `avis`
   ADD PRIMARY KEY (`id_avis`),
-  ADD KEY `fk_id_jeux_avis` (`id_jeux`),
-  ADD KEY `fk_id_user` (`id_user`);
+  ADD KEY `fk_idujeux` (`id_jeux`),
+  ADD KEY `fk_id_user_avis` (`id_user`);
 
 --
 -- Index pour la table `categories`
@@ -305,7 +301,30 @@ ALTER TABLE `support`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `login` (`login`);
+  ADD UNIQUE KEY `login` (`login`),
+  ADD KEY `fk_id_image` (`id_image`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `article`
+--
+ALTER TABLE `article`
+  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `avis`
+--
+ALTER TABLE `avis`
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
@@ -321,8 +340,8 @@ ALTER TABLE `article`
 -- Contraintes pour la table `avis`
 --
 ALTER TABLE `avis`
-  ADD CONSTRAINT `fk_id_jeux_avis` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
-  ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk_id_user_avis` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`),
+  ADD CONSTRAINT `fk_idujeux` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
 
 --
 -- Contraintes pour la table `estcategories`
@@ -342,13 +361,19 @@ ALTER TABLE `estsupport`
 -- Contraintes pour la table `images`
 --
 ALTER TABLE `images`
-  ADD CONSTRAINT `fk_id_article_image` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
 
 --
 -- Contraintes pour la table `jeux`
 --
 ALTER TABLE `jeux`
-  ADD CONSTRAINT `fk_id_article` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
+  ADD CONSTRAINT `fk_id_article_jeux` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `fk_id_image` FOREIGN KEY (`id_image`) REFERENCES `images` (`id_image`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
