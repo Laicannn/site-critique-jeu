@@ -1,21 +1,22 @@
 <?php 
 
-function DisplayJaquette($articles,$tags){
-    foreach($articles as $data){
-        echo "
-        <a class='carte' href='article.php?id_article=$data[id_article]'>
-            <div class='degrade'>
-                <img src=$data[chemin] alt='jaquette'>
-            </div>
-            <h2>$data[titre]</h2>
-            <h3>$data[date_creation]</h3>";
-            echo"<div class='tags'>";
-            foreach($tags as $trucs){
-                echo"<p>$trucs</p>";
-            }
-            echo"</div>";
-        echo"</a>";
-    }
+function DisplayJaquette($article,$supports,$categories){
+    echo "
+    <a class='carte' href='article.php?id_article=$article[id_article]'>
+        <div class='degrade'>
+            <img src=$article[chemin] alt='jaquette'>
+        </div>
+        <h2>$article[titre]</h2>
+        <h3>$article[date_creation]</h3>";
+        echo"<div class='tags'>";
+        foreach($categories as $data){
+            echo"<div><p class='categ'>$data[nom_categorie]</p></div>";
+        }
+        foreach($supports as $data){
+            echo"<div><p class='support'>$data[nom_support]</p></div>";
+        }
+        echo"</div>";
+    echo"</a>";
 }
 
 function displayConnect(){

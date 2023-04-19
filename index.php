@@ -36,23 +36,24 @@ $mysqli = connectionDB();
                         
                     }
                     elseif(isset($_GET['categorie'])){
-                        $articles = getIndexCateg($mysqli,$_GET['categorie']);
+                        $liste = getIndexCateg($mysqli,$_GET['categorie']);
                     }
                     elseif(isset($_GET['support'])){
-                        $articles = getIndexSupp($mysqli,$_GET['support']);
+                        $liste = getIndexSupp($mysqli,$_GET['support']);
                     }
                     else {
                         echo"<h1> Aucun résultat </h1>";
                     }
                 }
                 else {
-                    $articles = getIndexArticle($mysqli);
+                    $liste = getIndexArticle($mysqli);
                 }
-                if($articles){
-                    $categories = getCategorie($mysqli,$articles['0']['id_jeux']);
-                    $supports = getSupport($mysqli,$articles['0']['id_jeux']);
-                    $tags = $categories['0'] + $supports['0'];
-                    displayJaquette($articles,$tags);
+                if($liste){
+                    foreach($liste as $article){
+                        $categories = getCategorie($mysqli,$article['id_jeux']);
+                        $supports = getSupport($mysqli,$article['id_jeux']);
+                        displayJaquette($article,$supports,$categories);
+                    }
                 }
                 else {
                     echo"<h1> Aucun résultat </h1>";

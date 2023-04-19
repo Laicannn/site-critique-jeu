@@ -113,21 +113,37 @@ h3 {
 }
 
 .tags {
+    max-width: 80%;
+    height: 50px;
     z-index: 3;
     padding: 2px 0 10px 0;
     margin-right: 10px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: right;
+    align-items: center;
+}
+
+.tags div{
+    padding:2px;
 }
 
 .tags p {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: normal;
-    color: #D6D6D6;
     padding : 3px 6px;
     border : #D6D6D6 solid 1px;
     border-radius: 10px;
+}
+
+.support {
+    color: #D6D6D6;
+}
+
+.categ {
+    background-color: #D6D6D6;
+    color: #111111;
 }
 
 /* 

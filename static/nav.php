@@ -11,17 +11,17 @@
         </form>
         <div id="nav">';
             if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=Aventure')){
-                echo'<a class="active" href="index.php?categorie=Aventure">AVENTURE</a>';
+                echo'<a class="active" href="index.php">AVENTURE</a>';
             } else {echo'<a href="index.php?categorie=Aventure">AVENTURE</a>';}
 
             if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=RPG')){
-                echo'<a class="active" href="index.php?categorie=RPG">RPG</a>';
+                echo'<a class="active" href="index.php">RPG</a>';
             } else {echo'<a href="index.php?categorie=RPG">RPG</a>';}
 
             if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=Openworld')){
-                echo'<a class="active" href="index.php?categorie=Openworld">OPEN WORLD</a>';
+                echo'<a class="active" href="index.php">OPEN WORLD</a>';
             } else {echo'<a href="index.php?categorie=Openworld">OPEN WORLD</a>';}
-            
+
         echo'</div>
         <aside id="compense"></aside>';
     }
