@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 19 avr. 2023 à 10:28
+-- Généré le : mer. 19 avr. 2023 à 12:42
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -160,7 +160,11 @@ INSERT INTO `images` (`id_image`, `chemin`, `id_article`) VALUES
 (104, 'images/profile_picture/creeper.jpg', NULL),
 (105, 'images/profile_picture/wheatley.jpg', NULL),
 (106, 'images/profile_picture/canard.jpg', NULL),
-(107, 'images/profile_picture/laican.png', NULL);
+(107, 'images/profile_picture/laican.png', NULL),
+(200, 'images/road96/1.jpg', 2),
+(201, 'images/road96/2.jpg', 2),
+(202, 'images/road96/3.jpg', 2),
+(203, 'images/road96/4.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -242,7 +246,7 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `rôle`, `id_image`) VALUES
 (1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-19', 'administrateur', 107),
-(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-19', 'redacteur', 102),
+(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-19', 'redacteur', 106),
 (3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', '2023-04-15', 'membre', 100);
 
 --
