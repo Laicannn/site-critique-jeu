@@ -136,4 +136,14 @@ function displayarticle($info,$image,$categories,$support){
         </section>";
 }
 
+function displayavis($avis){
+    foreach($avis as $avions){
+    echo "<section class=avis>
+    <h1> $avions[titre] -- $avions[note] /10 </h1>
+    $avions[texte]
+    <p> $avions[login] -- $avions[date_creation]</p>
+    </section>";
+    }
+}
+
 ?>

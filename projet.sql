@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 19 avr. 2023 à 15:13
+-- Généré le : mer. 19 avr. 2023 à 16:01
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -57,8 +57,17 @@ CREATE TABLE `avis` (
   `note` int(11) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
   `id_jeux` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `id_user` int(11) DEFAULT NULL,
+  `texte` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`id_avis`, `titre`, `note`, `date_creation`, `id_jeux`, `id_user`, `texte`) VALUES
+(1, 'Jeu trop nul !!!', 2, '2023-04-19', 3, 3, 'Voila alors moi j aime que les ronds alors vraiment ça m a pas plus du tout du tout...'),
+(2, 'Incroyable', 8, '2023-04-19', 3, 2, 'J ai adoré ce jeu vidéo, très créatif, on peut faire ce que l on veut trop bien');
 
 -- --------------------------------------------------------
 
@@ -335,7 +344,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
