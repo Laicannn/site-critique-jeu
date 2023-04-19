@@ -10,9 +10,18 @@
             <input type="image" src="images/loupe.svg" id="loupe">
         </form>
         <div id="nav">';
-            echo'<a href="index.php?categorie=aventure">AVENTURE</a>';
-            echo'<a href="index.php?categorie=rpg">RPG</a>';
-            echo'<a href="index.php?categorie=Openworld">OPEN WORLD</a>';
+            if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=Aventure')){
+                echo'<a class="active" href="index.php?categorie=Aventure">AVENTURE</a>';
+            } else {echo'<a href="index.php?categorie=Aventure">AVENTURE</a>';}
+
+            if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=RPG')){
+                echo'<a class="active" href="index.php?categorie=RPG">RPG</a>';
+            } else {echo'<a href="index.php?categorie=RPG">RPG</a>';}
+
+            if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=Openworld')){
+                echo'<a class="active" href="index.php?categorie=Openworld">OPEN WORLD</a>';
+            } else {echo'<a href="index.php?categorie=Openworld">OPEN WORLD</a>';}
+            
         echo'</div>
         <aside id="compense"></aside>';
     }

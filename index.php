@@ -48,10 +48,15 @@ $mysqli = connectionDB();
                 else {
                     $articles = getIndexArticle($mysqli);
                 }
-                $categories = getCategorie($mysqli,$articles['0']['id_jeux']);
-                $supports = getSupport($mysqli,$articles['0']['id_jeux']);
-                $tags = $categories['0'] + $supports['0'];
-                displayJaquette($articles,$tags);
+                if($articles){
+                    $categories = getCategorie($mysqli,$articles['0']['id_jeux']);
+                    $supports = getSupport($mysqli,$articles['0']['id_jeux']);
+                    $tags = $categories['0'] + $supports['0'];
+                    displayJaquette($articles,$tags);
+                }
+                else {
+                    echo"<h1> Aucun résultat </h1>";
+                }
             ?>
         </main> 
         <?php include("static/footer.php"); ?>
