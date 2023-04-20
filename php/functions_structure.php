@@ -94,7 +94,9 @@ function displaySelfAccount($liste){
     
 }
 
-function displayArticle($info,$image,$categories,$support){
+function displayArticle($info,$image,$categories,$support,$avis){
+    $somme=0.0;
+    $nombre=0.0;
     echo "<section id=infoarticle>
             <div id='image_tags'>
                 <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
@@ -105,7 +107,13 @@ function displayArticle($info,$image,$categories,$support){
                     foreach($support as $sup){
                         echo "<div><p class='support'>$sup[nom_support]</p></div>";
                     }
-                echo"</aside>
+                    foreach($avis as $avions){
+                        $somme=$somme + $avions['note'];
+                        $nombre=$nombre + 1.0;
+                    }
+                    $moyenne = fdiv($somme,$nombre);
+                    echo"</aside>
+                <div id='note_moyenne'>Note utilisateurs :<br>$moyenne / 10</div>
             </div>
             <div id=contenu>
                 <h1> $info[titre] </h1> 
@@ -135,18 +143,39 @@ function displayArticle($info,$image,$categories,$support){
 function displayAvis($avions,$pp){
     echo "<section id='liste_avis'>
         <article class='avis'>
-        
             <div class='entete'>
                 <a href='account.php?account=$avions[id_user]' class='user'>
                     <img src='$pp[chemin]'>  $avions[login]
                 </a>
-                <p class='date'>$avions[date_creation]</p>
+                <aside class='date'>$avions[date_creation]</aside>
                 <aside class='note_avis'>$avions[note] / 10</aside>
             </div>
             <div class='titre'>
                 $avions[titre]
             </div>
             <p>$avions[texte]</p>
+        </article>
+    </section>";
+}
+
+function displayDonneAvis($id_jeu){
+    echo "<section id='liste_avis'>
+        <article class='avis'>
+            <div class='profil'>
+                <a href='account.php?account=$_SESSION[id_user]' class='user'>
+                    <img src='$_SESSION[pp]'>  $_SESSION[user]
+                </a>
+            </div>
+            <form action='php/avis.php?id_article=$_GET[id_article]&id_jeux=$id_jeu' method='POST' name='redigeAvis'>
+                <div class='entete'>
+                    <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
+                    <aside class='note_avis'>
+                        <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
+                    </aside>
+                </div>
+                <textarea type='text' name='avis' id='redaction' placeholder='Rédiger son avis...' required maxlength='100'></textarea>
+                <input type='submit' value='envoyer' id='bouton_submit'>
+            </form>
         </article>
     </section>";
 }

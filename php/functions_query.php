@@ -1,8 +1,7 @@
 <?php
 
 function getIndexArticle($mysqli){
-    $requete = 'SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
-                images.chemin
+    $requete = 'SELECT article.*,jeux.id_jeux,images.chemin
                 FROM article,images,jeux
                 WHERE images.id_article = article.id_article
                 AND images.chemin LIKE "%images/jaquette/%"
@@ -13,8 +12,7 @@ function getIndexArticle($mysqli){
 }
 
 function getIndexCateg($mysqli,$categorie){
-    $requete = "SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
-                images.chemin
+    $requete = "SELECT article.*,jeux.id_jeux,images.chemin
                 FROM article,images,jeux,categories,estcategories
                 WHERE images.id_article = article.id_article
                 AND '$categorie' = categories.nom_categorie
@@ -28,8 +26,7 @@ function getIndexCateg($mysqli,$categorie){
 }
 
 function getIndexSupp($mysqli,$support){
-    $requete = "SELECT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,jeux.id_jeux,
-                images.chemin
+    $requete = "SELECT article.*,jeux.id_jeux,images.chemin
                 FROM article,images,jeux,support,estsupport
                 WHERE images.id_article = article.id_article
                 AND '$support' = support.nom_support
@@ -43,8 +40,7 @@ function getIndexSupp($mysqli,$support){
 }
 
 function getIndedexSearch($mysqli,$search){
-    $requete = "SELECT DISTINCT article.id_article,article.titre,article.contenu,article.note,article.date_creation,article.date_modification,
-                jeux.id_jeux,images.chemin
+    $requete = "SELECT DISTINCT article.*,jeux.id_jeux,images.chemin
                 FROM article,images,jeux,support,estsupport,categories,estcategories
                 WHERE images.id_article = article.id_article
                 AND (
@@ -157,4 +153,12 @@ function getAvis($mysqli,$id_jeux){
     return $avis;
 }
 
+function writeAvis($mysqli,$titre,$note,$id_jeux,$id_user,$texte){
+    $date=date("Y-m-d");
+    $requete1= "SELECT id_avis FROM avis";
+    $id_avis = count(readDB($mysqli,$requete1),1)-1;
+    $requete2 = "INSERT INTO avis (id_avis,titre,note,date_creation,id_jeux,id_user,texte) 
+                VALUES ('$id_avis','$titre','$note','$date','$id_jeux','$id_user','$texte');";
+    writeDB($mysqli,$requete2);
+}
 ?>

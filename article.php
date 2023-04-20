@@ -13,8 +13,6 @@ require_once("php/functions-DB.php");
 require_once("php/functions_query.php");
 require_once("php/functions_structure.php");
 $mysqli = connectionDB();
-
-// if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,14 +33,14 @@ $mysqli = connectionDB();
                 $img=imagesarticles($mysqli,$_GET['id_article']);
                 $categorie=getCategorie($mysqli,$info['id_jeux']);
                 $support=getSupport($mysqli,$info['id_jeux']);
-                displayArticle($info,$img,$categorie,$support);
                 $avis=getAvis($mysqli,$info['id_jeux']);
+                displayArticle($info,$img,$categorie,$support,$avis);
                 foreach($avis as $avions){
                     $pp=getPP($mysqli,$avions['id_image']);
                     displayAvis($avions,$pp['0']);
                 }
                 if (isset($_SESSION['role'])){
-                    echo"<a href='avis.php' id='button_avis'><img src='images/buttons/button_redige.svg'></a>";
+                    displayDonneAvis($info['id_jeux']);
                 }                
             ?>
         </main> 
