@@ -113,7 +113,7 @@ function displayArticle($info,$image,$categories,$support,$avis){
                     }
                     $moyenne = fdiv($somme,$nombre);
                     echo"</aside>
-                <div id='note_moyenne'>Note utilisateurs :<br>$moyenne / 10</div>
+                <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
             </div>
             <div id=contenu>
                 <h1> $info[titre] </h1> 

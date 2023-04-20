@@ -99,9 +99,16 @@ section {
 #note_moyenne {
     padding:20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     color: #FFD100;
+    font-size: 18px;
+}
+
+#note_moyenne p {
+    font-weight: lighter;
+    font-size: 15px;
 }
 
 .support {
@@ -250,13 +257,12 @@ h3 {
 
 .note_avis{
     display: inline-block;
-    max-width: 100px;
-    width: 30vw;
+    width: 40vw;
     font-weight: normal;
     font-size:24px;
     color:#FFD100;
-    margin-right: 0;
-    right: 0;
+    margin-right: 5px;
+    text-align: end;
 }
 
 .note_avis input {
@@ -331,7 +337,7 @@ input {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-right: 0;
+    margin-right: 5px;
     background-color: #FFD100;
     border-radius: 10px;
     padding: 2px 8px;

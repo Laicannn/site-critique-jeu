@@ -41,14 +41,17 @@ function getIndexSupp($mysqli,$support){
 
 function getIndedexSearch($mysqli,$search){
     $requete = "SELECT DISTINCT article.*,jeux.id_jeux,images.chemin
-                FROM article,images,jeux,support,estsupport,categories,estcategories
+                FROM article,images,jeux,support,estsupport,categories,estcategories,avis
                 WHERE images.id_article = article.id_article
                 AND (
                     (support.nom_support LIKE '%$search%' AND support.id_support = estsupport.id_support)
                     OR (categories.nom_categorie LIKE '%$search%' AND categories.id_categorie = estcategories.id_categorie)
                     OR article.titre LIKE '%$search%'
                     OR article.contenu LIKE '%$search%'
-                    OR jeux.nom LIKE '%$search%')
+                    OR jeux.nom LIKE '%$search%'
+                    OR avis.texte LIKE '%$search%'
+                    OR avis.titre LIKE '%$search%')
+                AND avis.id_jeux=jeux.id_jeux
                 AND images.chemin LIKE '%images/jaquette/%'
                 AND jeux.id_article = article.id_article
                 ORDER BY article.date_creation ;";
