@@ -151,7 +151,7 @@ function imagesarticles($mysqli,$id_article){
 }
 
 function getAvis($mysqli,$id_jeux){
-    $requete= "SELECT avis.*,utilisateur.login  FROM avis,utilisateur 
+    $requete= "SELECT avis.*,utilisateur.login,utilisateur.id_image,utilisateur.id_user  FROM avis,utilisateur 
                 WHERE avis.id_jeux=$id_jeux AND avis.id_user=utilisateur.id_user;";
     $avis=readDB($mysqli,$requete);
     return $avis;

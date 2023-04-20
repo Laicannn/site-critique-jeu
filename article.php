@@ -35,9 +35,12 @@ $mysqli = connectionDB();
                 $img=imagesarticles($mysqli,$_GET['id_article']);
                 $categorie=getCategorie($mysqli,$info['id_jeux']);
                 $support=getSupport($mysqli,$info['id_jeux']);
-                displayarticle($info,$img,$categorie,$support);
+                displayArticle($info,$img,$categorie,$support);
                 $avis=getAvis($mysqli,$info['id_jeux']);
-                displayavis($avis);
+                foreach($avis as $avions){
+                    $pp=getPP($mysqli,$avions['id_image']);
+                    displayAvis($avions,$pp['0']);
+                }
                 if (isset($_SESSION['role'])){
                     echo"<a href='avis.php' id='button_avis'><img src='images/buttons/button_redige.svg'></a>";
                 }                

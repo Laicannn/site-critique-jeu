@@ -94,56 +94,61 @@ function displaySelfAccount($liste){
     
 }
 
-function displayarticle($info,$image,$categories,$support){
+function displayArticle($info,$image,$categories,$support){
     echo "<section id=infoarticle>
-            <div id=image>
-            <img id=jacquette_article alt=jaquette_jeu src=$info[chemin]>
-            $info[note] /10
+            <div id='image_tags'>
+                <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                <aside id='tags'>";
+                    foreach($categories as $cate){
+                        echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
+                    }
+                    foreach($support as $sup){
+                        echo "<div><p class='support'>$sup[nom_support]</p></div>";
+                    }
+                echo"</aside>
             </div>
             <div id=contenu>
-            <h1> $info[titre] </h1> 
-            <br>
-            $info[contenu]
-            <br><br>
-            <table>
-                <tr>";
-                    foreach($categories as $cate){
-                    echo "<td> $cate[nom_categorie] </td>";
-                    }
-            echo "</tr>
-            </table>
-            <br>
-            <table>
-                <tr>";
-                    foreach($support as $sup){
-                    echo "<td> $sup[nom_support] </td>";
-                    }
-            echo "</tr>
-            </table>
+                <h1> $info[titre] </h1> 
+                $info[contenu]
+                <div id='note'>$info[note] / 10</div>
             </div>
         </section>
-        <section id=infojeux>
-            <h2>$info[nom]</h2> <br>
-            <p>
-            $info[synopsis]  <br> <br> 
-            Date de sortie : $info[date_sortie]<br><br> 
-            Prix : $info[prix]
-            </p> <br> ";
+        <section id='infojeux'>
+            <div id='texte'>
+                <h2>$info[nom]</h2>
+                <h3>Synopsis : </h3>
+                <p>$info[synopsis]</p>
+                <h3>Date de sortie : </h3>
+                <p>$info[date_sortie]</p>
+                <h3>Prix : </h3>
+                <p>$info[prix]</p>
+            </div>
+            <div id='liste_image'>";
                 foreach($image as $img){
-                echo "<img class=image_jeu alt=image_jeu src=$img[chemin] >";
+                echo "<img class=image_jeu alt='image du jeu' src=$img[chemin] >";
                 }
         echo "
+            </div>
         </section>";
 }
 
-function displayavis($avis){
-    foreach($avis as $avions){
-    echo "<section class=avis>
-    <h1> $avions[titre] -- $avions[note] /10 </h1>
-    $avions[texte]
-    <p> $avions[login] -- $avions[date_creation]</p>
+function displayAvis($avions,$pp){
+    echo "<section id='liste_avis'>
+        <article class='avis'>
+        
+            <div class='entete'>
+                <a href='account.php?account=$avions[id_user]' class='user'>
+                    <img src='$pp[chemin]'>  $avions[login]
+                </a>
+                <p class='date'>$avions[date_creation]</p>
+                <aside class='note_avis'>$avions[note] / 10</aside>
+            </div>
+            <div class='titre'>
+                $avions[titre]
+            </div>
+            <p>$avions[texte]</p>
+        </article>
     </section>";
-    }
 }
 
 ?>

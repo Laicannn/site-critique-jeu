@@ -28,12 +28,13 @@ $mysqli = connectionDB();
         <?php include("static/nav.php"); ?>
         <main>
             <?php 
-            if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
+            if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && (!($_GET) || !(isset($_GET['account']) && $_GET) || (isset($_GET['account']) && $_GET['account'] == $_SESSION['id_user'] ))){
                 $liste = getAllPP($mysqli);
                 displaySelfAccount($liste);
             }
             else{
-                header('Location: index.php');
+                // displayAccount();
+                echo"caca";
             }
             ?>
         </main> 
