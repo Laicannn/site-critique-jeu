@@ -209,4 +209,36 @@ function displayDonneAvis($id_jeu){
     </section>";
 }
 
+function displayWriteArticle($jeuxdispo){
+    echo "<section id='new_article'>
+        <article class='article'>
+            <a class='button' href='#popup'>
+                <h2> Choix  du jeu </h2>
+            </a>
+            <div id='popup' class='overlay'>
+                <div class='selection_pp'>
+                    <h2> Choisissez un jeu pour votre article </h2>
+                    <a class='close_button' href=''>&times;</a>
+                    <div>";
+                        foreach($liste as $data){
+                            echo"<a href='php/modify_account.php?id_image=$data[id_image]'><img class='liste_pp' src='$data[chemin]' alt='pp proposée'></a>";
+                        }
+                echo"</div>
+                </div>
+            </div>
+            <form action='php/writearticle.php' method='POST' name='redigeArticle'>
+                <div class='entete'>
+                    <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
+                    
+                    <aside class='note_article'>
+                        <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
+                    </aside>
+                </div>
+                <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='100'></textarea>
+                <input type='submit' value='envoyer' id='bouton_submit'>
+            </form>
+        </article>
+    </section>";
+}
+
 ?>

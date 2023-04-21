@@ -8,8 +8,9 @@ $mysqli = connectionDB();
 session_start();
 $titre = $_POST['titre'];
 $note = $_POST['note'];
-$avis = $_POST['avis'];
-writeAvis($mysqli,$titre,$note,$_GET['id_jeux'],$_SESSION['id_user'],$avis);
+$contenu = $_POST['article'];
+$id_jeux=$_POST['id_jeux'];
+writeArticle($mysqli,$titre,$note,$id_jeux,$_SESSION['id_user'],$contenu);
 closeDB($mysqli);
 header("Location: ../article.php?id_article=$_GET[id_article]");
 ?>
