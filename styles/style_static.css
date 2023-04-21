@@ -100,13 +100,17 @@ header h1 {
     transition-timing-function:cubic-bezier(.74,-0.51,.39,.91);
 }
 
-#connection_button {
+#connection_button_anime {
     margin-right: 0;
     animation-name: slidein;
     animation-duration: 2s;
 }
 
-#connection_button img {
+#connection_button {
+    margin-right: 0;
+}
+
+.connection_button_class img {
     z-index:2;
     max-width: 230px;
     width:28vw;
@@ -114,7 +118,22 @@ header h1 {
     margin-bottom: 5px;
 }
 
-#connection_button img:hover {
+.connection_button_class img:hover {
+    opacity: 50%;
+}
+
+.double_button_anime {
+    z-index:2;
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    transition-duration: 0.1s;
+    animation-name: slidein;
+    animation-duration: 2s;
+}
+
+.double_button_anime img:hover {
     opacity: 50%;
 }
 
@@ -125,8 +144,6 @@ header h1 {
     justify-content: flex-end;
     flex-wrap: nowrap;
     transition-duration: 0.1s;
-    animation-name: slidein;
-    animation-duration: 2s;
 }
 
 .double_button img:hover {
