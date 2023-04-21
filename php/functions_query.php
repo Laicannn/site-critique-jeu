@@ -165,11 +165,23 @@ function writeAvis($mysqli,$titre,$note,$id_jeux,$id_user,$texte){
 
 function writeArticle($mysqli,$titre,$note,$id_jeux,$id_user,$contenu){
     $date=date("Y-m-d");
+    $requete1="INSERT INTO article(titre,contenu,note,date_creation,id_user)
+                VALUES ('$titre','$contenu','$note','$date','$id_user');";
+    writeDB($mysqli,$requete1);
+    $requete2="SELECT article.id_article 
+                FROM article 
+                WHERE article.contenu=$contenu;";
+    $idarticle=readDB($mysqli,$requete2);
+    $requete3="UPDATE jeux 
+                SET jeux.id_article=$idarticle
+                WHERE jeux.id_jeux=$id_jeux;";
+    writeDB($mysqli,$requete3);
+    return $idarticle;
 }
 
 function getJeuDispo($mysqli){
-    $requete="SELECT images.chemin 
-                FROM images
+    $requete="SELECT images.chemin,jeux.id_jeux 
+                FROM images,jeux
                 WHERE images.id_article IS NULL AND images.chemin LIKE '%images/jaquette/%'";
     $jeux=readDB($mysqli,$requete);
     return $jeux;

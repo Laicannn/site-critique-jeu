@@ -9,8 +9,17 @@ session_start();
 $titre = $_POST['titre'];
 $note = $_POST['note'];
 $contenu = $_POST['article'];
-$id_jeux=$_POST['id_jeux'];
-writeArticle($mysqli,$titre,$note,$id_jeux,$_SESSION['id_user'],$contenu);
-closeDB($mysqli);
-header("Location: ../article.php?id_article=$_GET[id_article]");
+
+if (empty($_SESSION['id_jeux'])){
+    $_SESSION['id_jeux']=$_GET['id_jeux'];
+    closeDB($mysqli);
+    header("Location: ../redige.php");
+}
+else{
+    writeArticle($mysqli,$titre,$note,$_SESSION['id_jeux'],$_SESSION['id_user'],$contenu);
+    $_SESSION['id_jeux']=[];
+    $id_article=getidnewarticle($mysqli,$contenu);
+    closeDB($mysqli);
+    header("Location: ../article.php?id_article=$id_article");
+}
 ?>
