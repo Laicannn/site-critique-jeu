@@ -6,19 +6,22 @@ require_once("functions_query.php");
 require_once("functions_structure.php");
 $mysqli = connectionDB();
 session_start();
-$titre = $_POST['titre'];
-$note = $_POST['note'];
-$contenu = $_POST['article'];
 
-if (empty($_SESSION['id_jeux'])){
+
+if (empty($_SESSION['id_jeux']) || ($_GET)){
     $_SESSION['id_jeux']=$_GET['id_jeux'];
+    $_SESSION['chemin']=$_GET['chemin'];
+    echo "perdu";
     closeDB($mysqli);
     header("Location: ../redige.php");
 }
 else{
-    writeArticle($mysqli,$titre,$note,$_SESSION['id_jeux'],$_SESSION['id_user'],$contenu);
+    $titre = $_POST['titre'];
+    $note = $_POST['note'];
+    $contenu = $_POST['article'];
+    $id_article=writeArticle($mysqli,$titre,$note,$_SESSION['id_jeux'],$_SESSION['id_user'],$contenu);
     $_SESSION['id_jeux']=[];
-    $id_article=getidnewarticle($mysqli,$contenu);
+    $_SESSION['chemin']=[];
     closeDB($mysqli);
     header("Location: ../article.php?id_article=$id_article");
 }

@@ -221,12 +221,15 @@ function displayWriteArticle($jeuxdispo){
                     <a class='close_button' href=''>&times;</a>
                     <div>";
                         foreach($jeuxdispo as $data){
-                            echo"<a href='php/writearticle.php'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
+                            echo"<a href='php/writearticle.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
                         }
                 echo"</div>
                 </div>
-            </div>
-            <form action='php/writearticle.php' method='POST' name='redigeArticle'>
+            </div>";
+            if (!empty($_SESSION['id_jeux'])){
+                    echo "<img id='jeu_choisi' src='$_SESSION[chemin]' alt='jeux choisi'>";
+            }
+        echo "<form action='php/writearticle.php' method='POST' name='redigeArticle'>
                 <div class='entete'>
                     <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
                     
