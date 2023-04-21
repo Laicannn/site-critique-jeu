@@ -34,7 +34,7 @@ $mysqli = connectionDB();
                 $categorie=getCategorie($mysqli,$info['id_jeux']);
                 $support=getSupport($mysqli,$info['id_jeux']);
                 $avis=getAvis($mysqli,$info['id_jeux']);
-                displayArticle($info,$img,$categorie,$support,$avis);
+                displayArticle($info,$img,$categorie,$support,$avis,$_GET['id_article']);
                 foreach($avis as $avions){
                     $pp=getPP($mysqli,$avions['id_image']);
                     displayAvis($avions,$pp['0']);

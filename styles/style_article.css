@@ -352,3 +352,73 @@ input {
 #bouton_submit:hover{
     background-color: #ffd00081;
 }
+
+
+.overlay {
+    z-index: 1;
+    position:absolute; 
+    height: 810px;
+    background-color: #111111df;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 0.4s;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  #popup::after {
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to top, #11111100 0, #111111df 100%);
+    margin-bottom: auto;
+    height: 150px;
+    margin-top:-150px;
+    content: '';
+}
+  
+.liste_photos_grandes {
+    z-index: 1;
+    margin-top: 150px ;
+    margin-bottom: 300px;
+    padding: 50px 0;
+    background: #202020;
+    border-radius: 15px;
+    width: max-content;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 2s ease-in-out;
+}
+
+.arrow {
+    padding: 100px;
+    width: 2vw;
+}
+
+.arrow:hover {
+    opacity:0.8;
+}
+
+.grand_photo {
+    width: 40vw;
+    height: auto;
+}
+  
+.close_button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    text-decoration: none;
+    color: #D6D6D6;
+    font-size: 28px;
+}

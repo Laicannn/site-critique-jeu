@@ -94,7 +94,7 @@ function displaySelfAccount($liste){
     
 }
 
-function displayArticle($info,$image,$categories,$support,$avis){
+function displayArticle($info,$image,$categories,$support,$avis,$id_article){
     $somme=0.0;
     $nombre=0.0;
     echo "<section id=infoarticle>
@@ -132,10 +132,39 @@ function displayArticle($info,$image,$categories,$support,$avis){
                 <p>$info[prix]</p>
             </div>
             <div id='liste_image'>";
+                $i=-1;
                 foreach($image as $img){
-                echo "<img class=image_jeu alt='image du jeu' src=$img[chemin] >";
+                    $i=$i+1;
+                    echo "<a href='?id_article=$id_article&img=$i#popup'><img class=image_jeu alt='image du jeu' src=$img[chemin] ></a>";
                 }
         echo "
+            </div>
+            <div id='popup' class='overlay'>
+                <div class='liste_photos_grandes'>
+                    <a class='close_button' href='?id_article=$id_article'>&times;</a>";
+                    $link=$image[$_GET['img']]['chemin'];
+                    if($_GET['img'] == 0){
+                        echo"<a href='?id_article=$id_article&img=".($i-1)."#popup'>
+                            <img class='arrow' src='images/buttons/arrow_button_left.svg'>
+                        </a>";
+                        }
+                    else {
+                        echo"<a href='?id_article=$id_article&img=".($_GET['img']-1)."#popup'>
+                            <img class='arrow' src='images/buttons/arrow_button_left.svg'>
+                        </a>";
+                    }
+                    echo"<img class='grand_photo' alt='image du jeu' src='$link'>";
+                    if($_GET['img']+1 > $i){
+                    echo"<a href='?id_article=$id_article&img=0#popup'>
+                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
+                    </a>";
+                    }
+                    else{
+                    echo"<a href='?id_article=$id_article&img=".($_GET['img']+1)."#popup'>
+                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
+                    </a>";
+                    }
+                echo"</div>
             </div>
         </section>";
 }
