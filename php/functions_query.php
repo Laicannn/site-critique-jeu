@@ -140,10 +140,10 @@ function getinfoarticleETjeu($mysqli,$id_article){
     $info=readDB($mysqli,$requete);
     return $info[0];
 }
-function imagesarticles($mysqli,$id_article){
+function imagesarticles($mysqli,$id_jeux){
     $requete="SELECT images.chemin 
                 FROM images
-                WHERE images.id_article = $id_article
+                WHERE images.id_jeux = $id_jeux
                 AND images.chemin NOT LIKE '%images/jaquette/%'";
     $image=readDB($mysqli,$requete);
     return $image;
@@ -163,24 +163,28 @@ function writeAvis($mysqli,$titre,$note,$id_jeux,$id_user,$texte){
     writeDB($mysqli,$requete);
 }
 
-function writeArticle($mysqli,$titre,$note,$id_jeux,$id_user,$contenu){
+function writeArticle($mysqli,$titre,$note,$id_user,$contenu){
     $date=date("Y-m-d");
-    $requete1="INSERT INTO article(titre,contenu,note,date_creation,id_user)
+    $requete="INSERT INTO article(titre,contenu,note,date_creation,id_user)
                 VALUES ('$titre','$contenu','$note','$date','$id_user');";
-    writeDB($mysqli,$requete1);
-    $requete2="SELECT article.id_article 
+    writeDB($mysqli,$requete);}
+
+function getIdNewArticle($mysqli,$contenu){
+    $requete="SELECT article.id_article 
                 FROM article 
                 WHERE article.contenu='$contenu';";
-    $idarticle=readDB($mysqli,$requete2);
-    $requete3="UPDATE jeux 
-                SET jeux.id_article=$idarticle
+    $id_article=readDB($mysqli,$requete);
+    return $id_article[0];}
+
+function ChangeArticle($mysqli,$id_article,$id_jeux){
+    $requete1="UPDATE jeux 
+                SET jeux.id_article=$id_article
                 WHERE jeux.id_jeux=$id_jeux;";
-    writeDB($mysqli,$requete3);
-    $requete4="UPDATE images 
-                SET images.id_article=$idarticle
+    writeDB($mysqli,$requete1);
+    $requete2="UPDATE images 
+                SET images.id_article=$id_article
                 WHERE images.id_jeux=$id_jeux;";
-    writeDB($mysqli,$requete4);
-    return $idarticle;
+    writeDB($mysqli,$requete2);
 }
 
 function getJeuDispo($mysqli){

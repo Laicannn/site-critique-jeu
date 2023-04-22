@@ -30,7 +30,7 @@ $mysqli = connectionDB();
         <main>
             <?php 
                 $info=getinfoarticleETjeu($mysqli,$_GET['id_article']);
-                $img=imagesarticles($mysqli,$_GET['id_article']);
+                $img=imagesarticles($mysqli,$info['id_jeux']);
                 $categorie=getCategorie($mysqli,$info['id_jeux']);
                 $support=getSupport($mysqli,$info['id_jeux']);
                 $avis=getAvis($mysqli,$info['id_jeux']);

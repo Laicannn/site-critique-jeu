@@ -19,10 +19,12 @@ else{
     $titre = $_POST['titre'];
     $note = $_POST['note'];
     $contenu = $_POST['article'];
-    $id_article=writeArticle($mysqli,$titre,$note,$_SESSION['id_jeux'],$_SESSION['id_user'],$contenu);
+    writeArticle($mysqli,$titre,$note,$_SESSION['id_user'],$contenu);
+    $id_article=getIdNewArticle($mysqli,$contenu);
+    ChangeArticle($mysqli,$id_article['id_article'],$_SESSION['id_jeux']);
     $_SESSION['id_jeux']=[];
     $_SESSION['chemin']=[];
     closeDB($mysqli);
-    header("Location: ../article.php?id_article=$id_article");
+    header("Location: ../article.php?id_article=$id_article[id_article]");
 }
 ?>
