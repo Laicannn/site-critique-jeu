@@ -147,6 +147,7 @@ h3 {
 }
 
 #button_redige {
+    z-index: 100;
     position: fixed;
     max-width: 100px;
     width:15vw;
