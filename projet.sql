@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : sam. 22 avr. 2023 à 16:58
+-- Généré le : dim. 23 avr. 2023 à 16:20
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -34,7 +34,7 @@ CREATE TABLE `article` (
   `note` int(11) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `date_modification` int(11) DEFAULT NULL
+  `date_modification` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -42,9 +42,9 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id_article`, `titre`, `contenu`, `note`, `date_creation`, `id_user`, `date_modification`) VALUES
-(1, 'Le monde de cube ou quoi là', 'BLABLABLAencore', 7, '2023-04-05', 2, NULL),
+(1, 'Le monde de cube ou quoi là', 'Ca marche enfin ?', 7, '2023-04-06', 2, '2023-04-23'),
 (2, 'En route vers la 97', 'BLABLABLA', 10, '2023-04-05', 1, NULL),
-(3, 'WOUAAAAHHHHH', 'Ce jeu est blablabla', 7, '2023-04-22', 2, NULL);
+(3, 'WOUAAAAHHHHH', 'Tu vas venir tout devant toi  ', 7, '2023-04-22', 2, '2023-04-23');
 
 -- --------------------------------------------------------
 
@@ -69,9 +69,7 @@ CREATE TABLE `avis` (
 INSERT INTO `avis` (`id_avis`, `titre`, `note`, `date_creation`, `id_jeux`, `id_user`, `texte`) VALUES
 (1, 'Jeu trop nul !!!', 2, '2023-04-19', 3, 3, 'Voila alors moi j aime que les ronds alors vraiment ça m a pas plus du tout du tout...'),
 (2, 'Incroyable', 8, '2023-04-19', 3, 2, 'J ai adoré ce jeu vidéo, très créatif, on peut faire ce que l on veut trop bien'),
-(3, 'Jeu intéréssant', 7, '2023-04-21', 1, 2, 'Les images dans le jeu sont incroyables'),
-(5, 'essai avis 2 ', 8, '2023-04-21', 3, 2, 'blabla\r\n'),
-(6, 'essai avis 2 ', 7, '2023-04-21', 1, 2, 'blabla');
+(3, 'Jeu intéréssant', 7, '2023-04-21', 1, 2, 'Les images dans le jeu sont incroyables');
 
 -- --------------------------------------------------------
 
@@ -281,7 +279,7 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `rôle`, `id_image`) VALUES
 (1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-21', 'administrateur', 107),
-(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-21', 'redacteur', 106),
+(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-23', 'redacteur', 106),
 (3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', '2023-04-15', 'membre', 100);
 
 --

@@ -6,7 +6,7 @@ function getIndexArticle($mysqli){
                 WHERE images.id_article = article.id_article
                 AND images.chemin LIKE "%images/jaquette/%"
                 AND jeux.id_article = article.id_article
-                ORDER BY article.date_creation ;';
+                ORDER BY article.date_creation DESC;';
     $liste_article = readDB($mysqli,$requete);
     return $liste_article;
 }
