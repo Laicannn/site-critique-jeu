@@ -140,6 +140,7 @@ function getinfoarticleETjeu($mysqli,$id_article){
     $info=readDB($mysqli,$requete);
     return $info[0];
 }
+
 function imagesarticles($mysqli,$id_jeux){
     $requete="SELECT images.chemin 
                 FROM images
@@ -167,14 +168,16 @@ function writeArticle($mysqli,$titre,$note,$id_user,$contenu){
     $date=date("Y-m-d");
     $requete="INSERT INTO article(titre,contenu,note,date_creation,id_user)
                 VALUES ('$titre','$contenu','$note','$date','$id_user');";
-    writeDB($mysqli,$requete);}
+    writeDB($mysqli,$requete);
+}
 
 function getIdNewArticle($mysqli,$contenu){
     $requete="SELECT article.id_article 
                 FROM article 
                 WHERE article.contenu='$contenu';";
     $id_article=readDB($mysqli,$requete);
-    return $id_article[0];}
+    return $id_article[0];
+}
 
 function ChangeArticle($mysqli,$id_article,$id_jeux){
     $requete1="UPDATE jeux 
@@ -194,4 +197,41 @@ function getJeuDispo($mysqli){
     $jeux=readDB($mysqli,$requete);
     return $jeux;
 }
+
+function getAvisAndUser($mysqli,$id_user,$id_jeux){
+    $requete="SELECT * 
+                FROM avis
+                WHERE avis.id_user=$id_user AND avis.id_jeux=$id_jeux;";
+    $info=readDB($mysqli,$requete);
+    return $info;
+}
+
+function getWriterArticle($mysqli,$id_user,$id_jeux){
+    $requete="SELECT * 
+                FROM article,jeux
+                WHERE article.id_user=$id_user AND jeux.id_article=article.id_article AND jeux.id_jeux=$id_jeux;";
+    $info=readDB($mysqli,$requete);
+    return $info;
+}
+
+function ModifyArticle($mysqli,$id_article,$titre,$contenu,$note){
+    $date_modif=date("Y-m-d");
+    $requete1="UPDATE article
+            SET titre='$titre'
+            WHERE id_article=$id_article;";
+    writeDB($mysqli,$requete1);
+    $requete2="UPDATE article
+            SET contenu='$contenu'
+            WHERE id_article=$id_article;";
+    writeDB($mysqli,$requete2);
+    $requete3="UPDATE article
+            SET note='$note'
+            WHERE id_article=$id_article;";
+    writeDB($mysqli,$requete3);
+    $requete4="UPDATE article
+            SET date_modification='$date_modif'
+            WHERE id_article=$id_article;";
+    writeDB($mysqli,$requete4);
+}
+
 ?>

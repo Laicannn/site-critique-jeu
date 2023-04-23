@@ -112,6 +112,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                         $nombre=$nombre + 1.0;
                     }
                     $moyenne = fdiv($somme,$nombre);
+                    if (is_nan($moyenne)){$moyenne='-';}
                     echo"</aside>
                 <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
             </div>
@@ -120,7 +121,10 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                 $info[contenu]
                 <div id='note'>$info[note] / 10</div>
             </div>
-        </section>
+            <p> Date de création : $info[date_creation] </p>";
+            if (!empty($info['date_modification'])){
+            echo "<p> Date de modification $info[date_modification] </p>";}
+    echo "</section>
         <section id='infojeux'>
             <div id='texte'>
                 <h2>$info[nom]</h2>
@@ -239,6 +243,23 @@ function displayWriteArticle($jeuxdispo){
                 </div>
                 <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='100'></textarea>
                 <input type='submit' value='envoyer' id='bouton_submit'>
+            </form>
+        </article>
+    </section>";
+}
+
+function displayModifyArticle($info,$id_article){
+    echo "<section id='new_article'>
+        <article class='article'>
+            <form action='php/modifyarticle.php?id_article=$id_article' method='POST' name='modifyArticle'>
+                <div class='entete'>
+                    <input type='text' name='titre' id='title' placeholder='$info[titre]' maxlength='20'>
+                    <aside class='note_article'>
+                        <input type='number' value='$info[note]' min=1 max=10 id='notation' name='note'><label for='note'>/10</label>
+                    </aside>
+                </div>
+                <textarea type='text' name='article' id='redaction' placeholder='$info[contenu]' maxlength='100'></textarea>
+                <input type='submit' value='modifier' id='bouton_submit'>
             </form>
         </article>
     </section>";
