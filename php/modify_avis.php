@@ -7,23 +7,27 @@ require_once("functions_structure.php");
 $mysqli = connectionDB();
 session_start();
 
-$id_article=$_GET['id_article'];
-$info=getinfoarticleETjeu($mysqli,$id_article);
+$id_avis=$_GET['id_avis'];
+$info=getInfoAvis($mysqli,$id_avis);
+$id_article=$info['id_article'];
 
-if (empty($_POST['titre'])){$titre = $info['titre'];}
+if (empty($_POST['titre']))
+{$titre = $info['titre'];}
 else {$titre = $_POST['titre'];}
 
 $titre=htmlspecialchars($titre, ENT_QUOTES);
 
-if (empty($_POST['note'])){$note = $info['note'];}
+if (empty($_POST['note']))
+{$note = $info['note'];}
 else {$note = $_POST['note'];}
 
-if (empty($_POST['article'])){$contenu = $info['contenu'];}
-else {$contenu = $_POST['article'];}
+if (empty($_POST['avis']))
+{$texte = $info['texte'];}
+else {$texte = $_POST['avis'];}
 
-$blabla=htmlspecialchars($contenu, ENT_QUOTES);
+$blabla=htmlspecialchars($texte, ENT_QUOTES);
 
-ModifyArticle($mysqli,$id_article,$titre,$blabla,$note);
+ModifyAvis($mysqli,$id_avis,$titre,$blabla,$note);
 closeDB($mysqli);
 header("Location: ../article.php?id_article=$id_article");
 ?>

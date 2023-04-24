@@ -23,15 +23,24 @@ $mysqli = connectionDB();
         <link rel="icon" href="images/logos/logo_head.png" />
         <meta name="keywords" content="MD TRIKITE"/>
         <meta name="author" content="La MD Corp"/>
-        <link rel="stylesheet" type="text/css" href="styles/style_redige.css">
+        <link rel="stylesheet" type="text/css" href="styles/style_modify.css">
     </head>
     <body>
         <?php include("static/header.php"); ?>
         <?php include("static/nav.php"); ?>
         <main>
             <?php
-                $info=getinfoarticleETjeu($mysqli,$_GET['id_article']);
-                displayModifyArticle($info,$_GET['id_article']);
+                if (!empty($_GET['id_article'])){
+                $info_article=getinfoarticleETjeu($mysqli,$_GET['id_article']);
+                displayModifyArticle($info_article,$_GET['id_article']);
+                }
+                if (!empty($_GET['id_avis'])){
+                $id_avis=$_GET['id_avis'];
+                $info_avis=getInfoAvis($mysqli,$id_avis);
+                $info_jeux=getInfoJeu($mysqli,$info_avis['id_jeux']);
+                $img=imagesarticles($mysqli,$info_avis['id_jeux']);
+                displayModifyAvis($info_avis,$id_avis,$info_jeux,$img);
+                }
             ?>
         </main> 
         <?php include("static/footer.php"); ?>

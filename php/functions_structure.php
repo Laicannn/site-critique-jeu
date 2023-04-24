@@ -173,15 +173,18 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
         </section>";
 }
 
-function displayAvis($avions,$pp){
+function displayAvis($avions,$pp,$id_jeux){
     echo "<section id='liste_avis'>
         <article class='avis'>
             <div class='entete'>
                 <a href='account.php?account=$avions[id_user]' class='user'>
                     <img src='$pp[chemin]'>  $avions[login]
                 </a>
-                <aside class='date'>$avions[date_creation]</aside>
-                <aside class='note_avis'>$avions[note] / 10</aside>
+                <aside class='date'>$avions[date_creation]</aside>";
+                if ($_SESSION['id_user'] == $avions['id_user']){
+                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";
+                }
+            echo "<aside class='note_avis'>$avions[note] / 10</aside>
             </div>
             <div class='titre'>
                 $avions[titre]
@@ -263,6 +266,69 @@ function displayModifyArticle($info,$id_article){
             </form>
         </article>
     </section>";
+}
+
+function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
+    echo "<section id='new_article'>
+        <article class='article'>
+            <form action='php/modify_avis.php?id_avis=$id_avis' method='POST' name='modifyAvis'>
+                <div class='entete'>
+                    <input type='text' name='titre' id='title' placeholder='$info_avis[titre]' maxlength='20'>
+                    <aside class='note_article'>
+                        <input type='number' value='$info_avis[note]' min=1 max=10 id='notation' name='note'><label for='note'>/10</label>
+                    </aside>
+                </div>
+                <textarea type='text' name='avis' id='redaction' placeholder='$info_avis[texte]' maxlength='100'></textarea>
+                <input type='submit' value='modifier' id='bouton_submit'>
+            </form>
+        </article>
+    </section>
+    <section id='infojeux'>
+            <div id='texte'>
+                <h2>$info_jeux[nom]</h2>
+                <h3>Synopsis : </h3>
+                <p>$info_jeux[synopsis]</p>
+                <h3>Date de sortie : </h3>
+                <p>$info_jeux[date_sortie]</p>
+                <h3>Prix : </h3>
+                <p>$info_jeux[prix]</p>
+            </div>
+            <div id='liste_image'>";
+                $i=-1;
+                foreach($image as $img){
+                    $i=$i+1;
+                    echo "<a href='?id_avis=$id_avis&img=$i#popup'><img class=image_jeu alt='image du jeu' src=$img[chemin] ></a>";
+                }
+        echo "
+            </div>
+            <div id='popup' class='overlay'>
+                <div class='liste_photos_grandes'>
+                    <a class='close_button' href='?id_avis=$id_avis'>&times;</a>";
+                    $link=$image[$_GET['img']]['chemin'];
+                    if($_GET['img'] == 0){
+                        echo"<a href='?id_avis=$id_avis&img=".($i-1)."#popup'>
+                            <img class='arrow' src='images/buttons/arrow_button_left.svg'>
+                        </a>";
+                        }
+                    else {
+                        echo"<a href='?id_avis=$id_avis&img=".($_GET['img']-1)."#popup'>
+                            <img class='arrow' src='images/buttons/arrow_button_left.svg'>
+                        </a>";
+                    }
+                    echo"<img class='grand_photo' alt='image du jeu' src='$link'>";
+                    if($_GET['img']+1 > $i){
+                    echo"<a href='?id_avis=$id_avis&img=0#popup'>
+                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
+                    </a>";
+                    }
+                    else{
+                    echo"<a href='?id_avis=$id_avis&img=".($_GET['img']+1)."#popup'>
+                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
+                    </a>";
+                    }
+                echo"</div>
+            </div>
+        </section>";
 }
 
 ?>

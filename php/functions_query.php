@@ -234,4 +234,37 @@ function ModifyArticle($mysqli,$id_article,$titre,$contenu,$note){
     writeDB($mysqli,$requete4);
 }
 
+function getInfoJeu($mysqli,$id_jeux){
+    $requete="SELECT jeux.*,images.chemin
+            FROM jeux,images
+            WHERE jeux.id_jeux=$id_jeux AND images.id_jeux=jeux.id_jeux AND images.chemin NOT LIKE '%images/jaquette/%';";
+    $info=readDB($mysqli,$requete);
+    return $info[0];
+}
+
+function getInfoAvis($mysqli,$id_avis){
+    $requete="SELECT avis.*,article.id_article 
+                FROM avis,article,jeux 
+                WHERE avis.id_avis=2 
+                    AND avis.id_jeux=jeux.id_jeux 
+                    AND jeux.id_article=article.id_article;";
+    $info=readDB($mysqli,$requete);
+    return $info[0];
+}
+
+function ModifyAvis($mysqli,$id_avis,$titre,$texte,$note){
+    $requete1="UPDATE avis
+            SET titre='$titre'
+            WHERE id_avis=$id_avis;";
+    writeDB($mysqli,$requete1);
+    $requete2="UPDATE avis
+            SET texte='$texte'
+            WHERE id_avis=$id_avis;";
+    writeDB($mysqli,$requete2);
+    $requete3="UPDATE avis
+            SET note='$note'
+            WHERE id_avis=$id_avis;";
+    writeDB($mysqli,$requete3);
+}
+
 ?>
