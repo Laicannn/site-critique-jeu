@@ -443,3 +443,21 @@ input {
 #button_modification:hover{
     opacity:0.5;
 }
+
+#button_modification_avis:hover,#button_supprimer_avis:hover{
+    opacity:0.5;
+    background-color: #FFD100;
+}
+
+#button_modification_avis,#button_supprimer_avis{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    padding: 2px;
+    border: #FFD100 solid 1px;
+    border-radius: 15%;
+}
+
+#button_supprimer_avis{
+    margin-left: 40px;
+}

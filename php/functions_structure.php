@@ -183,6 +183,7 @@ function displayAvis($avions,$pp,$id_jeux){
                 <aside class='date'>$avions[date_creation]</aside>";
                 if ($_SESSION['id_user'] == $avions['id_user']){
                     echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";
+                    echo"<a href='php/supprimer.php?id_avis=$avions[id_avis]' id='button_supprimer_avis'> Supprimer </a>";
                 }
             echo "<aside class='note_avis'>$avions[note] / 10</aside>
             </div>
