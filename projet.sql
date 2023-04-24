@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : dim. 23 avr. 2023 à 16:20
+-- Généré le : lun. 24 avr. 2023 à 20:46
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -43,8 +43,7 @@ CREATE TABLE `article` (
 
 INSERT INTO `article` (`id_article`, `titre`, `contenu`, `note`, `date_creation`, `id_user`, `date_modification`) VALUES
 (1, 'Le monde de cube ou quoi là', 'Ca marche enfin ?', 7, '2023-04-06', 2, '2023-04-23'),
-(2, 'En route vers la 97', 'BLABLABLA', 10, '2023-04-05', 1, NULL),
-(3, 'WOUAAAAHHHHH', 'Tu vas venir tout devant toi  ', 7, '2023-04-22', 2, '2023-04-23');
+(2, 'En route vers la 97', 'BLABLABLA', 10, '2023-04-05', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -68,7 +67,7 @@ CREATE TABLE `avis` (
 
 INSERT INTO `avis` (`id_avis`, `titre`, `note`, `date_creation`, `id_jeux`, `id_user`, `texte`) VALUES
 (1, 'Jeu trop nul !!!', 2, '2023-04-19', 3, 3, 'Voila alors moi j aime que les ronds alors vraiment ça m a pas plus du tout du tout...'),
-(2, 'Incroyable', 8, '2023-04-19', 3, 2, 'J ai adoré ce jeu vidéo, très créatif, on peut faire ce que l on veut trop bien'),
+(2, 'WOUAAAAHHHHH', 7, '2023-04-24', 3, 2, 'Vraiment pas mal comme jeu vidéo !!'),
 (3, 'Jeu intéréssant', 7, '2023-04-21', 1, 2, 'Les images dans le jeu sont incroyables');
 
 -- --------------------------------------------------------
@@ -165,7 +164,7 @@ INSERT INTO `images` (`id_image`, `chemin`, `id_article`, `id_jeux`) VALUES
 (3, 'images/jaquette/Portal.webp', NULL, 2),
 (4, 'images/jaquette/kotor.webp', NULL, 6),
 (5, 'images/jaquette/halo2.webp', NULL, 5),
-(6, 'images/jaquette/gtav.webp', 3, 4),
+(6, 'images/jaquette/gtav.webp', NULL, 4),
 (100, 'images/profile_picture/pp_default.svg', NULL, NULL),
 (101, 'images/profile_picture/mushroom_mario.webp', NULL, NULL),
 (102, 'images/profile_picture/poulpe.png', NULL, NULL),
@@ -222,7 +221,7 @@ INSERT INTO `jeux` (`id_jeux`, `nom`, `prix`, `date_sortie`, `synopsis`, `id_art
 (1, 'Road 96', 19.96, '2021-08-16', 'Road 96 est un jeu d aventure développé par DigixArt. S inspirant de films de Tarantino, des frères Coen et de films de roadtrip, le titre propose une aventure influencée par les choix du joueur. Basé sur un système procédural, le jeu est influencé par les décisions et modifie les trajets et le pays d arrivée.', 2),
 (2, 'Portal', 9.75, '2007-10-10', 'Jeu de portail', NULL),
 (3, 'Minecraft', 29.99, '2011-11-18', 'Jeu bac à sable indépendant et pixelisé dont le monde infini est généré aléatoirement, Minecraft permet au joueur de récolter divers matériaux, d élever des animaux et de modifier le terrain selon ses choix, en solo ou en multi (via des serveurs). Il doit également survivre en se procurant de la nourriture et en se protégeant des monstres qui apparaissent la nuit et dans des donjons. Il peut également monter de niveau afin d acheter des enchantements.', 1),
-(4, 'GTA V', 29.98, '2013-09-17', 'Jeu de bac a sable', 3),
+(4, 'GTA V', 29.98, '2013-09-17', 'Jeu de bac a sable', NULL),
 (5, 'Halo', 39.99, '2001-11-15', 'Jeu d aventure', NULL),
 (6, 'KOTOR', 8.19, '2003-07-15', 'Aventure RPG jeux d aventure ', NULL),
 (7, 'BANANAPOCALYPSE', 46.99, '2023-01-10', 'Jeu de banane', NULL);
@@ -279,7 +278,7 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `rôle`, `id_image`) VALUES
 (1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-21', 'administrateur', 107),
-(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-23', 'redacteur', 106),
+(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-24', 'redacteur', 106),
 (3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', '2023-04-15', 'membre', 100);
 
 --
@@ -358,13 +357,13 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
