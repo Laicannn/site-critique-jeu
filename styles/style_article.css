@@ -181,14 +181,18 @@ h3 {
     padding: 0 20px;
 }
 
-.image_jeu{
+.image_jeu {
     width: 15em;
     height: 10em;
     border-radius: 15px;
     padding: 10px;
     object-fit: cover;
+    transition-duration: 0.1s;
 }
 
+.image_jeu:hover {
+    opacity: 0.6;
+}
 #liste_avis {
     width: max-content;
     padding : 5px;
@@ -373,7 +377,7 @@ input {
     opacity: 1;
   }
 
-  #popup::after {
+#popup::after {
     display: block;
     position: relative;
     background-image: linear-gradient(to top, #11111100 0, #111111df 100%);
@@ -401,7 +405,7 @@ input {
 }
 
 .arrow {
-    padding: 100px;
+    padding: 50px;
     width: 2vw;
 }
 
