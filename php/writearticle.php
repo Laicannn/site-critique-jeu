@@ -17,10 +17,13 @@ if (empty($_SESSION['id_jeux']) || ($_GET)){
 }
 else{
     $titre = $_POST['titre'];
+    $titre=htmlspecialchars($titre, ENT_QUOTES);
     $note = $_POST['note'];
     $contenu = $_POST['article'];
+    $contenu=htmlspecialchars($contenu, ENT_QUOTES);
+    
     writeArticle($mysqli,$titre,$note,$_SESSION['id_user'],$contenu);
-    $id_article=getIdNewArticle($mysqli,$contenu);
+    $id_article=getIdNewArticle($mysqli,$titre,$note,$contenu);
     ChangeArticle($mysqli,$id_article['id_article'],$_SESSION['id_jeux']);
     $_SESSION['id_jeux']=[];
     $_SESSION['chemin']=[];

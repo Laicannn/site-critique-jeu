@@ -440,16 +440,16 @@ input {
     filter: drop-shadow(0px 2px 4px #20202086);
 }
 
-#button_modification:hover{
+#button_modification:hover,.delete_button:hover{
     opacity:0.5;
 }
 
-#button_modification_avis:hover,#button_supprimer_avis:hover{
+#button_modification_avis:hover,.button_supprimer_article:hover,.button_supprimer_avis:hover{
     opacity:0.5;
     background-color: #FFD100;
 }
 
-#button_modification_avis,#button_supprimer_avis{
+#button_modification_avis,.button_supprimer_avis,.button_supprimer_article{
     text-decoration: none;
     color: white;
     font-size: 15px;
@@ -458,6 +458,65 @@ input {
     border-radius: 15%;
 }
 
-#button_supprimer_avis{
+.delete_button{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+.button_supprimer_avis{
     margin-left: 40px;
+}
+
+.button_supprimer_article{
+    position: absolute;
+    right: 13em;
+    top: 10em;
+}
+
+.overlay_delete {
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: rgba(0, 0, 0, 0.7);
+transition: opacity 500ms;
+visibility: hidden;
+opacity: 0;
+z-index: 100;
+}
+.overlay_delete:target {
+visibility: visible;
+opacity: 1;
+}
+
+.popup {
+margin: 70px auto;
+padding: 20px;
+background: #202020;
+border-radius: 5px;
+width: 30%;
+position: relative;
+transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+margin-top: 0;
+color: #D6D6D6;
+font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+position: absolute;
+top: 20px;
+right: 30px;
+transition: all 200ms;
+font-size: 30px;
+font-weight: bold;
+text-decoration: none;
+color: #D6D6D6;
+}
+
+.delete_box{
+text-align:center;
 }

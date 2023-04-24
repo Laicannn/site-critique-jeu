@@ -7,7 +7,22 @@ require_once("functions_structure.php");
 $mysqli = connectionDB();
 session_start();
 
-echo "pas encore fait, caca #$_GET[id_avis]!";
+if (!empty($_GET['id_avis'])){
+$id_avis=$_GET['id_avis'];
+$info=getInfoAvis($mysqli,$id_avis);
+$id_article=$info['id_article'];
+deleteAvis($mysqli,$id_avis);
+}
 
+if (!empty($_GET['id_article'])){
+$id_article=$_GET['id_article'];
+$id_jeux=getIdJeux($mysqli,$id_article);
+$avis=getAvis($mysqli,$id_jeux);
+foreach($avis as $av){
+    deleteAvis($mysqli,$av['id_avis']);
+}
+deleteArticle($mysqli,$id_article);
+}
 closeDB($mysqli);
+header("Location: ../index.php");
 ?>

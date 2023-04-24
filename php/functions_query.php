@@ -134,7 +134,7 @@ function creation_compte($mysqli,$login,$mdp,$nom,$prenom,$mail,$birthday){
 }
 
 function getinfoarticleETjeu($mysqli,$id_article){
-    $requete = "SELECT article.titre,article.contenu,article.note,article.date_creation,article.date_modification, jeux.id_jeux, jeux.nom, jeux.prix, jeux.date_sortie, jeux.synopsis,images.chemin 
+    $requete = "SELECT article.id_user,article.titre,article.contenu,article.note,article.date_creation,article.date_modification, jeux.id_jeux, jeux.nom, jeux.prix, jeux.date_sortie, jeux.synopsis,images.chemin 
                 FROM article,jeux,images 
                 WHERE article.id_article=$id_article AND article.id_article=jeux.id_article AND images.id_article = article.id_article AND images.chemin LIKE '%images/jaquette/%'";
     $info=readDB($mysqli,$requete);
@@ -171,10 +171,10 @@ function writeArticle($mysqli,$titre,$note,$id_user,$contenu){
     writeDB($mysqli,$requete);
 }
 
-function getIdNewArticle($mysqli,$contenu){
+function getIdNewArticle($mysqli,$titre,$note,$contenu){
     $requete="SELECT article.id_article 
                 FROM article 
-                WHERE article.contenu='$contenu';";
+                WHERE article.contenu='$contenu' AND article.titre='$titre' AND article.note=$note;";
     $id_article=readDB($mysqli,$requete);
     return $id_article[0];
 }
@@ -267,4 +267,25 @@ function ModifyAvis($mysqli,$id_avis,$titre,$texte,$note){
     writeDB($mysqli,$requete3);
 }
 
+function deleteAvis($mysqli,$id_avis){
+    $requete="DELETE FROM avis WHERE avis.id_avis=$id_avis";
+    writeDB($mysqli,$requete);
+}
+
+function deleteArticle($mysqli,$id_article){
+    $requete1="UPDATE jeux SET jeux.id_article=NULL WHERE jeux.id_article=$id_article;";
+    writeDB($mysqli,$requete1);
+    $requete2="UPDATE images SET images.id_article=NULL WHERE images.id_article=$id_article;";
+    writeDB($mysqli,$requete2);
+    $requete3="DELETE FROM article WHERE article.id_article=$id_article";
+    writeDB($mysqli,$requete3);
+}
+
+function getIdJeux($mysqli,$id_article){
+    $requete="SELECT id_jeux
+                FROM jeux,article
+                WHERE jeux.id_article=$id_article;";
+    $id_jeux=readDB($mysqli,$requete);
+    return $id_jeux[0]['id_jeux'];
+}
 ?>

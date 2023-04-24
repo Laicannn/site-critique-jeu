@@ -117,8 +117,19 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                 <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
             </div>
             <div id=contenu>
-                <h1> $info[titre] </h1> 
-                $info[contenu]
+                <h1> $info[titre] </h1>";
+                if ($_SESSION['id_user'] == $info['id_user']){
+                    echo "<a class='button_supprimer_article' href='#popup3'>Supprimer</a>
+                        <div id='popup3' class='overlay_delete'>
+                            <div class='popup'>
+                                <h2>Supprimer l'article ?</h2>
+                                <a class='close' href='#'>&times;</a>
+                                <div class='delete_box'>
+                                    <a href='php/supprimer.php?id_article=$id_article' class='delete_button' > Oui </a>
+                                </div>
+                            </div>
+                        </div>";}
+                echo "$info[contenu]
                 <div id='note'>$info[note] / 10</div>
             </div>
             <p> Date de création : $info[date_creation] </p>";
@@ -183,7 +194,16 @@ function displayAvis($avions,$pp,$id_jeux){
                 <aside class='date'>$avions[date_creation]</aside>";
                 if ($_SESSION['id_user'] == $avions['id_user']){
                     echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";
-                    echo"<a href='php/supprimer.php?id_avis=$avions[id_avis]' id='button_supprimer_avis'> Supprimer </a>";
+                    echo"<a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
+                        <div id='popup2' class='overlay_delete'>
+                            <div class='popup'>
+                                <h2>Supprimer l'avis ?</h2>
+                                <a class='close' href='#'>&times;</a>
+                                <div class='delete_box'>
+                                    <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
+                                </div>
+                            </div>
+                        </div>";
                 }
             echo "<aside class='note_avis'>$avions[note] / 10</aside>
             </div>
