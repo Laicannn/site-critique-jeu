@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 247.489 81.345">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-2 {
+        fill: #d6d6d6;
+      }
+
+      .cls-3 {
+        font-family: Nanami-Book, Nanami;
+        font-size: 31.794px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #202020;
+      }
+
+      .cls-4 {
+        stroke: #202020;
+        stroke-miterlimit: 10;
+        stroke-width: .5px;
+      }
+
+      .cls-5 {
+        letter-spacing: -.013em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g id="Calque_2-2" data-name="Calque 2">
+    <rect class="cls-2" x="0" y="0" width="247.489" height="81.345" rx="40.672" ry="40.672"/>
+    <text class="cls-3" transform="translate(98.874 51.875)"><tspan x="0" y="0">M</tspan><tspan class="cls-5" x="25.689" y="0">o</tspan><tspan class="cls-6" x="43.749" y="0">difi</tspan><tspan class="cls-1" x="88.832" y="0">e</tspan><tspan x="105.27" y="0">r</tspan></text>
+    <g>
+      <polygon class="cls-4" points="61.577 45.457 64.717 45.457 64.717 58.537 33.067 58.537 33.067 26.877 46.417 26.877 46.417 30.017 36.197 30.017 36.197 55.407 61.577 55.407 61.577 45.457"/>
+      <path class="cls-4" d="M43.357,48.477h9.28c8.73-8.85,17.49-17.73,26.22-26.58l-9.1-9.09c-4.44,4.44-21.66,21.66-26.4,26.4v9.27Zm26.4-31.75l5.18,5.19-2.5,2.53-5.2-5.2,2.52-2.52Zm-23.62,23.63l19.14-19.14,5.21,5.21-19.01,19.27h-5.34v-5.34Z"/>
+    </g>
+  </g>
+</svg>

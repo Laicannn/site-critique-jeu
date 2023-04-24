@@ -432,7 +432,7 @@ input {
     position: fixed;
     max-width: 100px;
     width:15vw;
-    right : 4vw;
+    right : 3vw;
     bottom : 70px;
     transition-property: opacity;
     transition-duration: 0.1s;

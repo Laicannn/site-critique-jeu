@@ -49,6 +49,8 @@ $mysqli = connectionDB();
                     $liste = getIndexArticle($mysqli);
                 }
                 if($liste){
+                    $nombre_article = count($liste,0);
+                    $nombre_page = $nombre_article / 5 ;
                     foreach($liste as $article){
                         $categories = getCategorie($mysqli,$article['id_jeux']);
                         $supports = getSupport($mysqli,$article['id_jeux']);

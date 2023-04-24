@@ -42,8 +42,8 @@ $mysqli = connectionDB();
                 if ((isset($_SESSION['role']) && (empty(getAvisAndUser($mysqli,$_SESSION['id_user'],$info['id_jeux']))))){
                     displayDonneAvis($info['id_jeux']);
                 }          
-                if (!empty(getWriterArticle($mysqli,$_SESSION['id_user'],$info['id_jeux']))){
-                    echo"<a href='modifier.php?id_article=$_GET[id_article]' id='button_modification'><img src='images/buttons/button_redige.svg'></a>";
+                if ($_SESSION && !empty(getWriterArticle($mysqli,$_SESSION['id_user'],$info['id_jeux']))){
+                    echo"<a href='modifier.php?id_article=$_GET[id_article]' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>";
                 }      
             ?>
         </main> 
