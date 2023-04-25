@@ -31,6 +31,7 @@ $mysqli = connectionDB();
             if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && (!($_GET) || !(isset($_GET['account']) && $_GET) || (isset($_GET['account']) && $_GET['account'] == $_SESSION['id_user'] ))){
                 $liste = getAllPP($mysqli);
                 displaySelfAccount($liste);
+                echo "<br>";
                 $liste_avis=getAvisofUser($mysqli,$_SESSION['id_user']);
                 foreach($liste_avis as $avis){
                     displayAvisAccount($avis);
