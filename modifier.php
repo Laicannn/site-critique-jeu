@@ -41,6 +41,7 @@ $mysqli = connectionDB();
                 $img=imagesarticles($mysqli,$info_avis['id_jeux']);
                 displayModifyAvis($info_avis,$id_avis,$info_jeux,$img);
                 }
+                displayChangeAccount();
             ?>
         </main> 
         <?php include("static/footer.php"); ?>

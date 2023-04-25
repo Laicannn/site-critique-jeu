@@ -316,4 +316,39 @@ function getNoteAvis($mysqli,$id_jeux){
     return $note_avis;           
 }
 
+function getUser($mysqli,$id_user){
+    $requete="SELECT utilisateur.*
+                FROM utilisateur
+                WHERE utilisateur.id_user=$id_user;";
+    $info=readDB($mysqli,$requete);
+    return $info[0];
+}
+
+function ChangeAccount($info_modifier,$id_user){
+    $requete1="UPDATE utilisateur
+                SET utilisateur.login='$info_modifier[pseudo]'
+                WHERE utilisateur.id_user=$id_user;";
+    writeDB($mysqli,$requete1);
+    $requete2="UPDATE utilisateur
+                SET utilisateur.mdp='$info_modifier[mdp]'
+                WHERE utilisateur.id_user=$id_user;";
+    writeDB($mysqli,$requete2);
+    $requete3="UPDATE utilisateur
+                SET utilisateur.nom='$info_modifier[nom]'
+                WHERE utilisateur.id_user=$id_user;";
+    writeDB($mysqli,$requete3);
+    $requete4="UPDATE utilisateur
+                SET utilisateur.prenom='$info_modifier[prenom]'
+                WHERE utilisateur.id_user=$id_user;";
+    writeDB($mysqli,$requete4);
+    $requete5="UPDATE utilisateur
+                SET utilisateur.adresse_mail='$info_modifier[mail]'
+                WHERE utilisateur.id_user=$id_user;";
+    writeDB($mysqli,$requete5);
+    $requete6="UPDATE utilisateur
+                SET utilisateur.date_naissance='$info_modifier[age]'
+                WHERE utilisateur.id_user=$id_user;";
+    writeDB($mysqli,$requete6);
+}
+
 ?>

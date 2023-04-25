@@ -36,25 +36,25 @@ function displayConnect(){
             <h1>S\'inscrire</h1>
             <form action="php/register.php" method="POST" name="inscrire">
                 <label for="name">Nom</label>
-                <input type="text" name="nom" id="name">
+                <input type="text" name="nom" id="name" required>
                 <label for="forname">Prénom</label>
-                <input type="text" name="prenom" id="forname">
+                <input type="text" name="prenom" id="forname" required>
                 <label for="old">Âge</label>
                 <div id="refused">
                     <label for="old">Vous n\'avez pas l\'âge requis</label>
                     <input type="date" name="age" id="old" required>
                 </div>
                 <label for="mail">Adresse mail</label>
-                <input type="email" name="mail" id="mail">
+                <input type="email" name="mail" id="mail" required>
                 <label for="username">Identifiant</label>
                 <div id="already_used">
                     <label for="username">Cet identifiant n\'est pas disponible</label>
                     <input type="text" name="pseudo" id="username" required>
                 </div>
                 <label for="password">Mot de passe</label>
-                <input type="password" name="mdp" id="password">
+                <input type="password" name="mdp" id="password" required>
                 <br>
-                <input type="submit" value="inscription" id="bouton_submit">
+                <input type="submit" value="inscription" id="bouton_submit" required>
             </form>
         </div>
     </section>';
@@ -91,8 +91,8 @@ function displaySelfAccount($liste){
             Dernière connexion : $_SESSION[date_connexion] <br>
             Vous vous êtes inscrit le $_SESSION[date_creation_compte]
         </article>
-    ";
-    echo"</section>";
+        <a href='modifier.php' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
+    </section>";
     
 }
 
@@ -359,7 +359,7 @@ function displayAvisAccount($avions){
         <article class='avis'>
             <div class='entete'>
                 <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
-                <h4> Voir l'article sur >> $avions[nom]</h4>
+                <h4> Voir l'avis sur >> $avions[nom]</h4>
                 </a>";
                 if ($_SESSION['id_user'] == $avions['id_user']){
                     echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>
@@ -420,6 +420,36 @@ function displayArticleAccount($info,$categories,$support,$avis_note){
             if (!empty($info['date_modification'])){
             echo "<p> Date de modification $info[date_modification] </p>";
             }
-        }
+}
+
+function displayChangeAccount(){
+    echo "<section>
+        <div id='inscrire'>
+            <h1>Modifier</h1>
+            <form action='php/modify_account.php' method='POST' name='inscrire'>
+                <label for='name'>Nom</label>
+                <input type='text' name='nom' value='$_SESSION[nom]' id='name'>
+                <label for='forname'>Prénom</label>
+                <input type='text' name='prenom' value='$_SESSION[prenom]' id='forname'>
+                <label for='old'>Âge</label>
+                <div id='refused'>
+                    <label for='old'>Vous n\'avez pas l\'âge requis</label>
+                    <input type='date' name='age' id='old' value='$_SESSION[date_naissance]' required>
+                </div>
+                <label for='mail'>Adresse mail</label>
+                <input type='email' name='mail' value='$_SESSION[mail]' id='mail'>
+                <label for='username'>Identifiant</label>
+                <div id='already_used'>
+                    <label for='username'>Cet identifiant n\'est pas disponible</label>
+                    <input type='text' name='pseudo' value='$_SESSION[user]' id='username' required>
+                </div>
+                <label for='password'>Mot de passe</label>
+                <input type='password' name='mdp' id='password'>
+                <br>
+                <input type='submit' value='inscription' id='bouton_submit'>
+            </form>
+        </div>
+    </section>";
+}
 
 ?>

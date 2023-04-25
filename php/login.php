@@ -27,6 +27,7 @@ if ($connect){
         $_SESSION['date_creation_compte'] = "$data[date_creation_compte]";
         $_SESSION['date_connexion'] = "$data[date_connexion]";
         $_SESSION['role'] = "$data[rôle]";
+        $_SESSION['mail'] = $data['adresse_mail'];
     }
     $_SESSION['logged'] = true;
     header('Location: ../index.php');
