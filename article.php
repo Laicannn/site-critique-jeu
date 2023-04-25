@@ -37,7 +37,7 @@ $mysqli = connectionDB();
                 displayArticle($info,$img,$categorie,$support,$avis,$_GET['id_article']);
                 foreach($avis as $avions){
                     $pp=getPP($mysqli,$avions['id_image']);
-                    displayAvis($avions,$pp['0'],$info['id_jeux']);
+                    displayAvis($avions,$pp['0']);
                 }
                 if ((isset($_SESSION['role']) && (empty(getAvisAndUser($mysqli,$_SESSION['id_user'],$info['id_jeux']))))){
                     displayDonneAvis($info['id_jeux']);

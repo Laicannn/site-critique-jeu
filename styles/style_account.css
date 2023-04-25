@@ -244,6 +244,262 @@ h3 {
     font-size: 16px;
     font-weight: lighter;
 }
+
+#liste_avis {
+    width: max-content;
+    padding : 5px;
+    background-color: #202020;
+    margin-bottom: 50px;
+    margin-top: -50px;
+}
+
+.entete {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    font-variant: none;
+    color:#D6D6D6;
+    font-weight: normal;
+    font-size:17px;
+}
+
+.user:hover {
+    opacity:0.8;
+}
+
+.user img {
+    width:20px;
+    height:20px;
+    object-fit: cover;
+    border-radius: 30px;
+    padding: 8px;
+}
+
+.avis{
+    display: block;
+    width: 50vw;
+    padding : 20px;
+    background-color: #111111;
+    border-radius: 10px;
+    font-weight: lighter;
+}
+
+.avis p {
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.titre {
+    font-weight: normal;
+    font-size:24px;
+    padding-bottom: 10px;
+}
+
+.note_avis{
+    display: inline-block;
+    width: 40vw;
+    font-weight: normal;
+    font-size:24px;
+    color:#FFD100;
+    margin-right: 5px;
+    text-align: end;
+}
+
+.note_avis input {
+    width: 50px;
+    color:#FFD100;
+}
+
+
+#button_modification:hover,.delete_button:hover{
+    opacity:0.5;
+}
+
+#button_modification_avis:hover,.button_supprimer_article:hover,.button_supprimer_avis:hover{
+    opacity:0.5;
+    background-color: #FFD100;
+}
+
+#button_modification_avis,.button_supprimer_avis,.button_supprimer_article{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    padding: 2px;
+    border: #FFD100 solid 1px;
+    border-radius: 15%;
+}
+
+#button_modification_avis{
+    margin-left: 100px;
+}
+
+.delete_button,#gotojeux{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+.button_supprimer_avis{
+    margin-left: 40px;
+}
+
+.button_supprimer_article{
+    position: absolute;
+    right: 13em;
+    top: 10em;
+}
+
+.overlay_delete {
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: rgba(0, 0, 0, 0.7);
+transition: opacity 500ms;
+visibility: hidden;
+opacity: 0;
+z-index: 100;
+}
+.overlay_delete:target {
+visibility: visible;
+opacity: 1;
+}
+
+.popup {
+margin: 70px auto;
+padding: 20px;
+background: #202020;
+border-radius: 5px;
+width: 30%;
+position: relative;
+transition: all 5s ease-in-out;
+}
+
+.popup #delete_title {
+margin-top: 0;
+color: #D6D6D6;
+font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+position: absolute;
+top: 20px;
+right: 30px;
+transition: all 200ms;
+font-size: 30px;
+font-weight: bold;
+text-decoration: none;
+color: #D6D6D6;
+}
+
+.delete_box{
+text-align:center;
+}
+
+
+#infoarticle {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding : 40px 20px 10px 20px;
+}
+
+#image_tags {
+    padding:10px;
+    width: 15em;
+    height: max-content;
+}
+
+#jacquette_article{
+    width: 15em;
+    height: 17vw;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2px;
+}
+
+#tags div {
+    padding:2px;
+}
+
+#tags p {
+    width: max-content;
+    font-size: 10px;
+    font-weight: normal;
+    padding : 3px 6px;
+    border : #D6D6D6 solid 1px;
+    border-radius: 20px;
+}
+
+#note_moyenne {
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #FFD100;
+    font-size: 18px;
+}
+
+#note_moyenne p {
+    font-weight: lighter;
+    font-size: 15px;
+}
+
+.support {
+    color: #D6D6D6;
+}
+
+.categorie {
+    background-color: #D6D6D6;
+    color: #111111;
+}
+
+h1 {
+    font-weight: light;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+#contenu {
+    width: 50vw;
+    font-weight: lighter;
+    font-size:15px;
+}
+
+#note {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    color: #FFD100;
+    font-weight: bold;
+    padding-top: 5vw;
+    margin-bottom: 50px;
+}
+
+#ligne{
+    display: flex;
+    justify-content:space-between; 
+}
+
 /* 
 #111111
 #D6D6D6

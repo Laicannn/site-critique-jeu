@@ -87,10 +87,12 @@ function displaySelfAccount($liste){
             </div>
             <div id='old'>
                 $_SESSION[age] • $_SESSION[date_naissance]
-            </div>
+            </div> <br>
+            Dernière connexion : $_SESSION[date_connexion] <br>
+            Vous vous êtes inscrit le $_SESSION[date_creation_compte]
         </article>
     ";
-    echo"<section>";
+    echo"</section>";
     
 }
 
@@ -184,7 +186,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
         </section>";
 }
 
-function displayAvis($avions,$pp,$id_jeux){
+function displayAvis($avions,$pp){
     echo "<section id='liste_avis'>
         <article class='avis'>
             <div class='entete'>
@@ -351,5 +353,84 @@ function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
             </div>
         </section>";
 }
+
+function displayAvisAccount($avions){
+    echo "<section id='liste_avis'>
+        <article class='avis'>
+            <div class='entete'>
+                <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
+                <h4>$avions[nom]</h4>
+                </a>";
+                if ($_SESSION['id_user'] == $avions['id_user']){
+                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>
+                        <a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
+                        <div id='popup2' class='overlay_delete'>
+                            <div class='popup'>
+                                <h2 id='delete_title'>Supprimer l'avis ?</h2>
+                                <a class='close' href='#'>&times;</a>
+                                <div class='delete_box'>
+                                    <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
+                                </div>
+                            </div>
+                        </div>";
+                }
+            echo "<aside class='note_avis'>$avions[note] / 10</aside>
+            </div>
+            <div class='titre'>
+                $avions[titre]
+            </div>
+            <p>$avions[texte]</p>
+        </article>
+    </section>";
+}
+
+function displayArticleAccount($info,$categories,$support,$avis_note){
+    $somme=0.0;
+    $nombre=0.0;
+    echo "<section id=infoarticle>
+            <div id='image_tags'>
+                <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                <aside id='tags'>";
+                    foreach($categories as $cate){
+                        echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
+                    }
+                    foreach($support as $sup){
+                        echo "<div><p class='support'>$sup[nom_support]</p></div>";
+                    }
+                    foreach($avis_note as $note){
+                        $somme=$somme + $note['note'];
+                        $nombre=$nombre + 1.0;
+                    }
+                    $moyenne = fdiv($somme,$nombre);
+                    if (is_nan($moyenne)){$moyenne='-';}
+                    echo"</aside>
+                <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
+            </div>
+            <div id=contenu>
+                <div id='ligne'>
+                <h1> $info[titre] </h1>
+                <a id='gotojeux' href='article.php?id_article=$info[id_article]'>
+                Voir l'article >>
+                </a>
+                </div>";
+                if ($_SESSION['id_user'] == $info['id_user']){
+                    echo "<a class='button_supprimer_article' href='#popup3'>Supprimer</a>
+                        <div id='popup3' class='overlay_delete'>
+                            <div class='popup'>
+                                <h2>Supprimer l'article ?</h2>
+                                <a class='close' href='#'>&times;</a>
+                                <div class='delete_box'>
+                                    <a href='php/supprimer.php?id_article=$info[id_article]' class='delete_button' > Oui </a>
+                                </div>
+                            </div>
+                        </div>";}
+                echo "$info[contenu]
+                <div id='note'>$info[note] / 10</div>
+            </div>
+            <p> Date de création : $info[date_creation] </p>";
+            if (!empty($info['date_modification'])){
+            echo "<p> Date de modification $info[date_modification] </p>";
+            }
+        }
 
 ?>

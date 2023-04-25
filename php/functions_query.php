@@ -288,4 +288,32 @@ function getIdJeux($mysqli,$id_article){
     $id_jeux=readDB($mysqli,$requete);
     return $id_jeux[0]['id_jeux'];
 }
+
+function getAvisofUser($mysqli,$id_user){
+    $requete="SELECT avis.*,jeux.nom,jeux.id_article 
+                FROM avis,jeux
+                WHERE avis.id_user=$id_user AND avis.id_jeux=jeux.id_jeux;";
+    $liste_avis=readDB($mysqli,$requete);
+    return $liste_avis;
+}
+
+function getArticleAccount($mysqli,$id_user){
+    $requete="SELECT article.*,jeux.id_jeux,images.chemin
+                FROM article,jeux,images
+                WHERE article.id_user=$id_user 
+                AND article.id_article=jeux.id_article 
+                AND images.id_article = article.id_article 
+                AND images.chemin LIKE '%images/jaquette/%';";
+    $liste_article=readDB($mysqli,$requete);
+    return $liste_article;
+}
+
+function getNoteAvis($mysqli,$id_jeux){
+    $requete="SELECT avis.note
+                FROM avis
+                WHERE avis.id_jeux=$id_jeux;";
+    $note_avis=readDB($mysqli,$requete);
+    return $note_avis;           
+}
+
 ?>
