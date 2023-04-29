@@ -13,7 +13,12 @@ require_once("php/functions-DB.php");
 require_once("php/functions_query.php");
 require_once("php/functions_structure.php");
 $mysqli = connectionDB();
-
+if(isset($_GET['page'])){
+    $indice_page = ($_GET['page']-1)*5;
+}
+else{
+    $indice_page = 0;
+}
 // if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
 ?>
 <!DOCTYPE html>
@@ -42,7 +47,7 @@ $mysqli = connectionDB();
                         $liste = getIndexSupp($mysqli,$_GET['support']);
                     }
                     else {
-                        echo"<h1> Aucun résultat </h1>";
+                        $liste = getIndexArticle($mysqli);
                     }
                 }
                 else {
@@ -50,12 +55,16 @@ $mysqli = connectionDB();
                 }
                 if($liste){
                     $nombre_article = count($liste,0);
-                    $nombre_page = $nombre_article / 5 ;
-                    foreach($liste as $article){
+                    $nombre_page = ceil($nombre_article / 5) ;
+                    $page_actuelle = array_slice($liste,$indice_page,$indice_page + 5);
+                    echo"<section id='jaquettes'>";
+                    foreach($page_actuelle as $article){
                         $categories = getCategorie($mysqli,$article['id_jeux']);
                         $supports = getSupport($mysqli,$article['id_jeux']);
                         displayJaquette($article,$supports,$categories);
                     }
+                    echo"</section>";
+                    DisplayPageButton($nombre_page,($indice_page/5)+1);
                 }
                 else {
                     echo"<h1> Aucun résultat </h1>";

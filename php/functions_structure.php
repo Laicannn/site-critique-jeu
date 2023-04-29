@@ -19,6 +19,19 @@ function DisplayJaquette($article,$supports,$categories){
     echo"</a>";
 }
 
+function DisplayPageButton($nombre_page,$indice_page){
+    echo"<section id='boutons_pages'>";
+    for ($i=1; $i<=$nombre_page; $i++){
+        if ($i == $indice_page) {
+            echo"<a href='?page=$i' class='page_now'>$i</a>";
+        }
+        else {
+            echo"<a href='?page=$i' class='page_pas_now'>$i</a>";
+        }   
+    }
+    echo"</section>";
+}
+
 function displayConnect(){
     echo'<section>
         <div id="connecter">
@@ -93,7 +106,6 @@ function displaySelfAccount($liste){
         </article>
         <a href='modifier.php' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
     </section>";
-    
 }
 
 function displayArticle($info,$image,$categories,$support,$avis,$id_article){

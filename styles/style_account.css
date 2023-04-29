@@ -319,6 +319,9 @@ h3 {
     color:#FFD100;
 }
 
+#button_modification_avis{
+    margin-left: 100px;
+}
 
 #button_modification:hover,.delete_button:hover{
     opacity:0.5;
@@ -336,10 +339,6 @@ h3 {
     padding: 2px;
     border: #FFD100 solid 1px;
     border-radius: 15%;
-}
-
-#button_modification_avis{
-    margin-left: 100px;
 }
 
 .delete_button,#gotojeux{
