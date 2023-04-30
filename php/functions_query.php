@@ -362,4 +362,12 @@ function ModifySESSION($info_modifier){
     $_SESSION['user'] = "$info_modifier[pseudo]";
 }
 
+function getInfoMember($mysqli,$id_user){
+    $requete="SELECT utilisateur.*
+                FROM utilisateur
+                WHERE utilisateur.id_user=$id_user;";
+    $info=readDB($mysqli,$requete);
+    return $info[0];
+}
+
 ?>

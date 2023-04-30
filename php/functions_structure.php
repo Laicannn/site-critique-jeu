@@ -458,4 +458,26 @@ function displayChangeAccount(){
     </section>";
 }
 
+function displayPublicAccount($info,$PP){
+    echo"<section id=section_public_account>
+            <a href='index.php' id='retour_index'>
+            Retour page d'accueil >>
+            </a>
+            <div>
+                <img class='avatar_public' src=$PP[chemin] alt='avatar'>
+            </div>
+            <h2>$info[login]</h2>
+            <article class='gauche'>
+                <div id='name'>
+                    <h3>";
+                    echo substr($info['prenom'],0,1);
+                    echo ". $info[nom]</h3>
+                    <div id='role' class='{$info['rôle']}'>$info[rôle]</div>
+                </div>
+                <br>
+                $info[login] s'est inscrit(e) le $info[date_creation_compte]
+            </article>
+    </section>";
+}
+
 ?>
