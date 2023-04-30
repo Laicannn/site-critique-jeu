@@ -8,10 +8,10 @@ session_start();
 $mysqli = connectionDB();
 
 if (!empty($_GET['id_image'])){
-$new_pp = $_GET['id_image'];
-changeProfile($mysqli,$new_pp,$_SESSION['id_user']);
-$PP = getPP($mysqli,$new_pp);
-$_SESSION['pp'] = ($PP[0]['chemin']);
+    $new_pp = $_GET['id_image'];
+    changeProfile($mysqli,$new_pp,$_SESSION['id_user']);
+    $PP = getPP($mysqli,$new_pp);
+    $_SESSION['pp'] = ($PP[0]['chemin']);
 }
 if (!empty($_POST)){
     $info_connect = getUser($mysqli,$_SESSION['id_user']);
@@ -19,7 +19,8 @@ if (!empty($_POST)){
     if (empty($info_modifier['mdp'])){
         $info_modifier['mdp']=$info_connect['mdp'];
     }
-    //ChangeAccount($info_modifier,$_SESSION['id_user']);
+    ModifyAccount($mysqli,$info_modifier,$_SESSION['id_user']);
+    ModifySESSION($info_modifier);
 }
 closeDB($mysqli);
 header('Location: ../account.php');

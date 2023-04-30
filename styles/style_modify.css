@@ -87,32 +87,6 @@ input {
     padding:3px;
 }
 
-#bouton_submit {
-    width: min-content;
-	color: #202020;
-	border: none;
-	font: inherit;
-	outline: inherit;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-right: 5px;
-    margin-top: 5px;
-    background-color: #FFD100;
-    border-radius: 10px;
-    padding: 2px 8px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-variant: small-caps;
-    font-weight: normal;
-    transition-duration: 0.1s;
-}
-
-#bouton_submit:hover{
-    background-color: #ffd00081;
-}
-
 .overlay {
     z-index: 1;
     position:absolute; 
@@ -218,7 +192,7 @@ h3 {
 }
 
 
-#inscrire {
+#modify_account {
     padding : 20px;
     width:400px;
 }
@@ -228,14 +202,12 @@ h1 {
     font-size: 30px;
     padding-bottom: 20px;
 }
-
-label {
+#modify_account label {
     display: block;
     font-weight: light;
     font-size: 18px;
     padding:10px 0 5px 0;
 }
-
 input {
     width: 100%;
     height: 30px;
@@ -269,6 +241,10 @@ input {
     font-size: 20px;
     font-variant: small-caps;
     transition-duration: 0.2s;
+    margin-right: 5px;
+    margin-top: 5px;
+    font-weight: normal;
+    transition-duration: 0.1s;
 }
 
 #bouton_submit:hover{

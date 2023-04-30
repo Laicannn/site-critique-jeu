@@ -104,7 +104,7 @@ function displaySelfAccount($liste){
             Dernière connexion : $_SESSION[date_connexion] <br>
             Vous vous êtes inscrit le $_SESSION[date_creation_compte]
         </article>
-        <a href='modifier.php' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
+        <a href='modifier.php?id_user=$_SESSION[id_user]' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
     </section>";
 }
 
@@ -293,7 +293,7 @@ function displayModifyArticle($info,$id_article){
                 <div class='entete'>
                     <input type='text' name='titre' id='title' placeholder='$info[titre]' maxlength='20'>
                     <aside class='note_article'>
-                        <input type='number' value='$info[note]' min=1 max=10 id='notation' name='note'><label for='note'>/10</label>
+                        <input type='number' value='$info[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
                 <textarea type='text' name='article' id='redaction' placeholder='$info[contenu]' maxlength='100'></textarea>
@@ -310,7 +310,7 @@ function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
                 <div class='entete'>
                     <input type='text' name='titre' id='title' placeholder='$info_avis[titre]' maxlength='20'>
                     <aside class='note_article'>
-                        <input type='number' value='$info_avis[note]' min=1 max=10 id='notation' name='note'><label for='note'>/10</label>
+                        <input type='number' value='$info_avis[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
                 <textarea type='text' name='avis' id='redaction' placeholder='$info_avis[texte]' maxlength='100'></textarea>
@@ -436,7 +436,7 @@ function displayArticleAccount($info,$categories,$support,$avis_note){
 
 function displayChangeAccount(){
     echo "<section>
-        <div id='inscrire'>
+        <div id='modify_account'>
             <h1>Modifier</h1>
             <form action='php/modify_account.php' method='POST' name='inscrire'>
                 <label for='name'>Nom</label>
@@ -458,7 +458,7 @@ function displayChangeAccount(){
                 <label for='password'>Mot de passe</label>
                 <input type='password' name='mdp' id='password'>
                 <br>
-                <input type='submit' value='inscription' id='bouton_submit'>
+                <input type='submit' value='Modifier' id='bouton_submit'>
             </form>
         </div>
     </section>";
