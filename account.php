@@ -31,17 +31,13 @@ $mysqli = connectionDB();
             if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && (!($_GET) || !(isset($_GET['account']) && $_GET) || (isset($_GET['account']) && $_GET['account'] == $_SESSION['id_user'] ))){
                 $liste = getAllPP($mysqli);
                 displaySelfAccount($liste);
-                echo "<br>";
-                $liste_avis=getAvisofUser($mysqli,$_SESSION['id_user']);
+
+                $liste_article=getArticleAccount($mysqli,$_SESSION['id_user']);
+                displayArticleAccount($liste_article);
+                
+                $liste_avis = getAvisofUser($mysqli,$_SESSION['id_user']);
                 foreach($liste_avis as $avis){
                     displayAvisAccount($avis);
-                }
-                $liste_article=getArticleAccount($mysqli,$_SESSION['id_user']);
-                foreach ($liste_article as $article){
-                $categorie=getCategorie($mysqli,$article['id_jeux']);
-                $support=getSupport($mysqli,$article['id_jeux']);
-                $avis_note=getNoteAvis($mysqli,$article['id_jeux']);
-                displayArticleAccount($article,$categorie,$support,$avis_note);
                 }
             }
             else{

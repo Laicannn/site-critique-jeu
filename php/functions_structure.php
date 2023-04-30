@@ -23,10 +23,10 @@ function DisplayPageButton($nombre_page,$indice_page){
     echo"<section id='boutons_pages'>";
     for ($i=1; $i<=$nombre_page; $i++){
         if ($i == $indice_page) {
-            echo"<a href='?page=$i' class='page_now'>$i</a>";
+            echo"<div class='separations'><a href='?page=$i' class='page_now'>$i</a></div>";
         }
         else {
-            echo"<a href='?page=$i' class='page_pas_now'>$i</a>";
+            echo"<div class='separations'><a href='?page=$i' class='page_pas_now'>$i</a></div>";
         }   
     }
     echo"</section>";
@@ -74,7 +74,7 @@ function displayConnect(){
 }
 
 function displaySelfAccount($liste){
-    echo"<section>";
+    echo"<section id='profil'>";
         echo"<a class='button' href='#popup'>";
             echo"<div class='photo_profil'>";
                 echo"<img class='avatar' src=$_SESSION[pp] alt='avatar'>";
@@ -100,9 +100,11 @@ function displaySelfAccount($liste){
             </div>
             <div id='old'>
                 $_SESSION[age] • $_SESSION[date_naissance]
-            </div> <br>
-            Dernière connexion : $_SESSION[date_connexion] <br>
-            Vous vous êtes inscrit le $_SESSION[date_creation_compte]
+            </div>
+            <div id='dates_account'>
+                Dernière connexion : <p>$_SESSION[date_connexion]</p><br>
+                Inscrit le : <p>$_SESSION[date_creation_compte]</p>
+            </div>
         </article>
         <a href='modifier.php' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
     </section>";
@@ -388,7 +390,7 @@ function displayAvisAccount($avions){
                 }
             echo "<aside class='note_avis'>$avions[note] / 10</aside>
             </div>
-            <div class='titre'>
+            <div class='titre_avis'>
                 $avions[titre]
             </div>
             <p>$avions[texte]</p>
@@ -396,43 +398,34 @@ function displayAvisAccount($avions){
     </section>";
 }
 
-function displayArticleAccount($info,$categories,$support,$avis_note){
-    $somme=0.0;
-    $nombre=0.0;
-    echo "<section id=infoarticle>
-            <div id='image_tags'>
-                <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
-                <aside id='tags'>";
-                    foreach($categories as $cate){
-                        echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
-                    }
-                    foreach($support as $sup){
-                        echo "<div><p class='support'>$sup[nom_support]</p></div>";
-                    }
-                    foreach($avis_note as $note){
-                        $somme=$somme + $note['note'];
-                        $nombre=$nombre + 1.0;
-                    }
-                    $moyenne = fdiv($somme,$nombre);
-                    if (is_nan($moyenne)){$moyenne='-';}
-                    echo"</aside>
-                <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
-            </div>
-            <div id=contenu>
-                <div id='ligne'>
-                <h1> $info[titre] </h1>
-                <a id='gotojeux' href='article.php?id_article=$info[id_article]'>
-                Voir l'article >>
-                </a>
+function displayArticleAccount($liste_article){
+    echo "<section id=liste_article>
+    <h2> articles écrits </h2>";
+        foreach($liste_article as $info){
+            echo "
+            <a href='article.php?id_article=$info[id_article]'>
+                <div class='degrade'>
+                    <div class='article_account'>
+                        <img class='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                        <div class=contenu>
+                            <div class='titre_article'> $info[titre] </div>
+                            <div class='note_article'>$info[note] / 10</div>
+                        </div>
+                        <p> Date de création : $info[date_creation] </p>";
+                        if (!empty($info['date_modification'])){
+                        echo "<p> Date de modification $info[date_modification] </p>";
+                        }
+                    echo"
+                    </div>
                 </div>
-                $info[contenu]
-                <div id='note'>$info[note] / 10</div>
-            </div>
-            <p> Date de création : $info[date_creation] </p>";
-            if (!empty($info['date_modification'])){
-            echo "<p> Date de modification $info[date_modification] </p>";
-            }
+            </a>";
+        }
+    echo"</section>";
 }
+
+// <a id='gotojeux' href='article.php?id_article=$info[id_article]'>
+//                     Voir l'article >>
+//                     </a>
 
 function displayChangeAccount(){
     echo "<section>
