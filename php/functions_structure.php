@@ -132,7 +132,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
             </div>
             <div id=contenu>
                 <h1> $info[titre] </h1>";
-                if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']){
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || ($_SESSION['role']=='administrateur')){
                     echo "<a class='button_supprimer_article' href='#popup3'>Supprimer</a>
                         <div id='popup3' class='overlay_delete'>
                             <div class='popup'>
@@ -207,7 +207,8 @@ function displayAvis($avions,$pp){
                 </a>
                 <aside class='date'>$avions[date_creation]</aside>";
                 if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $avions['id_user']){
-                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";
+                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";}
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user']) || ($_SESSION['role']=='administrateur')){
                     echo"<a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
                         <div id='popup2' class='overlay_delete'>
                             <div class='popup'>
