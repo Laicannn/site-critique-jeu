@@ -157,7 +157,7 @@ function displayAvisAccount($avions){
             </div>
             <p>$avions[texte]</p>
         </article>
-    </section>";
+    </section><br>";
 }
 
 function displayArticleAccount($liste_article){
@@ -215,7 +215,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
             </div>
             <div id=contenu>
                 <h1> $info[titre] </h1>";
-                if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || ($_SESSION['role']=='administrateur')){
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
                     echo "<a class='button_supprimer_article' href='#popup3'>Supprimer</a>
                         <div id='popup3' class='overlay_delete'>
                             <div class='popup'>
@@ -230,7 +230,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                 <div id='note'>$info[note] / 10</div>
             </div>
             <div id='date_article'>
-                <p>$info[date_creation] </p>";
+                <p><span>Create : </span>$info[date_creation] </p>";
                 if (!empty($info['date_modification'])){
                     echo "<p><span>Edit : </span>$info[date_modification] </p>";
                 }
@@ -294,7 +294,7 @@ function displayAvis($avions,$pp){
                 <aside class='date'>$avions[date_creation]</aside>";
                 if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $avions['id_user']){
                     echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";}
-                if ((isset($_SESSION['logged']) && $_SESSION['id_user']) || ($_SESSION['role']=='administrateur')){
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user']== $avions['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
                     echo"<a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
                         <div id='popup2' class='overlay_delete'>
                             <div class='popup'>

@@ -41,11 +41,8 @@ $mysqli = connectionDB();
                 $img=imagesarticles($mysqli,$info_avis['id_jeux']);
                 displayModifyAvis($info_avis,$id_avis,$info_jeux,$img);
                 }
-                if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
+                if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && empty($_GET)){
                     displayChangeAccount();
-                }
-                else{
-                    header('Location: account.php');
                 }
             ?>
         </main> 
