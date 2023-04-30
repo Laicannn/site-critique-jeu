@@ -106,7 +106,7 @@ function displaySelfAccount($liste){
                 Inscrit le : <p>$_SESSION[date_creation_compte]</p>
             </div>
         </article>
-        <a href='modifier.php' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
+        <a href='modifier.php?id_user=$_SESSION[id_user]' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
     </section>";
 }
 
@@ -134,7 +134,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
             </div>
             <div id=contenu>
                 <h1> $info[titre] </h1>";
-                if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']){
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || ($_SESSION['role']=='administrateur')){
                     echo "<a class='button_supprimer_article' href='#popup3'>Supprimer</a>
                         <div id='popup3' class='overlay_delete'>
                             <div class='popup'>
@@ -209,7 +209,8 @@ function displayAvis($avions,$pp){
                 </a>
                 <aside class='date'>$avions[date_creation]</aside>";
                 if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $avions['id_user']){
-                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";
+                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";}
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user']) || ($_SESSION['role']=='administrateur')){
                     echo"<a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
                         <div id='popup2' class='overlay_delete'>
                             <div class='popup'>
@@ -295,7 +296,7 @@ function displayModifyArticle($info,$id_article){
                 <div class='entete'>
                     <input type='text' name='titre' id='title' placeholder='$info[titre]' maxlength='20'>
                     <aside class='note_article'>
-                        <input type='number' value='$info[note]' min=1 max=10 id='notation' name='note'><label for='note'>/10</label>
+                        <input type='number' value='$info[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
                 <textarea type='text' name='article' id='redaction' placeholder='$info[contenu]' maxlength='100'></textarea>
@@ -312,7 +313,7 @@ function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
                 <div class='entete'>
                     <input type='text' name='titre' id='title' placeholder='$info_avis[titre]' maxlength='20'>
                     <aside class='note_article'>
-                        <input type='number' value='$info_avis[note]' min=1 max=10 id='notation' name='note'><label for='note'>/10</label>
+                        <input type='number' value='$info_avis[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
                 <textarea type='text' name='avis' id='redaction' placeholder='$info_avis[texte]' maxlength='100'></textarea>
@@ -429,7 +430,7 @@ function displayArticleAccount($liste_article){
 
 function displayChangeAccount(){
     echo "<section>
-        <div id='inscrire'>
+        <div id='modify_account'>
             <h1>Modifier</h1>
             <form action='php/modify_account.php' method='POST' name='inscrire'>
                 <label for='name'>Nom</label>
@@ -451,7 +452,7 @@ function displayChangeAccount(){
                 <label for='password'>Mot de passe</label>
                 <input type='password' name='mdp' id='password'>
                 <br>
-                <input type='submit' value='inscription' id='bouton_submit'>
+                <input type='submit' value='Modifier' id='bouton_submit'>
             </form>
         </div>
     </section>";

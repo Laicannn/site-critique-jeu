@@ -245,7 +245,7 @@ function getInfoJeu($mysqli,$id_jeux){
 function getInfoAvis($mysqli,$id_avis){
     $requete="SELECT avis.*,article.id_article 
                 FROM avis,article,jeux 
-                WHERE avis.id_avis=2 
+                WHERE avis.id_avis=$id_avis
                     AND avis.id_jeux=jeux.id_jeux 
                     AND jeux.id_article=article.id_article;";
     $info=readDB($mysqli,$requete);
@@ -324,31 +324,42 @@ function getUser($mysqli,$id_user){
     return $info[0];
 }
 
-function ChangeAccount($info_modifier,$id_user){
+function ModifyAccount($mysqli,$info_modifier,$id_user){
     $requete1="UPDATE utilisateur
                 SET utilisateur.login='$info_modifier[pseudo]'
-                WHERE utilisateur.id_user=$id_user;";
+                WHERE id_user=$id_user;";
     writeDB($mysqli,$requete1);
     $requete2="UPDATE utilisateur
-                SET utilisateur.mdp='$info_modifier[mdp]'
-                WHERE utilisateur.id_user=$id_user;";
+                SET mdp='$info_modifier[mdp]'
+                WHERE id_user=$id_user;";
     writeDB($mysqli,$requete2);
     $requete3="UPDATE utilisateur
-                SET utilisateur.nom='$info_modifier[nom]'
-                WHERE utilisateur.id_user=$id_user;";
+                SET nom='$info_modifier[nom]'
+                WHERE id_user=$id_user;";
     writeDB($mysqli,$requete3);
     $requete4="UPDATE utilisateur
-                SET utilisateur.prenom='$info_modifier[prenom]'
-                WHERE utilisateur.id_user=$id_user;";
+                SET prenom='$info_modifier[prenom]'
+                WHERE id_user=$id_user;";
     writeDB($mysqli,$requete4);
     $requete5="UPDATE utilisateur
-                SET utilisateur.adresse_mail='$info_modifier[mail]'
-                WHERE utilisateur.id_user=$id_user;";
+                SET adresse_mail='$info_modifier[mail]'
+                WHERE id_user=$id_user;";
     writeDB($mysqli,$requete5);
     $requete6="UPDATE utilisateur
-                SET utilisateur.date_naissance='$info_modifier[age]'
-                WHERE utilisateur.id_user=$id_user;";
+                SET date_naissance='$info_modifier[age]'
+                WHERE id_user=$id_user;";
     writeDB($mysqli,$requete6);
+}
+
+function ModifySESSION($info_modifier){
+    $currentDate = new DateTime();
+    $birthdate = new DateTime($info_modifier['age']);
+    $_SESSION['age'] = $birthdate->diff($currentDate)->y;
+    $_SESSION['nom'] = "$info_modifier[nom]";
+    $_SESSION['prenom'] = "$info_modifier[prenom]";
+    $_SESSION['date_naissance'] = "$info_modifier[age]";
+    $_SESSION['mail'] = "$info_modifier[mail]";
+    $_SESSION['user'] = "$info_modifier[pseudo]";
 }
 
 ?>
