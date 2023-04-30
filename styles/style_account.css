@@ -494,7 +494,7 @@ text-align:center;
     border: #D6D6D6 solid 2px;
 }
 
-/* 
+ 
 #button_modification {
     z-index: 100;
     position: absolute;
@@ -510,7 +510,7 @@ text-align:center;
 
 #button_modification:hover,.delete_button:hover{
     opacity:0.5;
-} */
+}
 
 #retour_index{
     text-decoration: none;
