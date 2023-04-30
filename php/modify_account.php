@@ -14,14 +14,35 @@ if (!empty($_GET['id_image'])){
     $_SESSION['pp'] = ($PP[0]['chemin']);
 }
 if (!empty($_POST)){
-    $info_connect = getUser($mysqli,$_SESSION['id_user']);
     $info_modifier = $_POST;
-    if (empty($info_modifier['mdp'])){
-        $info_modifier['mdp']=$info_connect['mdp'];
+    if (($_SESSION['user']==$info_modifier['pseudo']) || empty(loginunique($mysqli,$info_modifier['pseudo']))){
+        $birthday = $info_modifier['age'];
+        $currentDate = new DateTime();
+        $birthdate = new DateTime($birthday);
+        $interval = $birthdate->diff($currentDate);
+        $age = $interval->y;
+        if ($age > 15){
+            $info_connect = getUser($mysqli,$_SESSION['id_user']);
+            if (empty($info_modifier['mdp'])){
+                $info_modifier['mdp']=$info_connect['mdp'];
+            }
+            ModifyAccount($mysqli,$info_modifier,$_SESSION['id_user']);
+            ModifySESSION($info_modifier);
+            closeDB($mysqli);
+            header('Location: ../account.php');
+        }
+        else{
+            closeDB($mysqli);
+            echo "Vous n'avez pas 15 ans";
+            header('Location: ../modifier.php#refused');
+        }
     }
-    ModifyAccount($mysqli,$info_modifier,$_SESSION['id_user']);
-    ModifySESSION($info_modifier);
+    else{
+    closeDB($mysqli);
+    echo "Cet identifiant est déjà utilisé";
+    header('Location: ../modifier.php#already_used');
+    }
 }
-closeDB($mysqli);
-header('Location: ../account.php');
+
+
 ?>
