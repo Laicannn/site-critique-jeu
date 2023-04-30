@@ -96,7 +96,7 @@ h1 {
 
 .overlay {
     z-index: 1;
-    height: max-content;
+    height: calc(200vh);
     position:absolute;
     top: 0;
     bottom: 0;

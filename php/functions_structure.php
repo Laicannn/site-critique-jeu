@@ -1,5 +1,9 @@
 <?php 
 
+//        PAGE INDEX
+//        PAGE INDEX
+//        PAGE INDEX
+
 function DisplayJaquette($article,$supports,$categories){
     echo "
     <a class='carte' href='article.php?id_article=$article[id_article]'>
@@ -31,6 +35,14 @@ function DisplayPageButton($nombre_page,$indice_page){
     }
     echo"</section>";
 }
+
+
+
+
+
+//        PAGE CONNEXION
+//        PAGE CONNEXION
+//        PAGE CONNEXION
 
 function displayConnect(){
     echo'<section>
@@ -73,6 +85,14 @@ function displayConnect(){
     </section>';
 }
 
+
+
+
+
+//        PAGE SON COMPTE
+//        PAGE SON COMPTE
+//        PAGE SON COMPTE
+
 function displaySelfAccount($liste){
     echo"<section id='profil'>";
         echo"<a class='button' href='#popup'>";
@@ -109,6 +129,67 @@ function displaySelfAccount($liste){
         <a href='modifier.php?id_user=$_SESSION[id_user]' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
     </section>";
 }
+
+function displayAvisAccount($avions){
+    echo "<section id='liste_avis'>
+        <article class='avis'>
+            <div class='entete'>
+                <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
+                <h4> Voir l'avis sur >> $avions[nom]</h4>
+                </a>";
+                if ($_SESSION['id_user'] == $avions['id_user']){
+                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>
+                        <a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
+                        <div id='popup2' class='overlay_delete'>
+                            <div class='popup'>
+                                <h2 id='delete_title'>Supprimer l'avis ?</h2>
+                                <a class='close' href='#'>&times;</a>
+                                <div class='delete_box'>
+                                    <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
+                                </div>
+                            </div>
+                        </div>";
+                }
+            echo "<aside class='note_avis'>$avions[note] / 10</aside>
+            </div>
+            <div class='titre_avis'>
+                $avions[titre]
+            </div>
+            <p>$avions[texte]</p>
+        </article>
+    </section>";
+}
+
+function displayArticleAccount($liste_article){
+    echo "<section id=liste_article>
+    <h2> articles écrits </h2>";
+        foreach($liste_article as $info){
+            echo "
+            <a href='article.php?id_article=$info[id_article]'>
+                <div class='degrade'>
+                    <div class='article_account'>
+                        <img class='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                        <div class=contenu>
+                            <div class='titre_article'> $info[titre] </div>
+                            <div class='note_article'>$info[note] / 10</div>
+                        </div>
+                        <p>$info[date_creation] </p>";
+                        if (!empty($info['date_modification'])){
+                            echo "<p>Édité : $info[date_modification] </p>";
+                        }
+                    echo"
+                    </div>
+                </div>
+            </a>";
+        }
+    echo"</section>";
+}
+
+
+
+//        PAGE ARTICLE
+//        PAGE ARTICLE
+//        PAGE ARTICLE
 
 function displayArticle($info,$image,$categories,$support,$avis,$id_article){
     $somme=0.0;
@@ -148,9 +229,12 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                 echo "$info[contenu]
                 <div id='note'>$info[note] / 10</div>
             </div>
-            <p> Date de création : $info[date_creation] </p>";
-            if (!empty($info['date_modification'])){
-            echo "<p> Date de modification $info[date_modification] </p>";}
+            <div id='date_article'>
+                <p>$info[date_creation] </p>";
+                if (!empty($info['date_modification'])){
+                    echo "<p><span>Edit : </span>$info[date_modification] </p>";
+                }
+            echo"</div>";
     echo "</section>
         <section id='infojeux'>
             <div id='texte'>
@@ -254,6 +338,14 @@ function displayDonneAvis($id_jeu){
     </section>";
 }
 
+
+
+
+
+//        PAGE ECRIRE ARTICLE
+//        PAGE ECRIRE ARTICLE
+//        PAGE ECRIRE ARTICLE
+
 function displayWriteArticle($jeuxdispo){
     echo "<section id='new_article'>
         <article class='article'>
@@ -288,6 +380,12 @@ function displayWriteArticle($jeuxdispo){
         </article>
     </section>";
 }
+
+
+
+//        PAGE MODIFIER
+//        PAGE MODIFIER
+//        PAGE MODIFIER
 
 function displayModifyArticle($info,$id_article){
     echo "<section id='new_article'>
@@ -368,65 +466,6 @@ function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
             </div>
         </section>";
 }
-
-function displayAvisAccount($avions){
-    echo "<section id='liste_avis'>
-        <article class='avis'>
-            <div class='entete'>
-                <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
-                <h4> Voir l'avis sur >> $avions[nom]</h4>
-                </a>";
-                if ($_SESSION['id_user'] == $avions['id_user']){
-                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>
-                        <a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
-                        <div id='popup2' class='overlay_delete'>
-                            <div class='popup'>
-                                <h2 id='delete_title'>Supprimer l'avis ?</h2>
-                                <a class='close' href='#'>&times;</a>
-                                <div class='delete_box'>
-                                    <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
-                                </div>
-                            </div>
-                        </div>";
-                }
-            echo "<aside class='note_avis'>$avions[note] / 10</aside>
-            </div>
-            <div class='titre_avis'>
-                $avions[titre]
-            </div>
-            <p>$avions[texte]</p>
-        </article>
-    </section>";
-}
-
-function displayArticleAccount($liste_article){
-    echo "<section id=liste_article>
-    <h2> articles écrits </h2>";
-        foreach($liste_article as $info){
-            echo "
-            <a href='article.php?id_article=$info[id_article]'>
-                <div class='degrade'>
-                    <div class='article_account'>
-                        <img class='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
-                        <div class=contenu>
-                            <div class='titre_article'> $info[titre] </div>
-                            <div class='note_article'>$info[note] / 10</div>
-                        </div>
-                        <p> Date de création : $info[date_creation] </p>";
-                        if (!empty($info['date_modification'])){
-                        echo "<p> Date de modification $info[date_modification] </p>";
-                        }
-                    echo"
-                    </div>
-                </div>
-            </a>";
-        }
-    echo"</section>";
-}
-
-// <a id='gotojeux' href='article.php?id_article=$info[id_article]'>
-//                     Voir l'article >>
-//                     </a>
 
 function displayChangeAccount(){
     echo "<section>
