@@ -64,10 +64,12 @@ else{
                         displayJaquette($article,$supports,$categories);
                     }
                     echo"</section>";
-                    DisplayPageButton($nombre_page,($indice_page/5)+1);
+                    if($nombre_page>1){
+                        DisplayPageButton($nombre_page,($indice_page/5)+1);
+                    }
                 }
                 else {
-                    echo"<h1> Aucun résultat </h1>";
+                    echo"<br><h1> Aucun résultat </h1><br>";
                 }
                 if (isset($_SESSION['role']) && ($_SESSION['role'] == 'administrateur' || $_SESSION['role'] == 'redacteur')){
                     echo"<a href='redige.php' id='button_redige'><img src='images/buttons/button_redige.svg'></a>";
