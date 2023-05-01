@@ -77,7 +77,12 @@ function displayConnect(){
                     <input type="text" name="pseudo" id="username" required>
                 </div>
                 <label for="password">Mot de passe</label>
-                <input type="password" name="mdp" id="password" required>
+                <div id="wrong_pwd">
+                    <label for="password" class="error_mdp">Mots de passe entrés différents</label>
+                    <input type="password" name="mdp" id="password" required>
+                    <label for="password_repete">Confirmer mot de passe</label>
+                    <input type="password_repete" name="mdp_repete" id="password_repete" required>
+                </div>
                 <br>
                 <input type="submit" value="inscription" id="bouton_submit" required>
             </form>
