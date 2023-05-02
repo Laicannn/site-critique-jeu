@@ -27,10 +27,10 @@ function DisplayPageButton($nombre_page,$indice_page){
     echo"<section id='boutons_pages'>";
     for ($i=1; $i<=$nombre_page; $i++){
         if ($i == $indice_page) {
-            echo"<div class='separations'><a href='?page=$i' class='page_now'>$i</a></div>";
+            echo"<a href='?page=$i' class='page_now'>$i</a>";
         }
         else {
-            echo"<div class='separations'><a href='?page=$i' class='page_pas_now'>$i</a></div>";
+            echo"<a href='?page=$i' class='page_pas_now'>$i</a>";
         }   
     }
     echo"</section>";
@@ -228,7 +228,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                     }
                     $moyenne = fdiv($somme,$nombre);
                     $moyenne = number_format($moyenne,2);
-                    if (is_nan($moyenne)){$moyenne='-';}
+                    if ($moyenne='nan'){$moyenne='-';}
                     echo"</aside>
                 <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
             </div>

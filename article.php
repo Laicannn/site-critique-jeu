@@ -39,7 +39,7 @@ $mysqli = connectionDB();
                     $pp=getPP($mysqli,$avions['id_image']);
                     displayAvis($avions,$pp['0']);
                 }
-                if ((isset($_SESSION['role']) && (empty(getAvisAndUser($mysqli,$_SESSION['id_user'],$info['id_jeux']))))){
+                if ((isset($_SESSION['role']) && (empty(getAvisAndUser($mysqli,$_SESSION['id_user'],$info['id_jeux']))) && !(($info['id_user'] == $_SESSION['id_user'])))){
                     displayDonneAvis($info['id_jeux']);
                 }          
                 if ($_SESSION && !empty(getWriterArticle($mysqli,$_SESSION['id_user'],$info['id_jeux']))){

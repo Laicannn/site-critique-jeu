@@ -184,6 +184,7 @@ h3 {
     border : #D6D6D6 solid 1px;
     text-decoration: none;
     transition-duration: 0.1s;
+    margin:2px;
 }
 
 .page_pas_now:hover{
@@ -196,10 +197,7 @@ h3 {
     color: #202020;
     text-decoration: none;
     background-color: #D6D6D6;
-}
-
-.separations {
-    padding : 2px;
+    margin:2px;
 }
 
 
