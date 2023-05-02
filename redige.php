@@ -31,7 +31,19 @@ $mysqli = connectionDB();
         <main>
             <?php
                 $jeuxdispo=getJeuDispo($mysqli);
-                displayWriteArticle($jeuxdispo);
+                if(empty($jeuxdispo)){
+                    echo "Tous les jeux possèdent déjà un article";
+                }
+                else{
+                    if(isset($_GET['id_jeux'])){
+                        $categorie=getCategorie($mysqli,$_GET['id_jeux']);
+                        $support=getSupport($mysqli,$_GET['id_jeux']);
+                        displayWriteArticle($_GET['id_jeux'],$_GET['chemin'],$categorie,$support);
+                    }
+                    else {
+                        displayChooseGame($jeuxdispo);
+                    }
+                }
             ?>
         </main> 
         <?php include("static/footer.php"); ?>

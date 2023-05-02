@@ -61,9 +61,9 @@ function displayConnect(){
             <h1>S\'inscrire</h1>
             <form action="php/register.php" method="POST" name="inscrire">
                 <label for="name">Nom</label>
-                <input type="text" name="nom" id="name" required>
+                <input type="text" name="nom" id="name" maxlength="20" required>
                 <label for="forname">Prénom</label>
-                <input type="text" name="prenom" id="forname" required>
+                <input type="text" name="prenom" id="forname" maxlength="20" required>
                 <label for="old">Âge</label>
                 <div id="refused">
                     <label for="old">Vous n\'avez pas l\'âge requis</label>
@@ -74,7 +74,7 @@ function displayConnect(){
                 <label for="username">Identifiant</label>
                 <div id="already_used">
                     <label for="username">Cet identifiant n\'est pas disponible</label>
-                    <input type="text" name="pseudo" id="username" required>
+                    <input type="text" name="pseudo" id="username" maxlength="20" required>
                 </div>
                 <label for="password">Mot de passe</label>
                 <div id="wrong_pwd">
@@ -353,12 +353,12 @@ function displayDonneAvis($id_jeu){
             </div>
             <form action='php/avis.php?id_article=$_GET[id_article]&id_jeux=$id_jeu' method='POST' name='redigeAvis'>
                 <div class='entete'>
-                    <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
+                    <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='50'>
                     <aside class='note_avis'>
                         <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
                     </aside>
                 </div>
-                <textarea type='text' name='avis' id='redaction' placeholder='Rédiger son avis...' required maxlength='100'></textarea>
+                <textarea type='text' name='avis' id='redaction' placeholder='Rédiger son avis...' required maxlength='255'></textarea>
                 <input type='submit' value='envoyer' id='bouton_submit'>
             </form>
         </article>
@@ -368,14 +368,13 @@ function displayDonneAvis($id_jeu){
 
 
 
-
 //        PAGE ECRIRE ARTICLE
 //        PAGE ECRIRE ARTICLE
 //        PAGE ECRIRE ARTICLE
 
-function displayWriteArticle($jeuxdispo){
-    echo "<section id='new_article'>
-        <article class='article'>
+function displayChooseGame($jeuxdispo){
+    echo "<section>
+        <article>
             <div id='boite_popup'>
                 <a class='button' href='#popup'> Choix  du jeu </a>
             </div>
@@ -385,28 +384,73 @@ function displayWriteArticle($jeuxdispo){
                     <a class='close_button' href=''>&times;</a>
                     <div>";
                         foreach($jeuxdispo as $data){
-                            echo"<a href='php/writearticle.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
+                            echo"<a href='redige.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
                         }
-                echo"</div>
+                    echo"</div>
                 </div>
-            </div>";
-            if (!empty($_SESSION['id_jeux'])){
-                    echo "<img id='jeu_choisi' src='$_SESSION[chemin]' alt='jeux choisi'>";
-            }
-        echo "<form action='php/writearticle.php' method='POST' name='redigeArticle'>
-                <div class='entete'>
-                    <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
-                    
-                    <aside class='note_article'>
-                        <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
-                    </aside>
-                </div>
-                <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='100'></textarea>
-                <input type='submit' value='envoyer' id='bouton_submit'>
-            </form>
+            </div>
         </article>
     </section>";
 }
+
+function displayWriteArticle($id_jeux,$jaquette,$categorie,$support){
+    echo "<section id=infoarticle>
+            <div id='image_tags'>
+                <img id='jacquette_article' alt='jaquette du jeu' src=$jaquette>
+                <aside id='tags'>";
+                    foreach($categorie as $cate){
+                        echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
+                    }
+                    foreach($support as $sup){
+                        echo "<div><p class='support'>$sup[nom_support]</p></div>";
+                    }
+                    echo"</aside>
+            </div>
+            <form id=contenu action='php/writearticle.php?id_jeux=$id_jeux' method='POST' name='redigeArticle'>
+                <input id=title name=titre placeholder='Titre' maxlength='50'>
+                <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='1000'></textarea>
+                <aside class='note_article'>
+                    <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
+                </aside>
+                <input type='submit' value='valider' id='bouton_submit'>
+            </form>
+    </section>";
+}
+
+// function displayWriteArticle($jeuxdispo){
+//     echo "<section>
+//         <article>
+//             <div id='boite_popup'>
+//                 <a class='button' href='#popup'> Choix  du jeu </a>
+//             </div>
+//             <div id='popup' class='overlay'>
+//                 <div class='selection_jeu'>
+//                     <h2> Choisissez un jeu pour votre article </h2>
+//                     <a class='close_button' href=''>&times;</a>
+//                     <div>";
+//                         foreach($jeuxdispo as $data){
+//                             echo"<a href='php/writearticle.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
+//                         }
+//                     echo"</div>
+//                 </div>
+//             </div>";
+//             if (!empty($_SESSION['id_jeux'])){
+//                     echo "<img id='jeu_choisi' src='$_SESSION[chemin]' alt='jeux choisi'>";
+//             }
+//             echo "
+//             <form action='php/writearticle.php' method='POST' name='redigeArticle'>
+//                 <div class='entete'>
+//                     <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
+//                     <aside class='note_article'>
+//                         <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
+//                     </aside>
+//                 </div>
+//                 <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='100'></textarea>
+//                 <input type='submit' value='envoyer' id='bouton_submit'>
+//             </form>
+//         </article>
+//     </section>";
+// }
 
 
 
@@ -419,12 +463,12 @@ function displayModifyArticle($info,$id_article){
         <article class='article'>
             <form action='php/modifyarticle.php?id_article=$id_article' method='POST' name='modifyArticle'>
                 <div class='entete'>
-                    <input type='text' name='titre' id='title' placeholder='$info[titre]' maxlength='20'>
+                    <input type='text' name='titre' id='title' placeholder='$info[titre]' maxlength='50'>
                     <aside class='note_article'>
                         <input type='number' value='$info[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
-                <textarea type='text' name='article' id='redaction' placeholder='$info[contenu]' maxlength='100'></textarea>
+                <textarea type='text' name='article' id='redaction' placeholder='$info[contenu]' maxlength='1000'></textarea>
                 <input type='submit' value='modifier' id='bouton_submit'>
             </form>
         </article>
@@ -436,12 +480,12 @@ function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
         <article class='article'>
             <form action='php/modify_avis.php?id_avis=$id_avis' method='POST' name='modifyAvis'>
                 <div class='entete'>
-                    <input type='text' name='titre' id='title' placeholder='$info_avis[titre]' maxlength='20'>
+                    <input type='text' name='titre' id='title' placeholder='$info_avis[titre]' maxlength='50'>
                     <aside class='note_article'>
                         <input type='number' value='$info_avis[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
-                <textarea type='text' name='avis' id='redaction' placeholder='$info_avis[texte]' maxlength='100'></textarea>
+                <textarea type='text' name='avis' id='redaction' placeholder='$info_avis[texte]' maxlength='255'></textarea>
                 <input type='submit' value='modifier' id='bouton_submit'>
             </form>
         </article>

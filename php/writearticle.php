@@ -7,27 +7,16 @@ require_once("functions_structure.php");
 $mysqli = connectionDB();
 session_start();
 
+$titre = $_POST['titre'];
+$titre=htmlspecialchars($titre, ENT_QUOTES);
+$note = $_POST['note'];
+$contenu = $_POST['article'];
+$contenu=htmlspecialchars($contenu, ENT_QUOTES);
 
-if (empty($_SESSION['id_jeux']) || ($_GET)){
-    $_SESSION['id_jeux']=$_GET['id_jeux'];
-    $_SESSION['chemin']=$_GET['chemin'];
-    echo "perdu";
-    closeDB($mysqli);
-    header("Location: ../redige.php");
-}
-else{
-    $titre = $_POST['titre'];
-    $titre=htmlspecialchars($titre, ENT_QUOTES);
-    $note = $_POST['note'];
-    $contenu = $_POST['article'];
-    $contenu=htmlspecialchars($contenu, ENT_QUOTES);
-    
-    writeArticle($mysqli,$titre,$note,$_SESSION['id_user'],$contenu);
-    $id_article=getIdNewArticle($mysqli,$titre,$note,$contenu);
-    ChangeArticle($mysqli,$id_article['id_article'],$_SESSION['id_jeux']);
-    $_SESSION['id_jeux']=[];
-    $_SESSION['chemin']=[];
-    closeDB($mysqli);
-    header("Location: ../article.php?id_article=$id_article[id_article]");
-}
+writeArticle($mysqli,$titre,$note,$_SESSION['id_user'],$contenu);
+$id_article=getIdNewArticle($mysqli,$titre,$note,$contenu);
+ChangeArticle($mysqli,$id_article['id_article'],$_GET['id_jeux']);
+closeDB($mysqli);
+header("Location: ../article.php?id_article=$id_article[id_article]");
+
 ?>
