@@ -142,19 +142,6 @@ function displayAvisAccount($avions){
                 <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
                 <h4> Voir l'avis sur >> $avions[nom]</h4>
                 </a>";
-                if ($_SESSION['id_user'] == $avions['id_user']){
-                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>
-                        <a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
-                        <div id='popup2' class='overlay_delete'>
-                            <div class='popup'>
-                                <h2 id='delete_title'>Supprimer l'avis ?</h2>
-                                <a class='close' href='#'>&times;</a>
-                                <div class='delete_box'>
-                                    <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
-                                </div>
-                            </div>
-                        </div>";
-                }
             echo "<aside class='note_avis'>$avions[note] / 10</aside>
             </div>
             <div class='titre_avis'>
@@ -221,7 +208,10 @@ function displayPublicAccount($info,$PP){
 function displayArticle($info,$image,$categories,$support,$avis,$id_article){
     $somme=0.0;
     $nombre=0.0;
-    echo "<section id=infoarticle>
+    echo "<section id=infoarticle>";
+        if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
+            echo "<div class='ligne_boutons'><a class='button_agir' href='#popup3'>Supprimer</a></div>";
+        } echo"
             <div id='image_tags'>
                 <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
                 <aside id='tags'>";
@@ -241,19 +231,17 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                 <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
             </div>
             <div id=contenu>
-                <h1> $info[titre] </h1>";
-                if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
-                    echo "<a class='button_supprimer_article' href='#popup3'>Supprimer</a>
-                        <div id='popup3' class='overlay_delete'>
-                            <div class='popup'>
-                                <h2>Supprimer l'article ?</h2>
-                                <a class='close' href='#'>&times;</a>
-                                <div class='delete_box'>
-                                    <a href='php/supprimer.php?id_article=$id_article' class='delete_button' > Oui </a>
-                                </div>
-                            </div>
-                        </div>";}
-                echo "$info[contenu]
+                <h1> $info[titre] </h1>
+                <div id='popup3' class='overlay_delete'>
+                    <div class='popup'>
+                        <h2>Supprimer l'article ?</h2>
+                        <a class='close' href='#'>&times;</a>
+                        <div class='delete_box'>
+                            <a href='php/supprimer.php?id_article=$id_article' class='delete_button' > Oui </a>
+                        </div>
+                    </div>
+                </div>
+                $info[contenu]
                 <div id='note'>$info[note] / 10</div>
             </div>
             <div id='date_article'>
@@ -318,27 +306,30 @@ function displayAvis($avions,$pp){
                 <a href='account.php?account=$avions[id_user]' class='user'>
                     <img src='$pp[chemin]'>  $avions[login]
                 </a>
-                <aside class='date'>$avions[date_creation]</aside>";
-                if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $avions['id_user']){
-                    echo"<a href='modifier.php?id_avis=$avions[id_avis]' id='button_modification_avis'> Modifier </a>";}
-                if ((isset($_SESSION['logged']) && $_SESSION['id_user']== $avions['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
-                    echo"<a class='button_supprimer_avis' href='#popup2'>Supprimer</a>
-                        <div id='popup2' class='overlay_delete'>
-                            <div class='popup'>
-                                <h2>Supprimer l'avis ?</h2>
-                                <a class='close' href='#'>&times;</a>
-                                <div class='delete_box'>
-                                    <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
-                                </div>
+                <aside class='date'>$avions[date_creation]</aside>
+                    <div id='popup2' class='overlay_delete'>
+                        <div class='popup'>
+                            <h2>Supprimer l'avis ?</h2>
+                            <a class='close' href='#'>&times;</a>
+                            <div class='delete_box'>
+                                <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
                             </div>
-                        </div>";
-                }
-            echo "<aside class='note_avis'>$avions[note] / 10</aside>
+                        </div>
+                    </div>
+                <aside class='note_avis'>$avions[note] / 10</aside>
             </div>
             <div class='titre'>
                 $avions[titre]
             </div>
             <p>$avions[texte]</p>
+            <div class=ligne_boutons>";
+                if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $avions['id_user']){
+                    echo"<a class='button_agir' href='modifier.php?id_avis=$avions[id_avis]'> Modifier </a>";
+                }
+                if ((isset($_SESSION['logged']) && $_SESSION['id_user']== $avions['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
+                    echo"<a class='button_agir' href='#popup2'>Supprimer</a>";
+                } echo"
+            </div>
         </article>
     </section>";
 }
@@ -373,7 +364,7 @@ function displayDonneAvis($id_jeu){
 //        PAGE ECRIRE ARTICLE
 
 function displayChooseGame($jeuxdispo){
-    echo "<section>
+    echo "<section id=infoarticle>
         <article>
             <div id='boite_popup'>
                 <a class='button' href='#popup'> Choix  du jeu </a>
@@ -416,41 +407,6 @@ function displayWriteArticle($id_jeux,$jaquette,$categorie,$support){
             </form>
     </section>";
 }
-
-// function displayWriteArticle($jeuxdispo){
-//     echo "<section>
-//         <article>
-//             <div id='boite_popup'>
-//                 <a class='button' href='#popup'> Choix  du jeu </a>
-//             </div>
-//             <div id='popup' class='overlay'>
-//                 <div class='selection_jeu'>
-//                     <h2> Choisissez un jeu pour votre article </h2>
-//                     <a class='close_button' href=''>&times;</a>
-//                     <div>";
-//                         foreach($jeuxdispo as $data){
-//                             echo"<a href='php/writearticle.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
-//                         }
-//                     echo"</div>
-//                 </div>
-//             </div>";
-//             if (!empty($_SESSION['id_jeux'])){
-//                     echo "<img id='jeu_choisi' src='$_SESSION[chemin]' alt='jeux choisi'>";
-//             }
-//             echo "
-//             <form action='php/writearticle.php' method='POST' name='redigeArticle'>
-//                 <div class='entete'>
-//                     <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='20'>
-//                     <aside class='note_article'>
-//                         <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
-//                     </aside>
-//                 </div>
-//                 <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='100'></textarea>
-//                 <input type='submit' value='envoyer' id='bouton_submit'>
-//             </form>
-//         </article>
-//     </section>";
-// }
 
 
 

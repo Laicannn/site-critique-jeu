@@ -100,27 +100,29 @@ input {
 }
 
 #bouton_submit {
-    width: min-content;
-	color: #202020;
+    width: max-content;
 	border: none;
 	font: inherit;
 	outline: inherit;
     display: flex;
+    background-color: #FFD100;
     justify-content: center;
     flex-direction: column;
-    margin-left: 0;
-    background-color: #FFD100;
+    margin-right: 5px;
     border-radius: 10px;
-    padding: 4px 12px;
+    color: #111111;
+    border-radius: 20px/50px;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
     font-variant: small-caps;
-    transition-duration: 0.2s;
+    font-weight: normal;
+    transition-duration: 0.1s;
+    font-size: 18px;
+    padding: 12px 14px 15px 14px;
 }
 
 #bouton_submit:hover{
-    background-color: #ffd00081;
+    background-color: #ffd0006d;
 }
 
 #refused label {

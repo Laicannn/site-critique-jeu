@@ -333,30 +333,30 @@ input {
 }
 
 #bouton_submit {
-    width: min-content;
-	color: #202020;
+    width: max-content;
 	border: none;
 	font: inherit;
 	outline: inherit;
     display: flex;
+    background-color: #FFD100;
     justify-content: center;
     flex-direction: column;
     margin-right: 5px;
-    background-color: #FFD100;
     border-radius: 10px;
-    padding: 2px 8px;
+    color: #111111;
+    border-radius: 20px/50px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
     font-variant: small-caps;
     font-weight: normal;
     transition-duration: 0.1s;
+    font-size: 16px;
+    padding: 3px 12px 6px 12px;
 }
 
 #bouton_submit:hover{
-    background-color: #ffd00081;
+    background-color: #ffd0006d;
 }
-
 
 .overlay {
     z-index: 1;
@@ -440,38 +440,32 @@ input {
     filter: drop-shadow(0px 2px 4px #20202086);
 }
 
-#button_modification:hover,.delete_button:hover{
-    opacity:0.5;
+.ligne_boutons{
+    width:100%;
+    text-align: end;
+    margin-top: -20px;
 }
 
-#button_modification_avis:hover,.button_supprimer_article:hover,.button_supprimer_avis:hover{
-    opacity:0.5;
-    background-color: #FFD100;
-}
-
-#button_modification_avis,.button_supprimer_avis,.button_supprimer_article{
+.button_agir{
+    font-weight: lighter;
     text-decoration: none;
-    color: white;
+    color: #d6d6d69f;
     font-size: 15px;
-    padding: 2px;
-    border: #FFD100 solid 1px;
-    border-radius: 15%;
+    padding:8px 14px
+}
+
+.button_agir:hover{
+    opacity:0.5;
 }
 
 .delete_button{
     text-decoration: none;
-    color: white;
+    color: #d6d6d69f;
     font-size: 15px;
 }
 
-.button_supprimer_avis{
-    margin-left: 40px;
-}
-
-.button_supprimer_article{
-    position: absolute;
-    right: 13em;
-    top: 10em;
+.delete_button:hover{
+    opacity:0.5 ;
 }
 
 .overlay_delete {
