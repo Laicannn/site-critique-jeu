@@ -44,7 +44,8 @@ $mysqli = connectionDB();
                 $id_user=$_GET['account'];
                 $info_member=getInfoMember($mysqli,$id_user);
                 $pp=getPP($mysqli,$info_member['id_image']);
-                displayPublicAccount($info_member,$pp[0]);
+                $role=['administrateur','redacteur','membre'];
+                displayPublicAccount($info_member,$pp[0],$role);
             }
             ?>
         </main> 
