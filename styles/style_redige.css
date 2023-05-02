@@ -219,6 +219,7 @@ input {
     visibility: visible;
     opacity: 1;
 }
+
 .selection_jeu {
     z-index: 1;
     margin-top: 150px ;

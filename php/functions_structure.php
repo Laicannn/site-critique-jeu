@@ -137,6 +137,7 @@ function displaySelfAccount($liste){
 
 function displayAvisAccount($avions){
     echo "<section id='liste_avis'>
+    <h2> articles écrits </h2>
         <article class='avis'>
             <div class='entete'>
                 <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
@@ -226,6 +227,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                         $nombre=$nombre + 1.0;
                     }
                     $moyenne = fdiv($somme,$nombre);
+                    $moyenne = number_format($moyenne,2);
                     if (is_nan($moyenne)){$moyenne='-';}
                     echo"</aside>
                 <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
@@ -237,7 +239,8 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                         <h2>Supprimer l'article ?</h2>
                         <a class='close' href='#'>&times;</a>
                         <div class='delete_box'>
-                            <a href='php/supprimer.php?id_article=$id_article' class='delete_button' > Oui </a>
+                            <a href='article.php?id_article=$id_article' class='no'>Non</a>
+                            <a href='php/supprimer.php?id_article=$id_article' class='yes'>Oui</a>
                         </div>
                     </div>
                 </div>
@@ -312,7 +315,8 @@ function displayAvis($avions,$pp){
                             <h2>Supprimer l'avis ?</h2>
                             <a class='close' href='#'>&times;</a>
                             <div class='delete_box'>
-                                <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='delete_button'> Oui </a>
+                                <a href='' class='no'>Non</a>
+                                <a href='php/supprimer.php?id_avis=$avions[id_avis]' class='yes'>Oui</a>
                             </div>
                         </div>
                     </div>
