@@ -449,9 +449,12 @@ input {
 .button_agir{
     font-weight: lighter;
     text-decoration: none;
-    color: #d6d6d69f;
-    font-size: 15px;
-    padding:8px 14px
+    color: #111111;
+    background-color: #d6d6d6cf;
+    border-radius: 20px/50px;
+    font-size: 11px;
+    padding:4px 10px;
+    margin:2px;
 }
 
 .button_agir:hover{

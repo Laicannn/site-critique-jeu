@@ -328,7 +328,7 @@ function displayAvis($avions,$pp){
             <p>$avions[texte]</p>
             <div class=ligne_boutons>";
                 if (isset($_SESSION['logged']) && $_SESSION['id_user'] == $avions['id_user']){
-                    echo"<a class='button_agir' href='modifier.php?id_avis=$avions[id_avis]'> Modifier </a>";
+                    echo"<a class='button_agir' href='modifier.php?id_avis=$avions[id_avis]'>Modifier</a>";
                 }
                 if ((isset($_SESSION['logged']) && $_SESSION['id_user']== $avions['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
                     echo"<a class='button_agir' href='#popup2'>Supprimer</a>";
