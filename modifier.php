@@ -31,15 +31,16 @@ $mysqli = connectionDB();
         <main>
             <?php
                 if (!empty($_GET['id_article'])){
-                $info_article=getinfoarticleETjeu($mysqli,$_GET['id_article']);
-                displayModifyArticle($info_article,$_GET['id_article']);
+                    $info_article=getinfoarticleETjeu($mysqli,$_GET['id_article']);
+                    $img=imagesarticles($mysqli,$info_article['id_jeux']);
+                    $categorie=getCategorie($mysqli,$info_article['id_jeux']);
+                    $support=getSupport($mysqli,$info_article['id_jeux']);
+                    displayModifyArticle($info_article,$img,$categorie,$support,$_GET['id_article']);
                 }
                 if (!empty($_GET['id_avis'])){
-                $id_avis=$_GET['id_avis'];
-                $info_avis=getInfoAvis($mysqli,$id_avis);
-                $info_jeux=getInfoJeu($mysqli,$info_avis['id_jeux']);
-                $img=imagesarticles($mysqli,$info_avis['id_jeux']);
-                displayModifyAvis($info_avis,$id_avis,$info_jeux,$img);
+                    $id_avis=$_GET['id_avis'];
+                    $info_avis=getInfoAvis($mysqli,$id_avis);
+                    displayModifyAvis($info_avis,$id_avis);
                 }
                 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && (!empty($_GET['id_user']))){
                     displayChangeAccount();

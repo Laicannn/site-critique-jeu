@@ -128,7 +128,7 @@ function displaySelfAccount($liste){
             </div>
             <div id='dates_account'>
                 Dernière connexion : <p>$_SESSION[date_connexion]</p><br>
-                Inscrit le : <p>$_SESSION[date_creation_compte]</p>
+                Inscrit(e) le : <p>$_SESSION[date_creation_compte]</p>
             </div>
         </article>
         <a href='modifier.php?id_user=$_SESSION[id_user]' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
@@ -180,12 +180,9 @@ function displayArticleAccount($liste_article){
 
 function displayPublicAccount($info,$PP,$role){
     echo"<section id=section_public_account>
-            <a href='index.php' id='retour_index'>
-            Retour page d'accueil >>
-            </a>
             <div id='popup4' class='overlay_role'>
                 <div class='popup'>
-                    <h4>Quel rôle voulez vous mettre ?</h4><br>
+                    <h4>Changer le rôle</h4><br>
                     <a class='close' href='#'>&times;</a>
                     <div class='choix_role'>";
                     foreach ($role as $ex_role){
@@ -206,14 +203,15 @@ function displayPublicAccount($info,$PP,$role){
                     echo substr($info['nom'],0,1);
                     echo ".</h3>";
                     if ((isset($_SESSION['logged']) && $_SESSION['role'] == 'administrateur' )){
-                        echo "<a href='#popup4' id='role' class='{$info['rôle']}'>$info[rôle]</a>";
+                        echo "<a href='#popup4' id='role_button' class='{$info['rôle']}'>$info[rôle]</a>";
                     }
                     else{
                         echo "<div id='role' class='{$info['rôle']}'>$info[rôle]</div>";
                     }
                 echo "</div>
-                <br>
-                $info[login] s'est inscrit(e) le $info[date_creation_compte]
+                <div id='dates_account'>
+                    Inscrit(e) le : <p>$_SESSION[date_creation_compte]</p>
+                </div>
             </article>
     </section>";
 }
@@ -306,14 +304,14 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                     }
                     echo"<img class='grand_photo' alt='image du jeu' src='$link'>";
                     if($_GET['img']+1 > $i){
-                    echo"<a href='?id_article=$id_article&img=0#popup'>
-                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
-                    </a>";
+                        echo"<a href='?id_article=$id_article&img=0#popup'>
+                            <img class='arrow' src='images/buttons/arrow_button_right.svg'>
+                        </a>";
                     }
                     else{
-                    echo"<a href='?id_article=$id_article&img=".($_GET['img']+1)."#popup'>
-                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
-                    </a>";
+                        echo"<a href='?id_article=$id_article&img=".($_GET['img']+1)."#popup'>
+                            <img class='arrow' src='images/buttons/arrow_button_right.svg'>
+                        </a>";
                     }
                 echo"</div>
             </div>
@@ -436,91 +434,69 @@ function displayWriteArticle($id_jeux,$jaquette,$categorie,$support){
 //        PAGE MODIFIER
 //        PAGE MODIFIER
 
-function displayModifyArticle($info,$id_article){
-    echo "<section id='new_article'>
+function displayModifyArticle($info,$image,$categories,$support,$id_article){
+    echo "<section id=new_article>";
+        echo"
+            <div id='image_tags'>
+                <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                <aside id='tags'>";
+                    foreach($categories as $cate){
+                        echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
+                    }
+                    foreach($support as $sup){
+                        echo "<div><p class='support'>$sup[nom_support]</p></div>";
+                    }
+                echo"</aside>
+            </div>
+            <form id=contenu>
+                <input id=title_article type='text' name='titre' placeholder='$info[titre]' maxlength='50'>
+                <textarea type='text' name='article' id='redaction_article' placeholder='$info[contenu]' maxlength='1000'></textarea>
+                <div id=note_modif><input type='number' value='$info[note]' min=1 max=10 name='note'><label for='note'>/10</label></div>
+                <input type='submit' value='modifier' id='bouton_submit'>
+            </form>";
+    echo "</section>
+        <section id='infojeux'>
+            <div id='texte'>
+                <h2>$info[nom]</h2>
+                <h3>Synopsis : </h3>
+                <p>$info[synopsis]</p>
+                <h3>Date de sortie : </h3>
+                <p>$info[date_sortie]</p>
+                <h3>Prix : </h3>
+                <p>$info[prix]</p>
+            </div>
+            <div id='liste_image'>";
+                $i=-1;
+                foreach($image as $img){
+                    $i=$i+1;
+                    echo "<img class=image_jeu alt='image du jeu' src=$img[chemin] >";
+                } echo "
+            </div>
+        </section>";
+}
+
+function displayModifyAvis($info_avis,$id_avis){
+    echo "<section id='new_avis'>
         <article class='article'>
-            <form action='php/modifyarticle.php?id_article=$id_article' method='POST' name='modifyArticle'>
+            <form action='php/modify_avis.php?id_avis=$id_avis' method='POST' name='modifyAvis'>
                 <div class='entete'>
-                    <input type='text' name='titre' id='title' placeholder='$info[titre]' maxlength='50'>
+                    <input type='text' name='titre' id='title_avis' placeholder='$info_avis[titre]' maxlength='50'>
                     <aside class='note_article'>
-                        <input type='number' value='$info[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
+                        <input type='number' value='$info_avis[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
-                <textarea type='text' name='article' id='redaction' placeholder='$info[contenu]' maxlength='1000'></textarea>
+                <textarea type='text' name='avis' id='redaction_avis' placeholder='$info_avis[texte]' maxlength='255'></textarea>
                 <input type='submit' value='modifier' id='bouton_submit'>
             </form>
         </article>
     </section>";
 }
 
-function displayModifyAvis($info_avis,$id_avis,$info_jeux,$image){
-    echo "<section id='new_article'>
-        <article class='article'>
-            <form action='php/modify_avis.php?id_avis=$id_avis' method='POST' name='modifyAvis'>
-                <div class='entete'>
-                    <input type='text' name='titre' id='title' placeholder='$info_avis[titre]' maxlength='50'>
-                    <aside class='note_article'>
-                        <input type='number' value='$info_avis[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
-                    </aside>
-                </div>
-                <textarea type='text' name='avis' id='redaction' placeholder='$info_avis[texte]' maxlength='255'></textarea>
-                <input type='submit' value='modifier' id='bouton_submit'>
-            </form>
-        </article>
-    </section>
-    <section id='infojeux'>
-            <div id='texte'>
-                <h2>$info_jeux[nom]</h2>
-                <h3>Synopsis : </h3>
-                <p>$info_jeux[synopsis]</p>
-                <h3>Date de sortie : </h3>
-                <p>$info_jeux[date_sortie]</p>
-                <h3>Prix : </h3>
-                <p>$info_jeux[prix]</p>
-            </div>
-            <div id='liste_image'>";
-                $i=-1;
-                foreach($image as $img){
-                    $i=$i+1;
-                    echo "<a href='?id_avis=$id_avis&img=$i#popup'><img class=image_jeu alt='image du jeu' src=$img[chemin] ></a>";
-                }
-        echo "
-            </div>
-            <div id='popup' class='overlay'>
-                <div class='liste_photos_grandes'>
-                    <a class='close_button' href='?id_avis=$id_avis'>&times;</a>";
-                    $link=$image[$_GET['img']]['chemin'];
-                    if($_GET['img'] == 0){
-                        echo"<a href='?id_avis=$id_avis&img=".($i-1)."#popup'>
-                            <img class='arrow' src='images/buttons/arrow_button_left.svg'>
-                        </a>";
-                        }
-                    else {
-                        echo"<a href='?id_avis=$id_avis&img=".($_GET['img']-1)."#popup'>
-                            <img class='arrow' src='images/buttons/arrow_button_left.svg'>
-                        </a>";
-                    }
-                    echo"<img class='grand_photo' alt='image du jeu' src='$link'>";
-                    if($_GET['img']+1 > $i){
-                    echo"<a href='?id_avis=$id_avis&img=0#popup'>
-                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
-                    </a>";
-                    }
-                    else{
-                    echo"<a href='?id_avis=$id_avis&img=".($_GET['img']+1)."#popup'>
-                        <img class='arrow' src='images/buttons/arrow_button_right.svg'>
-                    </a>";
-                    }
-                echo"</div>
-            </div>
-        </section>";
-}
-
 function displayChangeAccount(){
     echo "<section>
-        <div id='modify_account'>
-            <h1>Modifier</h1>
-            <form action='php/modify_account.php' method='POST' name='inscrire'>
+        <h1>Modifier</h1>
+        <form action='php/modify_account.php' method='POST' name='inscrire'>
+            <div id='modify_account'>
                 <label for='name'>Nom</label>
                 <input type='text' name='nom' value='$_SESSION[nom]' id='name'>
                 <label for='forname'>Prénom</label>
@@ -539,10 +515,10 @@ function displayChangeAccount(){
                 </div>
                 <label for='password'>Mot de passe</label>
                 <input type='password' name='mdp' id='password'>
+            </div>
                 <br>
-                <input type='submit' value='Modifier' id='bouton_submit'>
-            </form>
-        </div>
+                <input type='submit' value='modifier' id='bouton_submit'>
+        </form>
     </section>";
 }
 

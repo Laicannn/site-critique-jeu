@@ -1,5 +1,5 @@
 section {
-    width: 70vw;
+    width: max-content;
     height: max-content;
     background-color: #111111;
     font-size: 15px;
@@ -8,6 +8,52 @@ section {
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 10px;
+}
+
+#new_avis {
+    width: 70vw;
+}
+
+#new_article {
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding : 40px 20px 10px 20px;
+}
+
+#image_tags {
+    padding:10px;
+    width: 15em;
+    height: max-content;
+}
+
+#jacquette_article{
+    width: 15em;
+    height: 17vw;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2px;
+}
+
+#tags div {
+    padding:2px;
+}
+
+#tags p {
+    width: max-content;
+    font-size: 10px;
+    font-weight: normal;
+    padding : 3px 6px;
+    border : #D6D6D6 solid 1px;
+    border-radius: 20px;
 }
 
 .entete {
@@ -50,7 +96,45 @@ input {
     color-scheme: dark;
 }
 
-#title {
+
+#title_article {
+    padding-left: 5px;
+    width:75%;
+    height: max-content;
+    font-weight: normal;
+    font-size:24px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    color: #D6D6D6;
+}
+
+#title_article::placeholder {
+    color: #d6d6d6b4;
+    font-weight: normal;
+    font-size:24px;
+}
+
+#redaction_article {
+    width: 100%;
+    height: 150px;
+    text-align: start;
+    font: inherit;
+    font-weight: lighter;
+    outline: inherit;
+	border: #202020 solid 1px;
+    background-color: #202020;
+    border-radius: 10px;
+    padding: 3px;
+    color-scheme: dark;
+    color: #D6D6D6;
+}
+
+#redaction_article::placeholder{
+    color: #d6d6d6b4;
+    padding:3px;
+}
+
+#title_avis {
     padding-left: 5px;
     width:35%;
     height: max-content;
@@ -60,20 +144,19 @@ input {
     color: #D6D6D6;
 }
 
-#title::placeholder {
+#title_avis::placeholder {
     color: #d6d6d6b4;
     font-weight: normal;
     font-size:24px;
 }
 
-#redaction {
+#redaction_avis {
     width: 100%;
     height: 100px;
     text-align: start;
     font: inherit;
     font-weight: lighter;
     outline: inherit;
-    /* border:none; */
 	border: #202020 solid 1px;
     background-color: #202020;
     border-radius: 10px;
@@ -82,7 +165,7 @@ input {
     color: #D6D6D6;
 }
 
-#redaction::placeholder{
+#redaction_avis::placeholder{
     color: #d6d6d6b4;
     padding:3px;
 }
@@ -114,6 +197,76 @@ input {
     height: 150px;
     margin-top:-150px;
     content: '';
+}
+
+.support {
+    color: #D6D6D6;
+}
+
+.categorie {
+    background-color: #D6D6D6;
+    color: #111111;
+}
+
+#contenu {
+    width: 50vw;
+    font-weight: lighter;
+    font-size:15px;
+}
+
+#note_modif {
+    width: max-content;
+    display: flex;
+    height:max-content;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    color: #FFD100;
+    font-weight: bold;
+    padding-top: 5vw;
+    margin-bottom: 50px;
+}
+
+#note_modif input {
+    width:8vw;
+    text-align: center;
+    height: max-content;
+    display: block;
+    font: inherit;
+    outline: inherit;
+    font-size: 5vw;
+    color: #FFD100;
+    font-weight: bold;
+    background-color: #202020;
+    border-radius: 10px;
+}
+
+#infojeux {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+#texte {
+    padding:10px 40px
+}
+
+h2 {
+    font-weight: light;
+    font-size:22px;
+    padding-bottom: 15px;
+}
+
+h3 {
+    font-weight: normal;
+    font-size:17px;
+    padding-bottom: 5px;
+}
+
+#infojeux p {
+    font-weight: lighter;
+    font-size:15px;
+    padding-bottom: 10px;
 }
   
 .liste_photos_grandes {
@@ -154,24 +307,6 @@ input {
     text-decoration: none;
     color: #D6D6D6;
     font-size: 28px;
-}
-
-h2 {
-    font-weight: light;
-    font-size:22px;
-    padding-bottom: 15px;
-}
-
-h3 {
-    font-weight: normal;
-    font-size:17px;
-    padding-bottom: 5px;
-}
-
-#infojeux p {
-    font-weight: lighter;
-    font-size:15px;
-    padding-bottom: 10px;
 }
 
 #liste_image{
@@ -229,27 +364,24 @@ input {
 }
 
 #bouton_submit {
-    width: min-content;
-	color: #202020;
-	border: none;
+    width: max-content;
 	font: inherit;
 	outline: inherit;
     display: flex;
+    background-color: #FFD100;
     justify-content: center;
     flex-direction: column;
-    margin-left: 0;
-    background-color: #FFD100;
+    margin-right: 5px;
     border-radius: 10px;
-    padding: 4px 12px;
+    color: #111111;
+    border-radius: 20px/50px;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
     font-variant: small-caps;
-    transition-duration: 0.2s;
-    margin-right: 5px;
-    margin-top: 5px;
     font-weight: normal;
     transition-duration: 0.1s;
+    font-size: 18px;
+    padding: 12px 14px 15px 14px;
 }
 
 #bouton_submit:hover{

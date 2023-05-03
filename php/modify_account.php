@@ -12,8 +12,8 @@ if (!empty($_GET['id_image'])){
     changeProfile($mysqli,$new_pp,$_SESSION['id_user']);
     $PP = getPP($mysqli,$new_pp);
     $_SESSION['pp'] = ($PP[0]['chemin']);
-    //closeDB($mysqli);
-    //header('Location: ../account.php')
+    closeDB($mysqli);
+    header('Location: ../account.php');
 }
 if(!empty($_GET['id_user']) && (!empty($_GET['role']))){
     $id_user=$_GET['id_user'];
