@@ -142,17 +142,19 @@ function displayAvisAccount($liste_avis,$pp){
         foreach($liste_avis as $avis){
             echo"
             <a id='gotojeux' href='article.php?id_article=$avis[id_article]'>
-                <article class='avis'>
-                    <div class='entete'>
-                        <img class=user src=$pp>  $avis[login]
-                        <aside class='date'>$avis[date_creation]</aside>
-                        <aside class='note_avis'>$avis[note] / 10</aside>
-                    </div>
-                    <div class='titre_avis'>
-                        $avis[titre]
-                    </div>
-                    <p>$avis[texte]</p>
-                </article>
+                <div class='degrade_avis'>
+                    <article class='avis_account'>
+                        <div class='entete'>
+                            <div class=user><img src=$pp>  $avis[login]</div>
+                            <aside class='date'>$avis[date_creation]</aside>
+                            <aside class='note_avis'>$avis[note] / 10</aside>
+                        </div>
+                        <div class='titre_avis'>
+                            $avis[titre]
+                        </div>
+                        <p>$avis[texte]</p>
+                    </article>
+                </div>
             </a>";
         }
     echo"</section>";
@@ -164,7 +166,7 @@ function displayArticleAccount($liste_article){
         foreach($liste_article as $info){
             echo "
             <a href='article.php?id_article=$info[id_article]'>
-                <div class='degrade'>
+                <div class='degrade_article'>
                     <div class='article_account'>
                         <img class='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
                         <div class=contenu>

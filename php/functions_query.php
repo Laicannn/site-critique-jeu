@@ -199,9 +199,9 @@ function getJeuDispo($mysqli){
 }
 
 function getAvisAndUser($mysqli,$id_user,$id_jeux){
-    $requete="SELECT avis.*, utilisateur.login
-                FROM avis,utilisateur
-                WHERE avis.id_user=$id_user AND avis.id_jeux=$id_jeux AND avis.id_user=utilisateur.id_user;";
+    $requete="SELECT *
+                FROM avis
+                WHERE avis.id_user=$id_user AND avis.id_jeux=$id_jeux;";
     $info=readDB($mysqli,$requete);
     return $info;
 }
@@ -290,9 +290,9 @@ function getIdJeux($mysqli,$id_article){
 }
 
 function getAvisofUser($mysqli,$id_user){
-    $requete="SELECT avis.*,jeux.nom,jeux.id_article 
-                FROM avis,jeux
-                WHERE avis.id_user=$id_user AND avis.id_jeux=jeux.id_jeux;";
+    $requete="SELECT avis.*,jeux.nom,jeux.id_article,utilisateur.login
+                FROM avis,jeux,utilisateur
+                WHERE avis.id_user=$id_user AND avis.id_jeux=jeux.id_jeux AND avis.id_user=utilisateur.id_user;";
     $liste_avis=readDB($mysqli,$requete);
     return $liste_avis;
 }
