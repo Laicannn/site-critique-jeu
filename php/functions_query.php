@@ -370,4 +370,11 @@ function getInfoMember($mysqli,$id_user){
     return $info[0];
 }
 
+function Modifyrole($mysqli,$id_user,$role){
+    $requete="UPDATE utilisateur
+                SET rôle='$role'
+                WHERE id_user=$id_user;";
+    writeDB($mysqli,$requete);
+}
+
 ?>

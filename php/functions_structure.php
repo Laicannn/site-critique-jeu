@@ -137,7 +137,7 @@ function displaySelfAccount($liste){
 
 function displayAvisAccount($avions){
     echo "<section id='liste_avis'>
-    <h2> articles écrits </h2>
+    <h2> avis écrits </h2>
         <article class='avis'>
             <div class='entete'>
                 <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
@@ -166,7 +166,7 @@ function displayArticleAccount($liste_article){
                             <div class='titre_article'> $info[titre] </div>
                             <div class='note_article'>$info[note] / 10</div>
                         </div>
-                        <p>$info[date_creation] </p>";
+                        <p>Create : $info[date_creation] </p>";
                         if (!empty($info['date_modification'])){
                             echo "<p>Édité : $info[date_modification] </p>";
                         }
@@ -178,11 +178,24 @@ function displayArticleAccount($liste_article){
     echo"</section>";
 }
 
-function displayPublicAccount($info,$PP){
+function displayPublicAccount($info,$PP,$role){
     echo"<section id=section_public_account>
             <a href='index.php' id='retour_index'>
             Retour page d'accueil >>
             </a>
+            <div id='popup4' class='overlay_role'>
+                <div class='popup'>
+                    <h4>Quel rôle voulez vous mettre ?</h4><br>
+                    <a class='close' href='#'>&times;</a>
+                    <div class='choix_role'>";
+                    foreach ($role as $ex_role){
+                        if($ex_role != $info['rôle']){
+                            echo "<a href='php/modify_account.php?id_user=$info[id_user]&role=$ex_role' class='$ex_role'> $ex_role </a>";
+                        }
+                    }
+                    echo "</div>
+                </div>
+            </div>
             <div>
                 <img class='avatar_public' src=$PP[chemin] alt='avatar'>
             </div>
@@ -191,9 +204,14 @@ function displayPublicAccount($info,$PP){
                 <div id='name'>
                     <h3> $info[prenom] ";
                     echo substr($info['nom'],0,1);
-                    echo ".</h3>
-                    <div id='role' class='{$info['rôle']}'>$info[rôle]</div>
-                </div>
+                    echo ".</h3>";
+                    if ((isset($_SESSION['logged']) && $_SESSION['role'] == 'administrateur' )){
+                        echo "<a href='#popup4' id='role' class='{$info['rôle']}'>$info[rôle]</a>";
+                    }
+                    else{
+                        echo "<div id='role' class='{$info['rôle']}'>$info[rôle]</div>";
+                    }
+                echo "</div>
                 <br>
                 $info[login] s'est inscrit(e) le $info[date_creation_compte]
             </article>

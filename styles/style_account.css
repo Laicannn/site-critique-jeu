@@ -313,7 +313,7 @@ h3 {
     top: 10em;
 }
 
-.overlay_delete {
+.overlay_delete,.overlay_role {
 position: fixed;
 top: 0;
 bottom: 0;
@@ -325,7 +325,7 @@ visibility: hidden;
 opacity: 0;
 z-index: 100;
 }
-.overlay_delete:target {
+.overlay_delete:target,.overlay_role:target{
 visibility: visible;
 opacity: 1;
 }
@@ -522,6 +522,23 @@ text-align:center;
     top: 100px;
     left: 140px;
 }
+
+.choix_role{
+    display: flex;
+    justify-content: space-between;
+}
+
+.membre,.redacteur,.administrateur {
+    border-radius: 10px;
+    color: #D6D6D6;
+    padding: 3px 8px 6px 8px;
+    font-size: 15px;
+    font-weight: normal;
+    font-variant:small-caps;
+    font-weight: normal;
+    text-decoration: none;
+}
+
 
 /* 
 #111111
