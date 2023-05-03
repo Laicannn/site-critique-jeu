@@ -46,6 +46,16 @@ body {
     align-items: center;
 }
 
+#new_article {
+    width: 70vw;
+    height: max-content;
+    background-color: #111111;
+    font-size: 15px;
+    font-weight: normal;
+    padding : 40px 20px;
+    border-radius: 10px;
+}
+
 #profil, #section_public_account {
     width: 80vw;
     background-color: #111111;

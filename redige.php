@@ -38,6 +38,7 @@ $mysqli = connectionDB();
                     if(isset($_GET['id_jeux'])){
                         $categorie=getCategorie($mysqli,$_GET['id_jeux']);
                         $support=getSupport($mysqli,$_GET['id_jeux']);
+                        displayChooseGame($jeuxdispo);
                         displayWriteArticle($_GET['id_jeux'],$_GET['chemin'],$categorie,$support);
                     }
                     else {

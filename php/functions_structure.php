@@ -391,7 +391,7 @@ function displayDonneAvis($id_jeu){
 //        PAGE ECRIRE ARTICLE
 
 function displayChooseGame($jeuxdispo){
-    echo "<section id=infoarticle>
+    echo "<section id=choose>
         <article>
             <div id='boite_popup'>
                 <a class='button' href='#popup'> Choix  du jeu </a>
