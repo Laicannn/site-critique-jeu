@@ -135,22 +135,27 @@ function displaySelfAccount($liste){
     </section>";
 }
 
-function displayAvisAccount($avions){
-    echo "<section id='liste_avis'>
-    <h2> avis écrits </h2>
-        <article class='avis'>
-            <div class='entete'>
-                <a id='gotojeux' href='article.php?id_article=$avions[id_article]'>
-                <h4> Voir l'avis sur >> $avions[nom]</h4>
-                </a>";
-            echo "<aside class='note_avis'>$avions[note] / 10</aside>
-            </div>
-            <div class='titre_avis'>
-                $avions[titre]
-            </div>
-            <p>$avions[texte]</p>
-        </article>
-    </section><br>";
+function displayAvisAccount($liste_avis,$pp){
+    echo "
+    <section id='liste_avis'>
+        <h2> avis écrits </h2>";
+        foreach($liste_avis as $avis){
+            echo"
+            <a id='gotojeux' href='article.php?id_article=$avis[id_article]'>
+                <article class='avis'>
+                    <div class='entete'>
+                        <img class=user src=$pp>  $avis[login]
+                        <aside class='date'>$avis[date_creation]</aside>
+                        <aside class='note_avis'>$avis[note] / 10</aside>
+                    </div>
+                    <div class='titre_avis'>
+                        $avis[titre]
+                    </div>
+                    <p>$avis[texte]</p>
+                </article>
+            </a>";
+        }
+    echo"</section>";
 }
 
 function displayArticleAccount($liste_article){

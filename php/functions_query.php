@@ -76,10 +76,10 @@ function getSupport($mysqli,$id_jeux){
 }
 
 function connect($mysqli,$user,$password){
-    $requete1 = 'SELECT *
+    $requete1 = "SELECT *
                 FROM utilisateur 
-                WHERE login = "'.$user.'" 
-                AND mdp = "'.$password.'";';
+                WHERE login = '$user'
+                AND mdp = '$password' ;";
     $connect = readDB($mysqli,$requete1);
     if(empty($connect['0']['id_image'])){
         $requete3 = "UPDATE utilisateur 
@@ -199,9 +199,9 @@ function getJeuDispo($mysqli){
 }
 
 function getAvisAndUser($mysqli,$id_user,$id_jeux){
-    $requete="SELECT * 
-                FROM avis
-                WHERE avis.id_user=$id_user AND avis.id_jeux=$id_jeux;";
+    $requete="SELECT avis.*, utilisateur.login
+                FROM avis,utilisateur
+                WHERE avis.id_user=$id_user AND avis.id_jeux=$id_jeux AND avis.id_user=utilisateur.id_user;";
     $info=readDB($mysqli,$requete);
     return $info;
 }

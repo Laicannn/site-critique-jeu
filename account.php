@@ -36,9 +36,7 @@ $mysqli = connectionDB();
                 displayArticleAccount($liste_article);
                 
                 $liste_avis = getAvisofUser($mysqli,$_SESSION['id_user']);
-                foreach($liste_avis as $avis){
-                    displayAvisAccount($avis);
-                }
+                displayAvisAccount($liste_avis,$_SESSION['pp']);
             }
             else{
                 $id_user=$_GET['account'];
