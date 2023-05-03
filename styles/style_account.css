@@ -496,11 +496,11 @@ text-align:center;
 
  
 #button_modification {
-    z-index: 100;
+    z-index: 1;
     position: absolute;
     max-width: 100px;
     width:15vw;
-    right : 9em;
+    right : 15em;
     top : 145px;
     transition-property: opacity;
     transition-duration: 0.1s;

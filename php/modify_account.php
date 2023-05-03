@@ -12,6 +12,7 @@ if (!empty($_GET['id_image'])){
     changeProfile($mysqli,$new_pp,$_SESSION['id_user']);
     $PP = getPP($mysqli,$new_pp);
     $_SESSION['pp'] = ($PP[0]['chemin']);
+    header('Location: ../account.php');
 }
 if (!empty($_POST)){
     $info_modifier = $_POST;
