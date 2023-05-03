@@ -249,8 +249,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                         $nombre=$nombre + 1.0;
                     }
                     $moyenne = fdiv($somme,$nombre);
-                    $moyenne = number_format($moyenne,2);
-                    if ($moyenne='nan'){$moyenne='-';}
+                    $moyenne = number_format($moyenne,1);
                     echo"</aside>
                 <div id='note_moyenne'><p>Communauté :</p>$moyenne / 10</div>
             </div>

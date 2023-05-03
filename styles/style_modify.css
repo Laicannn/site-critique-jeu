@@ -242,6 +242,7 @@ input {
 }
 
 #infojeux {
+    width: 70vw;
     display: block;
     margin-top: 20px;
     margin-bottom: 80px;
