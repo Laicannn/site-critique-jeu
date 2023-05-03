@@ -42,7 +42,7 @@ $mysqli = connectionDB();
                     $info_avis=getInfoAvis($mysqli,$id_avis);
                     displayModifyAvis($info_avis,$id_avis);
                 }
-                if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && (!empty($_GET['id_user']))){
+                if (isset($_SESSION['logged']) && $_SESSION['logged'] === true && (empty($_GET['id_article'])) && (empty($_GET['id_avis']))){
                     displayChangeAccount();
                 }
             ?>

@@ -24,26 +24,34 @@ if(!empty($_GET['id_user']) && (!empty($_GET['role']))){
 }
 if (!empty($_POST)){
     $info_modifier = $_POST;
+    $info_connect = getUser($mysqli,$_SESSION['id_user']);
+    if (empty($info_modifier['mdp'])){
+        $info_modifier['mdp']=$info_connect['mdp'];
+        $info_modifier['mdp_repete']=$info_connect['mdp'];
+    }
     if (($_SESSION['user']==$info_modifier['pseudo']) || empty(loginunique($mysqli,$info_modifier['pseudo']))){
-        $birthday = $info_modifier['age'];
-        $currentDate = new DateTime();
-        $birthdate = new DateTime($birthday);
-        $interval = $birthdate->diff($currentDate);
-        $age = $interval->y;
-        if ($age > 15){
-            $info_connect = getUser($mysqli,$_SESSION['id_user']);
-            if (empty($info_modifier['mdp'])){
-                $info_modifier['mdp']=$info_connect['mdp'];
+        if ($_POST['mdp']==$_POST['mdp_repete']){
+            $birthday = $info_modifier['age'];
+            $currentDate = new DateTime();
+            $birthdate = new DateTime($birthday);
+            $interval = $birthdate->diff($currentDate);
+            $age = $interval->y;
+            if ($age > 15){
+                
+                ModifyAccount($mysqli,$info_modifier,$_SESSION['id_user']);
+                ModifySESSION($info_modifier);
+                closeDB($mysqli);
+                header('Location: ../account.php');
             }
-            ModifyAccount($mysqli,$info_modifier,$_SESSION['id_user']);
-            ModifySESSION($info_modifier);
-            closeDB($mysqli);
-            header('Location: ../account.php');
+            else{
+                closeDB($mysqli);
+                echo "Vous n'avez pas 15 ans";
+                header('Location: ../modifier.php#refused');
+            }
         }
-        else{
-            closeDB($mysqli);
-            echo "Vous n'avez pas 15 ans";
-            header('Location: ../modifier.php#refused');
+        else {
+            echo "Les 2 mots de passe entrés sont différents";
+            header('Location: ../modifier.php#wrong_pwd');
         }
     }
     else{
