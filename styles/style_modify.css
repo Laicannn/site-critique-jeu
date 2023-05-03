@@ -419,3 +419,23 @@ input {
 #already_used:target #username:invalid:empty {
 	border: #ff0000 solid 1px;
 }
+
+#wrong_pwd .error_mdp {
+    display: none;
+    color: #ff0000;
+    font-weight: lighter;
+    font-size: 14px;
+    padding: 0 0 5px 0;
+}
+
+#wrong_pwd:target .error_mdp {
+    display: block;
+}
+
+#wrong_pwd:target #password:invalid:empty {
+	border: #ff0000 solid 1px;
+}
+
+#wrong_pwd:target #password_repete:invalid:empty {
+	border: #ff0000 solid 1px;
+}

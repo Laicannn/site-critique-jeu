@@ -131,7 +131,7 @@ function displaySelfAccount($liste){
                 Inscrit(e) le : <p>$_SESSION[date_creation_compte]</p>
             </div>
         </article>
-        <a href='modifier.php?id_user=$_SESSION[id_user]' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
+        <a href='modifier.php' id='button_modification'><img src='images/buttons/button_modifier.svg'></a>
     </section>";
 }
 
@@ -521,7 +521,12 @@ function displayChangeAccount(){
                     <input type='text' name='pseudo' value='$_SESSION[user]' id='username' required>
                 </div>
                 <label for='password'>Mot de passe</label>
-                <input type='password' name='mdp' id='password'>
+                <div id='wrong_pwd'>
+                    <label for='password' class='error_mdp'>Mots de passe entrés différents</label>
+                    <input type='password' name='mdp' id='password' >
+                    <label for='password_repete'>Confirmer mot de passe</label>
+                    <input type='password' name='mdp_repete' id='password_repete'>
+                </div>
             </div>
                 <br>
                 <input type='submit' value='modifier' id='bouton_submit'>
