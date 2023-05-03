@@ -36,7 +36,7 @@ $mysqli = connectionDB();
                 displayArticleAccount($liste_article);
                 
                 $liste_avis = getAvisofUser($mysqli,$_SESSION['id_user']);
-                displayAvisAccount($liste_avis,$_SESSION['pp']);
+                displayAvisAccount($liste_avis);
             }
             else{
                 $id_user=$_GET['account'];

@@ -290,9 +290,10 @@ function getIdJeux($mysqli,$id_article){
 }
 
 function getAvisofUser($mysqli,$id_user){
-    $requete="SELECT avis.*,jeux.nom,jeux.id_article,utilisateur.login
-                FROM avis,jeux,utilisateur
-                WHERE avis.id_user=$id_user AND avis.id_jeux=jeux.id_jeux AND avis.id_user=utilisateur.id_user;";
+    $requete="SELECT avis.*,jeux.nom,jeux.id_article,images.chemin
+                FROM avis,jeux,images
+                WHERE avis.id_user=$id_user AND avis.id_jeux=jeux.id_jeux 
+                AND images.chemin LIKE '%images/jaquette/%' AND jeux.id_jeux=images.id_jeux;";
     $liste_avis=readDB($mysqli,$requete);
     return $liste_avis;
 }

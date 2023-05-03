@@ -135,7 +135,7 @@ function displaySelfAccount($liste){
     </section>";
 }
 
-function displayAvisAccount($liste_avis,$pp){
+function displayAvisAccount($liste_avis){
     echo "
     <section id='liste_avis'>
         <h2> avis écrits </h2>";
@@ -145,8 +145,7 @@ function displayAvisAccount($liste_avis,$pp){
                 <div class='degrade_avis'>
                     <article class='avis_account'>
                         <div class='entete'>
-                            <div class=user><img src=$pp>  $avis[login]</div>
-                            <aside class='date'>$avis[date_creation]</aside>
+                            <div class=jaquette><img src=$avis[chemin]>   $avis[nom]</div>
                             <aside class='note_avis'>$avis[note] / 10</aside>
                         </div>
                         <div class='titre_avis'>
