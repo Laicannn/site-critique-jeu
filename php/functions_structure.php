@@ -215,7 +215,7 @@ function displayPublicAccount($info,$PP,$role){
                     }
                 echo "</div>
                 <div id='dates_account'>
-                    Inscrit(e) le : <p>$_SESSION[date_creation_compte]</p>
+                    Inscrit(e) le : <p>$info[date_creation_compte]</p>
                 </div>
             </article>
     </section>";
@@ -231,7 +231,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
     $somme=0.0;
     $nombre=0.0;
     echo "<section id=infoarticle>";
-        if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user']) || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
+        if ((isset($_SESSION['logged']) && $_SESSION['id_user'] == $info['id_user'] && $_SESSION['role']=='redacteur') || (isset($_SESSION['logged']) && $_SESSION['role']=='administrateur')){
             echo "<div class='ligne_boutons'><a class='button_agir' href='#popup3'>Supprimer</a></div>";
         } echo"
             <div id='image_tags'>
