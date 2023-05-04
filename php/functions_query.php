@@ -171,12 +171,12 @@ function writeArticle($mysqli,$titre,$note,$id_user,$contenu){
     writeDB($mysqli,$requete);
 }
 
-function getIdNewArticle($mysqli,$titre,$note,$contenu){
+function getIdNewArticle($mysqli,$contenu){
     $requete="SELECT article.id_article 
                 FROM article 
-                WHERE article.contenu='$contenu' AND article.titre='$titre' AND article.note=$note;";
+                WHERE article.contenu='$contenu';";
     $id_article=readDB($mysqli,$requete);
-    return $id_article[0];
+    return $id_article;
 }
 
 function ChangeArticle($mysqli,$id_article,$id_jeux){
@@ -191,7 +191,7 @@ function ChangeArticle($mysqli,$id_article,$id_jeux){
 }
 
 function getJeuDispo($mysqli){
-    $requete="SELECT images.chemin,jeux.id_jeux 
+    $requete="SELECT images.chemin,jeux.id_jeux,jeux.nom
                 FROM images,jeux
                 WHERE images.id_article IS NULL AND images.chemin LIKE '%images/jaquette/%' AND jeux.id_jeux=images.id_jeux;";
     $jeux=readDB($mysqli,$requete);
@@ -375,6 +375,36 @@ function Modifyrole($mysqli,$id_user,$role){
     $requete="UPDATE utilisateur
                 SET rôle='$role'
                 WHERE id_user=$id_user;";
+    writeDB($mysqli,$requete);
+}
+
+function AddJeu($mysqli,$nom,$prix,$date_sortie,$synopsis){
+    $requete1="INSERT INTO jeux(nom, prix, date_sortie, synopsis) 
+                VALUES ('$nom','$prix','$date_sortie','$synopsis');";
+    writeDB($mysqli,$requete1);
+}
+
+function getIdJeuxAvecNom($mysqli,$nom){
+    $requete2="SELECT id_jeux FROM jeux WHERE nom='$nom';";
+    $id_jeux=readDB($mysqli,$requete2);
+    return $id_jeux[0]['id_jeux'];
+}
+
+function AddImage($mysqli,$chemin,$id_jeux){
+    $requete="INSERT INTO images(chemin,id_jeux) 
+                VALUES ('$chemin','$id_jeux');";
+    writeDB($mysqli,$requete);
+}
+
+function AttributeCategories($mysqli,$id_jeux,$id_categorie){
+    $requete="INSERT INTO estcategories(id_categorie,id_jeux) 
+                VALUES ('$id_categorie','$id_jeux');";
+    writeDB($mysqli,$requete);
+}
+
+function AttributeSupports($mysqli,$id_jeux,$id_support){
+    $requete="INSERT INTO estsupport(id_support,id_jeux) 
+                VALUES ('$id_support','$id_jeux');";
     writeDB($mysqli,$requete);
 }
 

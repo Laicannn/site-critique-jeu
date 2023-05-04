@@ -177,6 +177,25 @@ input {
 	border: #ff0000 solid 1px;
 }
 
+#error_connection .error_connect_label {
+    display: none;
+    color: #ff0000;
+    font-weight: lighter;
+    font-size: 14px;
+    padding: 0 0 5px 0;
+}
+
+#error_connection:target .error_connect_label {
+    display: block;
+}
+
+#error_connection:target input:invalid:empty {
+	border: #ff0000 solid 1px;
+}
+
+#error_connection:target input:invalid:empty {
+	border: #ff0000 solid 1px;
+}
 /* 
 #111111
 #D6D6D6

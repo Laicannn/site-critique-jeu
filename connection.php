@@ -28,9 +28,6 @@ $mysqli = connectionDB();
         <?php include("static/nav.php"); ?>
         <main>
             <?php 
-            if ($_GET){
-                echo "Votre identifiant ou votre mot de passe est incorrect !";
-            }
             if (isset($_SESSION['logged']) && $_SESSION['logged'] === true){
                 header('Location: ../index.php');
             }

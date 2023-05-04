@@ -49,10 +49,13 @@ function displayConnect(){
         <div id="connecter">
             <h1>Se connecter</h1>
             <form action="php/login.php" method="POST" name="connecte">
-                <label for="username">Identifiant</label>
-                <input type="text" name="pseudo" id="username">
-                <label for="password">Mot de passe</label>
-                <input type="password" name="mdp" id="password">
+                <div id=error_connection>
+                    <label for="username" class=error_connect_label>Identifiant ou mot de passe incorrect(s)</label>
+                    <label for="username">Identifiant</label>
+                    <input type="text" name="pseudo" id="username" required>
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="mdp" id="password" required>
+                </div>
                 <br>
                 <input type="submit" value="connexion" id="bouton_submit">
             </form>
@@ -167,7 +170,7 @@ function displayArticleAccount($liste_article){
             <a href='article.php?id_article=$info[id_article]'>
                 <div class='degrade_article'>
                     <div class='article_account'>
-                        <img class='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                        <img class='jaquette_article' alt='jaquette du jeu' src=$info[chemin]>
                         <div class=contenu>
                             <div class='titre_article'> $info[titre] </div>
                             <div class='note_article'>$info[note] / 10</div>
@@ -236,7 +239,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
             echo "<div class='ligne_boutons'><a class='button_agir' href='#popup3'>Supprimer</a></div>";
         } echo"
             <div id='image_tags'>
-                <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                <img id='jaquette_article' alt='jaquette du jeu' src=$info[chemin]>
                 <aside id='tags'>";
                     foreach($categories as $cate){
                         echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
@@ -390,29 +393,66 @@ function displayDonneAvis($id_jeu){
 
 function displayChooseGame($jeuxdispo){
     echo "<section id=choose>
-        <article>
-            <div id='boite_popup'>
-                <a class='button' href='#popup'> Choix  du jeu </a>
-            </div>
-            <div id='popup' class='overlay'>
-                <div class='selection_jeu'>
-                    <h2> Choisissez un jeu pour votre article </h2>
-                    <a class='close_button' href=''>&times;</a>
-                    <div>";
-                        foreach($jeuxdispo as $data){
-                            echo"<a href='redige.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='jeux proposé'></a>";
-                        }
-                    echo"</div>
+        <a id=button_choose href='#popup'> Choix  du jeu </a>
+        <div id='popup' class='overlay'>
+            <div class='selection_jeu'>
+                <h2> Choisissez un jeu pour votre article </h2>
+                <a class='close_button' href=''>&times;</a>
+                <div>";
+                    foreach($jeuxdispo as $data){
+                        echo"<a href='redige.php?id_jeux=$data[id_jeux]&amp;chemin=$data[chemin]'><img class='liste_jeu' src='$data[chemin]' alt='$data[nom]'></a>";
+                    }
+                echo"<a id=add_button href='redige.php#add_game'><img class='liste_jeu' src='images/buttons/add_button.svg' alt='Ajout d'un jeu'></a>
                 </div>
             </div>
-        </article>
-    </section>";
+        </div>
+    </section>
+    <form id='add_game' action='php/add_game.php' method='POST' name='AjouterJeu' enctype='multipart/form-data'>
+        <h2> Ajouter un jeu</h2>
+        <div>
+            <label for='jaquette' class=classic_label>Jaquette du jeu</label>
+            <input class=classic_input type='file' id='jaquette' name='jaquette' accept='.png,.jpg,.jpeg,.webp' required>
+            <label for='categ_form' class=classic_label>Catégories</label>
+            <div id=categ_form> 
+                <div><input type='checkbox' name='RPG'><label for='RPG'>RPG</label></div>
+                <div><input type='checkbox' name='Openworld'><label for='Openworld'>Openworld</label></div>
+                <div><input type='checkbox' name='Aventure'><label for='Aventure'>Aventure</label></div>
+                <div><input type='checkbox' name='Sandbox'><label for='Sandbox'>Sandbox</label></div>
+                <div><input type='checkbox' name='Narratif'><label for='Narratif'>Narratif</label></div>
+                <div><input type='checkbox' name='Puzzle'><label for='Puzzle'>Puzzle</label></div>
+                <div><input type='checkbox' name='Action'><label for='Action'>Action</label></div>
+            </div>
+            <label for='support_form' class=classic_label>Supports</label>
+            <div id=support_form> 
+                <div><input type='checkbox' name='XBOXone'><label for='XBOXone'>XBOX one</label></div>
+                <div><input type='checkbox' name='XBOX360'><label for='XBOX360'>XBOX 360</label></div>
+                <div><input type='checkbox' name='PS1'><label for='PS1'>Playstation 1</label></div>
+                <div><input type='checkbox' name='PS2'><label for='PS2'>Playstation 2</label></div>
+                <div><input type='checkbox' name='PS3'><label for='PS3'>Playstation 3</label></div>
+                <div><input type='checkbox' name='PS4'><label for='PS4'>Playstation 4</label></div>
+                <div><input type='checkbox' name='PS5'><label for='PS5'>Playstation 5</label></div>
+                <div><input type='checkbox' name='Switch'><label for='Switch'>Nintendo Switch</label></div>
+                <div><input type='checkbox' name='Ordinateur'><label for='Ordinateur'>Ordinateur</label></div>
+            </div>
+            <label for='nom' class=classic_label>Nom du jeu</label>
+            <input class=classic_input id='nom' name='nom' maxlength='50' required>
+            <label for=synopsis class=classic_label>Synopsis</label>
+            <textarea type='text' name='synopsis' id='synopsis' placeholder='Rédiger un court synopsis...' required maxlength='255'></textarea>
+            <label for='prix' class=classic_label>Prix</label>
+            <input class=classic_input id='prix' name='prix' placeholder='00.00' pattern='^\d*(\.\d{0,2})?$'>€
+            <label for='date_sortie' class=classic_label>Date de sortie du jeu</label>
+            <input class=classic_input type='date' id='date_sortie' name='date_sortie'>
+        </div>
+        <input type='submit' value='valider' id='bouton_submit'>
+    </form>";
 }
+
+
 
 function displayWriteArticle($id_jeux,$jaquette,$categorie,$support){
     echo "<section id=infoarticle>
             <div id='image_tags'>
-                <img id='jacquette_article' alt='jaquette du jeu' src=$jaquette>
+                <img id='jaquette_article' alt='jaquette du jeu' src=$jaquette>
                 <aside id='tags'>";
                     foreach($categorie as $cate){
                         echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";
@@ -443,7 +483,7 @@ function displayModifyArticle($info,$image,$categories,$support,$id_article){
     echo "<section id=new_article>";
         echo"
             <div id='image_tags'>
-                <img id='jacquette_article' alt='jaquette du jeu' src=$info[chemin]>
+                <img id='jaquette_article' alt='jaquette du jeu' src=$info[chemin]>
                 <aside id='tags'>";
                     foreach($categories as $cate){
                         echo "<div><p class='categorie'>$cate[nom_categorie]</p></div>";

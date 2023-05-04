@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 24 avr. 2023 à 20:46
+-- Généré le : jeu. 04 mai 2023 à 16:22
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -277,8 +277,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_user`, `login`, `mdp`, `nom`, `prenom`, `adresse_mail`, `date_naissance`, `date_creation_compte`, `date_connexion`, `rôle`, `id_image`) VALUES
-(1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-04-21', 'administrateur', 107),
-(2, 'mornee', 'mdp', 'Theault', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-04-24', 'redacteur', 106),
+(1, 'laican', 'mdp', 'Vailland', 'Damien', 'damien.vailland@etudiant.univ-rennes1.fr', '2003-09-01', '2023-04-05', '2023-05-04', 'administrateur', 100),
+(2, 'mornee', 'mdp', 'THEAULT', 'Morgane', 'morgane.theault@etudiant.univ-rennes1.fr', '2003-05-14', '2023-04-05', '2023-05-04', 'redacteur', 106),
 (3, 'hyppo', 'mdp', 'Tribut', 'Hippolyte', 'hippolyte.tribut@etudiant.univ-rennes1.fr', '2003-12-18', '2023-04-05', '2023-04-15', 'membre', 100);
 
 --
@@ -366,6 +366,18 @@ ALTER TABLE `avis`
   MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT pour la table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
+
+--
+-- AUTO_INCREMENT pour la table `jeux`
+--
+ALTER TABLE `jeux`
+  MODIFY `id_jeux` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
@@ -385,28 +397,28 @@ ALTER TABLE `article`
 -- Contraintes pour la table `avis`
 --
 ALTER TABLE `avis`
-  ADD CONSTRAINT `fk_id_user_avis` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`),
-  ADD CONSTRAINT `fk_idujeux` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
+  ADD CONSTRAINT `fk_id_jeux_avis` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
+  ADD CONSTRAINT `fk_id_user_avis` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
 
 --
 -- Contraintes pour la table `estcategories`
 --
 ALTER TABLE `estcategories`
-  ADD CONSTRAINT `fk_id_jeu_estcategories` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
+  ADD CONSTRAINT `fk_id_jeux_estcat` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
   ADD CONSTRAINT `fk_id_jeux_estcategories` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`);
 
 --
 -- Contraintes pour la table `estsupport`
 --
 ALTER TABLE `estsupport`
-  ADD CONSTRAINT `estsupport_ibfk_1` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
-  ADD CONSTRAINT `estsupport_ibfk_2` FOREIGN KEY (`id_support`) REFERENCES `support` (`id_support`);
+  ADD CONSTRAINT `estsupport_ibfk_2` FOREIGN KEY (`id_support`) REFERENCES `support` (`id_support`),
+  ADD CONSTRAINT `fk_id_jeux_estsuuport` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`);
 
 --
 -- Contraintes pour la table `images`
 --
 ALTER TABLE `images`
-  ADD CONSTRAINT `fk_id_jeu` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
+  ADD CONSTRAINT `fk_id_jeux_images` FOREIGN KEY (`id_jeux`) REFERENCES `jeux` (`id_jeux`),
   ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`);
 
 --
