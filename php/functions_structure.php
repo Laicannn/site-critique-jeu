@@ -493,7 +493,7 @@ function displayModifyArticle($info,$image,$categories,$support,$id_article){
                     }
                 echo"</aside>
             </div>
-            <form id=contenu>
+            <form method=POST action='php/modifyarticle.php' id=contenu>
                 <input id=title_article type='text' name='titre' placeholder='$info[titre]' maxlength='50'>
                 <textarea type='text' name='article' id='redaction_article' placeholder='$info[contenu]' maxlength='1000'></textarea>
                 <div id=note_modif><input type='number' value='$info[note]' min=1 max=10 name='note'><label for='note'>/10</label></div>

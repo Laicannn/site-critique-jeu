@@ -17,6 +17,6 @@ writeArticle($mysqli,$titre,$note,$_SESSION['id_user'],$contenu);
 $id_article=getIdNewArticle($mysqli,$contenu);
 ChangeArticle($mysqli,$id_article['id_article'],$_GET['id_jeux']);
 closeDB($mysqli);
-header("Location: ../article.php?id_article=$id_article[id_article]");
+header("Location: ../index.php");
 
 ?>
