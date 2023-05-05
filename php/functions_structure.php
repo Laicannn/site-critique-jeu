@@ -84,7 +84,7 @@ function displayConnect(){
                     <label for="password" class="error_mdp">Mots de passe entrés différents</label>
                     <input type="password" name="mdp" id="password" required>
                     <label for="password_repete">Confirmer mot de passe</label>
-                    <input type="password_repete" name="mdp_repete" id="password_repete" required>
+                    <input type="password" name="mdp_repete" id="password_repete" required>
                 </div>
                 <br>
                 <input type="submit" value="inscription" id="bouton_submit" required>
@@ -286,7 +286,7 @@ function displayArticle($info,$image,$categories,$support,$avis,$id_article){
                 <h3>Date de sortie : </h3>
                 <p>$info[date_sortie]</p>
                 <h3>Prix : </h3>
-                <p>$info[prix]</p>
+                <p>$info[prix] €</p>
             </div>
             <div id='liste_image'>";
                 $i=-1;
@@ -374,7 +374,7 @@ function displayDonneAvis($id_jeu){
                 <div class='entete'>
                     <input type='text' name='titre' id='title' placeholder='Titre' required maxlength='50'>
                     <aside class='note_avis'>
-                        <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
+                        <input type='number' min=0 max=10 id='notation' name='note' required><label for='note'>/10</label>
                     </aside>
                 </div>
                 <textarea type='text' name='avis' id='redaction' placeholder='Rédiger son avis...' required maxlength='255'></textarea>
@@ -466,7 +466,7 @@ function displayWriteArticle($id_jeux,$jaquette,$categorie,$support){
                 <input id=title name=titre placeholder='Titre' maxlength='50'>
                 <textarea type='text' name='article' id='redaction' placeholder='Rédiger votre article...' required maxlength='1000'></textarea>
                 <aside class='note_article'>
-                    <input type='number' min=1 max=10 id='notation' name='note' required><label for='note'>/10</label>
+                    <input type='number' min=0 max=10 id='notation' name='note' required><label for='note'>/10</label>
                 </aside>
                 <input type='submit' value='valider' id='bouton_submit'>
             </form>
@@ -493,7 +493,7 @@ function displayModifyArticle($info,$image,$categories,$support,$id_article){
                     }
                 echo"</aside>
             </div>
-            <form method=POST action='php/modifyarticle.php' id=contenu>
+            <form method=POST action='php/modifyarticle.php?id_article=$id_article' id=contenu>
                 <input id=title_article type='text' name='titre' placeholder='$info[titre]' maxlength='50'>
                 <textarea type='text' name='article' id='redaction_article' placeholder='$info[contenu]' maxlength='1000'></textarea>
                 <div id=note_modif><input type='number' value='$info[note]' min=1 max=10 name='note'><label for='note'>/10</label></div>
@@ -527,7 +527,7 @@ function displayModifyAvis($info_avis,$id_avis){
                 <div class='entete'>
                     <input type='text' name='titre' id='title_avis' placeholder='$info_avis[titre]' maxlength='50'>
                     <aside class='note_article'>
-                        <input type='number' value='$info_avis[note]' min=1 max=10 class='note_article' name='note'><label for='note'>/10</label>
+                        <input type='number' value='$info_avis[note]' mi=01 max=10 class='note_article' name='note'><label for='note'>/10</label>
                     </aside>
                 </div>
                 <textarea type='text' name='avis' id='redaction_avis' placeholder='$info_avis[texte]' maxlength='255'></textarea>

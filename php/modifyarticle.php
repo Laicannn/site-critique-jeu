@@ -25,5 +25,5 @@ $blabla=htmlspecialchars($contenu, ENT_QUOTES);
 
 ModifyArticle($mysqli,$id_article,$titre,$blabla,$note);
 closeDB($mysqli);
-header("Location: ../article.php?id_article=$id_article");
+header("Location: ../index.php");
 ?>
