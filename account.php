@@ -47,7 +47,7 @@ $mysqli = connectionDB();
 
                 $liste_article=getArticleAccount($mysqli,$id_user);
                 displayArticleAccount($liste_article);
-                
+
                 $liste_avis = getAvisofUser($mysqli,$id_user);
                 displayAvisAccount($liste_avis,$pp[0]['chemin']);
             }

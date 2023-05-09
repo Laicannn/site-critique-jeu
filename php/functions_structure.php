@@ -84,7 +84,7 @@ function displayConnect(){
                     <label for="password" class="error_mdp">Mots de passe entrés différents</label>
                     <input type="password" name="mdp" id="password" required>
                     <label for="password_repete">Confirmer mot de passe</label>
-                    <input type="password_repete" name="mdp_repete" id="password_repete" required>
+                    <input type="password" name="mdp_repete" id="password_repete" required>
                 </div>
                 <br>
                 <input type="submit" value="inscription" id="bouton_submit" required>
@@ -493,7 +493,7 @@ function displayModifyArticle($info,$image,$categories,$support,$id_article){
                     }
                 echo"</aside>
             </div>
-            <form id=contenu>
+            <form method=POST action='modifyarticle.php' id=contenu >
                 <input id=title_article type='text' name='titre' placeholder='$info[titre]' maxlength='50'>
                 <textarea type='text' name='article' id='redaction_article' placeholder='$info[contenu]' maxlength='1000'></textarea>
                 <div id=note_modif><input type='number' value='$info[note]' min=1 max=10 name='note'><label for='note'>/10</label></div>

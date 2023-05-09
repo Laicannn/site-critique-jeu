@@ -176,7 +176,7 @@ function getIdNewArticle($mysqli,$contenu){
                 FROM article 
                 WHERE article.contenu='$contenu';";
     $id_article=readDB($mysqli,$requete);
-    return $id_article;
+    return $id_article[0];
 }
 
 function ChangeArticle($mysqli,$id_article,$id_jeux){

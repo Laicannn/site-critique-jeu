@@ -39,7 +39,6 @@ body {
     min-height: max-content;
     background-color : #111111;
     color:#D6D6D6;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     display: flex;
     flex-direction: column;
