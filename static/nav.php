@@ -22,6 +22,10 @@
                 echo'<a class="active" href="index.php">OPEN WORLD</a>';
             } else {echo'<a href="index.php?categorie=Openworld">OPEN WORLD</a>';}
 
+            if(str_ends_with($_SERVER['REQUEST_URI'], '?categorie=Sandbox')){
+                echo'<a class="active" href="index.php">SANDBOX</a>';
+            } else {echo'<a href="index.php?categorie=Sandbox">SANDBOX</a>';}
+
         echo'</div>
         <aside id="compense"></aside>';
     }
